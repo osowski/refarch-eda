@@ -654,7 +654,7 @@
                 
                 <h1 id="consumers-design-and-implementation-considerations">Consumers design and implementation considerations</h1>
 <p>Implementing a Topic consumer is using the kafka <a href="https://kafka.apache.org/10/javadoc/?org/apache/kafka/clients/consumer/KafkaConsumer.html">KafkaConsumer class</a> which the API documentation is a must read.
-The implementation is simple for a single thread consumer:
+The implementation is simple for a single thread consumer, and the code structure looks like:
 <em> prepare the properties
 </em> create an instance of KafkaConsumer to connect to a topic and a partition
 * loop on polling events 
