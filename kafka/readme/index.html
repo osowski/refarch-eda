@@ -1051,14 +1051,7 @@ For high availability assess any potential single point of failure, such as serv
 <li>How to address no duplication of records?</li>
 </ul>
 <h3 id="for-kafka-stream">For Kafka stream</h3>
-<p><img alt="" src="../images/kafka-stream-arch.png" /></p>
-<ul>
-<li><strong>Kafka</strong> Streams partitions data for processing it. </li>
-<li>and <strong>Kafka Streams</strong>.</li>
-<li>An application's processor topology is scaled by breaking it into multiple tasks.</li>
-<li>Tasks can then instantiate their own processor topology based on the assigned partitions.</li>
-</ul>
-<p>See <a href="https://docs.confluent.io/current/streams/architecture.html">this article from Confluent</a> for deeper kafka stream architecture presentation.</p>
+<p>We are detailing the specific guidances for using Kafka Streams implementation in a <a href="../kafka-stream/">separate note</a>.</p>
 <h3 id="solution-considerations">Solution considerations</h3>
 <p>There are a set of design considerations to assess for each <strong>Kafka</strong> solution:</p>
 <h4 id="topics_1">Topics</h4>
