@@ -959,7 +959,7 @@
                 
                 <h1 id="apache-kafka">Apache Kafka</h1>
 <p>In this article we are presenting real time event processing and analytics using <strong>Kafka</strong> deployed on Kubernetes cluster. We are documenting how to deploy this capability on IBM Cloud Private using a <a href="https://Kafka.apache.org/"><strong>Kafka</strong></a> open source distribution or the new <a href="https://developer.ibm.com/messaging/event-streams/">IBM Event Streams product</a> and how to remote connect from hosts outside of the cluster, how to support high availability...</p>
-<p>Update 02/2019 - <em>Author: <a href="https://www.linkedin.com/in/jeromeboyer/">Jerome Boyer</a></em>  </p>
+<p>Update 03/2019 - <em>Author: <a href="https://www.linkedin.com/in/jeromeboyer/">Jerome Boyer</a></em>  </p>
 <h2 id="introduction">Introduction</h2>
 <p><a href="https://Kafka.apache.org/">Kafka</a> is a distributed streaming platform with the following key capabilities:</p>
 <ul>
@@ -1011,7 +1011,8 @@
 <p>Zookeeper is used to persist the component and platform states and it runs in cluster to ensure high availability. One zookeeper server is the leader and other are used in backup.</p>
 <ul>
 <li>Kafka does not keep state regarding consumers and producers.</li>
-<li>Depending of kafka version offsets are maintained in Zookeeper or in <strong>Kafka</strong>. Newer version use an internal Kafka topic called __consumer_offsets. In any case consumers can read next message (or from a specific offset) correctly even during broker server outrages. We are detailing this in the asset consumer implementation in <a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/tree/master/asset-consumer">this repository</a>.</li>
+<li>Depending of kafka version offsets are maintained in Zookeeper or in <strong>Kafka</strong>. Newer versions use an internal Kafka topic called __consumer_offsets. In any case consumers can read next message (or from a specific offset) correctly even during broker server outrages. </li>
+<li>Access Control is saved in Zookeeper</li>
 <li>Stream processing is helpful for handling out-of-order data, <em>reprocessing</em> input as code changes, and performing stateful computations. It uses producer / consumer, stateful storage and consumer groups. It treats both past and future data the same way.</li>
 </ul>
 <h3 id="consumer-group">Consumer group</h3>
@@ -1057,7 +1058,7 @@ For high availability assess any potential single point of failure, such as serv
 <h4 id="topics_1">Topics</h4>
 <p>Performance is more a function of number of partitions than topics. Expect that each topic has at least one partition. When considering latency you should aim for limiting to hundreds of topic-partition per broker node.</p>
 <p>What of the most important question is what topics to use?. What is an event type? Should we use one topic to support multiple event types? 
-Let define that an event type is linked to a main business entity like an Order, a ship, a FridgeredContainer. OrderCreated, OrderCancelled, OrderUpdated, OrderClosed are events linked to the states of the Order. The order of those events matter. So the natural approach is to use one topic per data type or schema, specially when using the topic as Event Sourcing where event order is important to build the audit log. You will use an unique partition to support that. The orderID is the partition key and all events related to the order are in the same topic.</p>
+Let define that an event type is linked to a main business entity like an Order, a ship, a FridgeredContainer. OrderCreated, OrderCancelled, OrderUpdated, OrderClosed are events linked to the states of the Order. The order of those events matter. So the natural approach is to use one topic per data type or schema, specially when using the topic as Event Sourcing where event order is important to build the audit log. You will use a unique partition to support that. The orderID is the partition key and all events related to the order are in the same topic.</p>
 <p>The important requirement to consider is the sequencing or event order. When event order is very important then use a unique partition, and use the entity unique identifier as key. Ordering is not preserved across partitions.</p>
 <p>When dealing with entity, independent entities may be in separate topics, when strongly related one may stay together.</p>
 <p>Other best practices:
@@ -1149,9 +1150,10 @@ Provision a <strong>fast storage class</strong> for persistence volume.</p>
 <p>Zookeeper is not CPU intensive and each server should have a least 2 GB of heap space and 4GB reserved. Two cpu per server should be sufficient. Servers keep their entire state machine in memory, and write every mutation to a durable WAL (Write Ahead Log) on persistent storage. To prevent the WAL from growing without bound, ZooKeeper servers periodically snapshot their in memory state to storage. Use fast and dynamically provisioned persistence storage for both WAL and snapshot.</p>
 <h2 id="compendium">Compendium</h2>
 <ul>
-<li><a href="https://Kafka.apache.org/intro/">Start by reading Kafka introduction</a></li>
-<li><a href="http://www.confluent.io/blog/introducing-Kafka-streams-stream-processing-made-simple">Another introduction from the main contributors: Confluent</a></li>
+<li><a href="https://Kafka.apache.org/intro/">Start by reading Kafka introduction - a must read!</a></li>
+<li><a href="http://www.confluent.io/blog/introducing-Kafka-streams-stream-processing-made-simple">Another introduction from Confluent, one of the main contributors of the open source.</a></li>
 <li><a href="https://Kafka.apache.org/11/documentation/streams/">Develop Stream Application using Kafka</a></li>
+<li><a href="https://developer.ibm.com/tutorials/kafka-authn-authz/">Tutorial on access control, user authentication and authorization from IBM.</a></li>
 <li><a href="https://developer.ibm.com/messaging/event-streams/docs/validating-the-deployment/">Validating the Stream deployment</a></li>
 <li><a href="https://github.com/kubernetes/contrib/tree/master/statefulsets/Kafka">Kafka on Kubernetes using stateful sets</a></li>
 <li><a href="https://developer.ibm.com/messaging/event-streams/">IBM Event Streams product based on Kafka delivered in ICP catalog</a></li>
