@@ -553,6 +553,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#more-readings" title="More readings" class="md-nav__link">
+    More readings
+  </a>
+  
+</li>
+      
       
       
       
@@ -708,6 +715,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#more-readings" title="More readings" class="md-nav__link">
+    More readings
+  </a>
+  
+</li>
+      
       
       
       
@@ -728,17 +742,17 @@
                 
                 
                 <h1 id="producers-considerations">Producers considerations</h1>
-<p>Remember that producers are stateless. Consumers are managing the offset. So producers are more simple to implement.</p>
+<p>A producer is a thread safe kafka client API that publishes records to the cluster. It uses buffers, thread pool, and serializer to send data. They are stateless. This is the consumers that are managing the offsets. Producers are more simple to implement. </p>
 <h2 id="design-considerations">Design considerations</h2>
 <p>When developing a record producer you need to assess the following:</p>
 <ul>
-<li>What is the expected throughput to send events? Event size * average throughput combined with the expected latency help to compute buffer size.</li>
+<li>What is the expected throughput to send events? Event size * average throughput combined with the expected latency help to compute buffer size. By default, the buffer size is set at 32Mb, but can be configured with <code>buffer.memory</code>. (See <a href="">producer configuration API</a>)</li>
 <li>Can the producer batch events together to send them in batch over one send operation?</li>
 <li>Is there a risk for loosing communication? Tune the RETRIES_CONFIG and buffer size</li>
 <li>Assess <em>once to exactly once</em> delivery requirement. Look at idempotent producer.</li>
 <li>Where the event timestamp comes from? Should the producer send operation set it or is it loaded from external data? Remember that <code>LogAppendTime</code> is considered to be processing time, and <code>CreateTime</code> is considered to be event time.</li>
 </ul>
-<p>See related discussion <a href="https://www.confluent.io/blog/put-several-event-types-kafka-topic/">on confluent web site</a></p>
+<p>See related discussions <a href="https://www.confluent.io/blog/put-several-event-types-kafka-topic/">on confluent web site</a></p>
 <h2 id="typical-code-structure">Typical code structure</h2>
 <p>The producer code does the following steps:</p>
 <ul>
@@ -788,6 +802,8 @@
 <li><a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/tree/master/asset-event-producer#pump-simulator">A Pump simulator</a></li>
 <li><a href="">Ship movement and container metrics event producers</a></li>
 </ul>
+<h2 id="more-readings">More readings</h2>
+<p>*<a href="http://cloudurable.com/blog/kafka-tutorial-kafka-producer-advanced-java-examples/index.html">Creating advanced kafka producer in java - Cloudurable</a></p>
                 
                   
                 
