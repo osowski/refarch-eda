@@ -36,7 +36,7 @@
     
     
       
-        <title>Kafka Streaming - Event Driven Architecture</title>
+        <title>Event streaming processing - Event Driven Architecture</title>
       
     
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Kafka Streaming
+              Event streaming processing
             </span>
           
         </div>
@@ -385,10 +385,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       Event driven patterns
@@ -421,6 +423,70 @@
     <a href="../../evt-microservices/ED-patterns/" title="Event-driven patterns" class="md-nav__link">
       Event-driven patterns
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Event streaming processing
+      </label>
+    
+    <a href="./" title="Event streaming processing" class="md-nav__link md-nav__link--active">
+      Event streaming processing
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-to-run-the-word-count-application" title="Example to run the Word Count application:" class="md-nav__link">
+    Example to run the Word Count application:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-examples" title="Other examples" class="md-nav__link">
+    Other examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" title="Further reading" class="md-nav__link">
+    Further reading
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -646,21 +712,33 @@
                 
                 
                 <h1 id="kafka-streaming">Kafka Streaming</h1>
-<p>Kafka Streams is a graph of processing nodes to implement the logic to process event streams. Each node process events from the parent node. </p>
+<p>Kafka Streams is a graph of processing nodes to implement the logic to process event streams. Each node process events from the parent node. We recommend reading this excellent introduction from Jay Kreps @confluent: <a href="https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/">Kafka stream made simple</a> to get a good understanding of why Kafka stream was created. </p>
+<p>To summarize, <strong>Kafka</strong> Stream has the following capabilities:</p>
+<ul>
+<li>Stream processing is helpful for handling out-of-order data, <em>reprocessing</em> input as code changes, and performing stateful computations. It uses producer / consumer, stateful storage and consumer groups. It treats both past and future data the same way.</li>
+<li>Embedded library for your application to use.</li>
+<li>Integrate tables for state persistence with streams of events.</li>
+<li>Consumes continuous real time flows of records and publish new flows.</li>
+<li>Supports exactly-once processing semantics to guarantee that each record will be processed once and only once even when there is a failure.</li>
+<li>Stream APIs transform, aggregate and enrich data, per record with milli second latency, from one topic to another one.</li>
+<li>Supports stateful and windowing operations by processing one record at a time.</li>
+<li>Can be integrated in java application. No need for separate processing cluster. It is a Java API. But a Stream app is executed outside of the broker code, which is different than message flow in an ESB.</li>
+<li>Elastic, highly scalable, fault tolerance, it can recover from failure.</li>
+</ul>
 <p><img alt="" src="../images/kafka-stream-arch.png" /></p>
 <ul>
 <li>An application's processor topology is scaled by breaking it into multiple tasks.</li>
 <li>Tasks can then instantiate their own processor topology based on the assigned partitions.</li>
 </ul>
 <p>It is a very important technology to process real-time data for analytics and event processing, developing stateless or stateful processing.</p>
-<p>The Java code in the project: https://github.com/ibm-cloud-architecture/refarch-asset-analytics/tree/master/asset-event-producer includes examples of stateless consumers, a text producer, and some example of stateful operations. In general code for processing event does the following:</p>
+<p>In general code for processing event does the following:</p>
 <ul>
 <li>Set a properties object to specify which brokers to connect to and what kind of serialization to use.</li>
-<li>Define a stream client: if you want stream of record use KStream, if you want a changelog with the last value of a given key use KTable (Example of using KTable is to keep a user profile with userid as key).</li>
+<li>Define a stream client: if you want stream of record use KStream, if you want a changelog with the last value of a given key use KTable (Example of using KTable is to keep a user profile with userid as key). In the container shipment implementation we use KTable to keep the Reefer container inventory in memory. </li>
 <li>Create a topology of input source and sink target and the set of actions to perform in between.</li>
 <li>Start the stream client to consume records.</li>
 </ul>
-<p>Programming with KStream and Ktable is not easy at first as there are a lot of concept for data manipulations, serialization and operations chaining. </p>
+<p>Programming with KStream and Ktable is not easy at first, as there are a lot of concepts for data manipulations, serialization and operations chaining. It also uses function programming and chaining.</p>
 <p>A stateful operator uses the streaming Domain Specific Language, and is used for aggregation, join and time window operators. Stateful transformations require a state store associated with the stream processor. The code below comes from Kafka examples and is counting word occurrence in text:</p>
 <pre><code>    final StreamsBuilder builder = new StreamsBuilder();
     final Pattern pattern = Pattern.compile(&quot;\\W+&quot;);
@@ -720,7 +798,7 @@ root&gt; /opt/Kafka_2.11-0.10.1.0/bin/Kafka-console-consumer.sh --bootstrap-serv
 
 <p>Outputs of the WordCount application is actually a continuous stream of updates, where each output record is an updated count of a single word. A KTable is counting the occurrence of word, and a KStream send the output message with updated count.</p>
 <h2 id="other-examples">Other examples</h2>
-<p>We have implemented the container microservice of the K-Container solution using kstreams processing. See the presentation <a href="https://ibm-cloud-architecture.github.io/refarch-kc-container-ms/kstreams">here</a>, and go to the following code to see tests for the different process flow.</p>
+<p>We have implemented the container microservice of the Container Shipment solution using kstreams processing. See the presentation <a href="https://ibm-cloud-architecture.github.io/refarch-kc-container-ms/kstreams">here</a>, and go to the following code to see tests for the different process flow.</p>
 <ul>
 <li><a href="https://github.com/ibm-cloud-architecture/refarch-kc-container-ms/blob/master/kstreams/src/test/java/ut/TestOrderCreation.java">Basic kstream processing on order events</a></li>
 </ul>
@@ -745,6 +823,41 @@ root&gt; /opt/Kafka_2.11-0.10.1.0/bin/Kafka-console-consumer.sh --bootstrap-serv
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../evt-microservices/ED-patterns/" title="Event-driven patterns" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Event-driven patterns
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../rt-analytics/" title="Real time analytics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Real time analytics
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

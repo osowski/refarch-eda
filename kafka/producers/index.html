@@ -424,6 +424,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kafka-stream/" title="Event streaming processing" class="md-nav__link">
+      Event streaming processing
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -746,13 +758,13 @@
 <h2 id="design-considerations">Design considerations</h2>
 <p>When developing a record producer you need to assess the following:</p>
 <ul>
-<li>What is the expected throughput to send events? Event size * average throughput combined with the expected latency help to compute buffer size. By default, the buffer size is set at 32Mb, but can be configured with <code>buffer.memory</code>. (See <a href="">producer configuration API</a>)</li>
+<li>What is the expected throughput to send events? Event size * average throughput combined with the expected latency help to compute buffer size. By default, the buffer size is set at 32Mb, but can be configured with <code>buffer.memory</code>. (See <a href="https://kafka.apache.org/10/javadoc/org/apache/kafka/clients/producer/ProducerConfig.html">producer configuration API</a></li>
 <li>Can the producer batch events together to send them in batch over one send operation?</li>
-<li>Is there a risk for loosing communication? Tune the RETRIES_CONFIG and buffer size</li>
-<li>Assess <em>once to exactly once</em> delivery requirement. Look at idempotent producer.</li>
+<li>Is there a risk for loosing communication? Tune the RETRIES_CONFIG and buffer size, and ensure to have at least 3 brokers and even 5 to maintain quorum in case of one failure. The client API is implemented to support reconnection.</li>
+<li>Assess <em>once to exactly once</em> delivery requirement. Look at idempotent producer: retries will not introduce duplicate records.</li>
 <li>Where the event timestamp comes from? Should the producer send operation set it or is it loaded from external data? Remember that <code>LogAppendTime</code> is considered to be processing time, and <code>CreateTime</code> is considered to be event time.</li>
 </ul>
-<p>See related discussions <a href="https://www.confluent.io/blog/put-several-event-types-kafka-topic/">on confluent web site</a></p>
+<p>See related discussions <a href="https://www.confluent.io/blog/put-several-event-types-kafka-topic/">on confluent web site.</a></p>
 <h2 id="typical-code-structure">Typical code structure</h2>
 <p>The producer code does the following steps:</p>
 <ul>
@@ -784,7 +796,7 @@
 </tr>
 <tr>
 <td>KEY_SERIALIZER_CLASS_CONFIG and VALUE_SERIALIZER_CLASS_CONFIG</td>
-<td>convert the keys and values into byte arrays.</td>
+<td>convert the keys and values into byte arrays. Using default String serializer should be a good solution for Json payload. For streaming app, use customer serializer.</td>
 </tr>
 <tr>
 <td>ACKS_CONFIG</td>
@@ -794,11 +806,15 @@
 <td>RETRIES_CONFIG</td>
 <td>specifies the number of times to attempt to resend a batch of events.</td>
 </tr>
+<tr>
+<td>ENABLE_IDEMPOTENCE_CONFIG</td>
+<td>Set to tru, the number of retries will maximized, and the acks will be set to <code>All</code>.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="code-examples">Code Examples</h2>
 <ul>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/blob/master/asset-event-producer/src/main/java/ibm/cte/kafka/play/SimpleProducer.java">Simple test message</a></li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/blob/master/asset-event-producer/src/main/java/ibm/cte/kafka/play/SimpleProducer.java">Simple text message</a></li>
 <li><a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/tree/master/asset-event-producer#pump-simulator">A Pump simulator</a></li>
 <li><a href="">Ship movement and container metrics event producers</a></li>
 </ul>
