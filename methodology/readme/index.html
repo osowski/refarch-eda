@@ -966,8 +966,8 @@ In this step you focus on the mainline "happy" end-to-end path to avoid getting 
 <p>This first level of data definition helps to assess the microservice scope and responsibility as you start to see commonalities emerge from the data used among several related events.  Those concepts become more obvious in the next step.</p>
 <h4 id="step-6-identify-the-aggregates">Step 6: Identify the Aggregates</h4>
 <p>In DDD, entities and value objects can exist independently, but often, the relations are such that an entity or a value object has no value without its context.  <a href="https://martinfowler.com/bliki/DDD_Aggregate.html">Aggregates</a> provide that context by being those "roots" that comprise one or more entities and value objects that are linked together through a lifecycle.  In event storming, aggregates emerge through the process by grouping events and commands that are related.  This grouping not only consists of related data (entities and value objects) but also related actions (commands) that are connected by the lifecycle of that aggregate. Aggregates ultimately suggest microservice boundaries. </p>
-<p>In the container shipment example, you can see that you can group several command and event pairs (with their associated data) together that are related through the lifecycle of an order for shipping.</p>
-<p><img alt="" src="https://github.com/ibm-cloud-architecture/refarch-kc/blob/master/docs/analysis/ship-aggr-shipment.png" /></p>
+<p>In the container shipment example, you can see that you can group several commands and event pairs (with their associated data) together that are related through the lifecycle of an order for shipping.</p>
+<p><img src="https://github.com/ibm-cloud-architecture/refarch-kc/blob/master/docs/analysis/ship-aggr-shipment.png"></p>
 <h4 id="step-7-define-bounded-context">Step 7: Define Bounded Context</h4>
 <p>In this step, you define terms and concepts with a clear meaning valid in a clear boundary and you define the context within which a model applies. (The term definition can change outside of the business unit for which an application is developed). The following items may be addressed:</p>
 <ul>
