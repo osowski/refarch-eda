@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#event-storming-methodology" tabindex="1" class="md-skip">
+      <a href="#event-driven-solution-implementation-methodology" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -387,6 +387,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#event-storming-workshop" title="Event Storming workshop" class="md-nav__link">
+    Event Storming workshop
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conducting-the-event-and-insight-storming-workshop" title="Conducting the event and insight storming workshop" class="md-nav__link">
     Conducting the event and insight storming workshop
   </a>
@@ -476,9 +483,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#design-iteration" title="Design iteration" class="md-nav__link">
+    Design iteration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microservice" title="Microservice" class="md-nav__link">
+    Microservice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#event-storming-to-user-stories-and-epics" title="Event storming to user stories and epics" class="md-nav__link">
     Event storming to user stories and epics
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -601,10 +628,34 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Reference implementations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Reference implementations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
     <a href="https://ibm-cloud-architecture.github.io/refarch-kc" title="Container shipment implementation solution" class="md-nav__link">
       Container shipment implementation solution
     </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -761,6 +812,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#event-storming-workshop" title="Event Storming workshop" class="md-nav__link">
+    Event Storming workshop
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conducting-the-event-and-insight-storming-workshop" title="Conducting the event and insight storming workshop" class="md-nav__link">
     Conducting the event and insight storming workshop
   </a>
@@ -850,9 +908,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#design-iteration" title="Design iteration" class="md-nav__link">
+    Design iteration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microservice" title="Microservice" class="md-nav__link">
+    Microservice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#event-storming-to-user-stories-and-epics" title="Event storming to user stories and epics" class="md-nav__link">
     Event storming to user stories and epics
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -889,7 +967,10 @@
                   <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/methodology/readme.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="event-storming-methodology">Event storming methodology</h1>
+                <h1 id="event-driven-solution-implementation-methodology">Event driven solution implementation methodology</h1>
+<p>In this article we are presenting an end to end set of activities to run a successful Minimum Viable Product for an even-driven solution using cloud native microservices and event backbone as the core technology approach.</p>
+<p>The discovery and analysis of the MVP scope starts with an <a href="#event-storming-workshop">event storming workshop</a> where designer, architect work hand to hand with business users and domain subject matter experts. From the different outcomes of the workshop, the development team starts to outline components, microservices, business entities life cycle, etc... in a short <a href="">design iteration</a>. The scope is well define Epics, Hill and user stories defined, at least for the first iterations, and the MVP can start. </p>
+<h2 id="event-storming-workshop">Event Storming workshop</h2>
 <p>Event storming is a workshop format for quickly exploring complex business domains by focusing on <em>domain events</em> generated in the context of a business process or a business application. A <strong>domain event</strong> is something meaningful that happened in the domain. The workshop focuses on communication between product owner, domain experts and developers.</p>
 <p>The event storming method was introduced and publicized by Alberto Brandolini in <a href="https://www.eventstorming.com/book/">"Introducing event storming book"</a>. This approach is recognized in the <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain Driven Design (DDD)</a> community as a technique for rapid capture of a solution design and improved team understanding of the design. This article outlines the method and describes refinements and extensions that are useful in designs for an event-driven architecture. This extended approach adds an insight storming step to identify and capture value adding predictive insights about possible future events. The predictive insights are generated by using data science analysis, data models, artificial intelligence (AI), or machine learning (ML). </p>
 <p>This article describes in general terms all the steps to run an event storming workshop. The output of an actual workshop done on a sample problem - a world wide container shipment, is further detailed in <a href="https://github.com/ibm-cloud-architecture/refarch-kc/tree/master/analysis/readme.md">the container shipment analysis example</a>.</p>
@@ -967,7 +1048,7 @@ In this step you focus on the mainline "happy" end-to-end path to avoid getting 
 <h4 id="step-6-identify-the-aggregates">Step 6: Identify the Aggregates</h4>
 <p>In DDD, entities and value objects can exist independently, but often, the relations are such that an entity or a value object has no value without its context.  <a href="https://martinfowler.com/bliki/DDD_Aggregate.html">Aggregates</a> provide that context by being those "roots" that comprise one or more entities and value objects that are linked together through a lifecycle.  In event storming, aggregates emerge through the process by grouping events and commands that are related.  This grouping not only consists of related data (entities and value objects) but also related actions (commands) that are connected by the lifecycle of that aggregate. Aggregates ultimately suggest microservice boundaries. </p>
 <p>In the container shipment example, you can see that you can group several commands and event pairs (with their associated data) together that are related through the lifecycle of an order for shipping.</p>
-<p><img src="https://github.com/ibm-cloud-architecture/refarch-kc/blob/master/docs/analysis/ship-aggr-shipment.png"></p>
+<p><img alt="" src="../ship-aggr-shipment.png" /></p>
 <h4 id="step-7-define-bounded-context">Step 7: Define Bounded Context</h4>
 <p>In this step, you define terms and concepts with a clear meaning valid in a clear boundary and you define the context within which a model applies. (The term definition can change outside of the business unit for which an application is developed). The following items may be addressed:</p>
 <ul>
@@ -1006,7 +1087,11 @@ You can think of insight storming as extending the analysis to <strong>Derived E
 <p><img alt="evt-stm-insight-cntnr" src="../evt-stm-insight-cntnr.PNG" /></p>
 <p>The second diagram captures insights that could trigger recommendations to adjust ship course or speed in response to expected severe weather forcasts for the route ahead or predicted congestion and expected docking and unloading delays at the next port of call. </p>
 <p><img alt="evt-stm-insight-ship" src="../evt-stm-insight-ship.PNG" /></p>
-<h2 id="event-storming-to-user-stories-and-epics">Event storming to user stories and epics</h2>
+<h2 id="design-iteration">Design iteration</h2>
+<p>Attention we are not proposing to apply a waterfall approach, but before starting the deeper implementation with iterations, we want to spend sometime to define in more details what we want to build, how to organize the CI/CD projects and pipeline, select the development, test and product plaform, and define epics, user stories, components, microservices... This iteration can take from few hours to a week depending of the expected MVP goals. </p>
+<p>For an event-driven solution a MVP for a single application should not take more than 3 to 4 iterations. </p>
+<h3 id="microservice">Microservice</h3>
+<h3 id="event-storming-to-user-stories-and-epics">Event storming to user stories and epics</h3>
 <p>In agile methodology, creating user stories or epics is one of the most important elements in project management. The commands and policies related to events can be easily described as user stories, because commands and decisions are done by actors. The actor could be a system as well.
 For the data you must model the "Create, Read, Update, Delete" operations as user stories, mostly supported by a system actor.</p>
 <p><img alt="evt-stm-userstories" src="../evt-stm-userstories.png" /></p>
