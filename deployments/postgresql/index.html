@@ -31,21 +31,21 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
     
     
       
-        <title>Event Backbone - Event Driven Architecture</title>
+        <title>Postgresql - Event Driven Architecture</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -54,10 +54,10 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="../extra.css">
+      <link rel="stylesheet" href="../../extra.css">
     
     
       
@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#event-backbone" tabindex="1" class="md-skip">
+      <a href="#deploying-postgresql-to-icp" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -105,7 +105,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="Event Driven Architecture" class="md-header-nav__button md-logo">
+        <a href="../.." title="Event Driven Architecture" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Event Backbone
+              Postgresql
             </span>
           
         </div>
@@ -195,7 +195,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="Event Driven Architecture" class="md-nav__button md-logo">
+    <a href="../.." title="Event Driven Architecture" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -231,7 +231,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
   </li>
@@ -243,7 +243,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../concepts/" title="Concepts" class="md-nav__link">
+    <a href="../../concepts/" title="Concepts" class="md-nav__link">
       Concepts
     </a>
   </li>
@@ -253,12 +253,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Architecture
@@ -276,7 +274,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../architecture/" title="Reference diagrams" class="md-nav__link">
+    <a href="../../architecture/" title="Reference diagrams" class="md-nav__link">
       Reference diagrams
     </a>
   </li>
@@ -288,7 +286,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../evt-src/" title="Event Sources" class="md-nav__link">
+    <a href="../../evt-src/" title="Event Sources" class="md-nav__link">
       Event Sources
     </a>
   </li>
@@ -298,63 +296,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Event Backbone
-      </label>
-    
-    <a href="./" title="Event Backbone" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../evt-backbone/" title="Event Backbone" class="md-nav__link">
       Event Backbone
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#defining-the-event-backbone-for-the-event-driven-reference-architecture" title="Defining the Event Backbone for the event driven reference architecture" class="md-nav__link">
-    Defining the Event Backbone for the event driven reference architecture
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#supporting-products" title="Supporting products" class="md-nav__link">
-    Supporting products
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deployments" title="Deployments" class="md-nav__link">
-    Deployments
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -364,7 +310,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../evt-action/" title="Event Actions" class="md-nav__link">
+    <a href="../../evt-action/" title="Event Actions" class="md-nav__link">
       Event Actions
     </a>
   </li>
@@ -376,7 +322,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../evt-state/" title="Event Managed States" class="md-nav__link">
+    <a href="../../evt-state/" title="Event Managed States" class="md-nav__link">
       Event Managed States
     </a>
   </li>
@@ -412,7 +358,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../methodology/readme/" title="Workshop" class="md-nav__link">
+    <a href="../../methodology/readme/" title="Workshop" class="md-nav__link">
       Workshop
     </a>
   </li>
@@ -460,7 +406,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../evt-microservices/" title="Microservices" class="md-nav__link">
+    <a href="../../evt-microservices/" title="Microservices" class="md-nav__link">
       Microservices
     </a>
   </li>
@@ -472,7 +418,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../evt-microservices/ED-patterns/" title="Event-driven patterns" class="md-nav__link">
+    <a href="../../evt-microservices/ED-patterns/" title="Event-driven patterns" class="md-nav__link">
       Event-driven patterns
     </a>
   </li>
@@ -484,7 +430,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../kafka/kafka-stream/" title="Event streaming processing" class="md-nav__link">
+    <a href="../../kafka/kafka-stream/" title="Event streaming processing" class="md-nav__link">
       Event streaming processing
     </a>
   </li>
@@ -501,7 +447,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../rt-analytics/" title="Real time analytics" class="md-nav__link">
+    <a href="../../rt-analytics/" title="Real time analytics" class="md-nav__link">
       Real time analytics
     </a>
   </li>
@@ -547,10 +493,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
     
     <label class="md-nav__link" for="nav-8">
       Product guidances
@@ -568,7 +516,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../kafka/readme/" title="Kafka summary" class="md-nav__link">
+    <a href="../../kafka/readme/" title="Kafka summary" class="md-nav__link">
       Kafka summary
     </a>
   </li>
@@ -580,7 +528,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../kafka/producers/" title="Kafka producer" class="md-nav__link">
+    <a href="../../kafka/producers/" title="Kafka producer" class="md-nav__link">
       Kafka producer
     </a>
   </li>
@@ -592,7 +540,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../kafka/consumers/" title="Kafka consumer" class="md-nav__link">
+    <a href="../../kafka/consumers/" title="Kafka consumer" class="md-nav__link">
       Kafka consumer
     </a>
   </li>
@@ -604,7 +552,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../deployments/kafka/" title="Kafka deployment" class="md-nav__link">
+    <a href="../kafka/" title="Kafka deployment" class="md-nav__link">
       Kafka deployment
     </a>
   </li>
@@ -616,7 +564,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../deployments/zookeeper/" title="Zookeeper deployment" class="md-nav__link">
+    <a href="../zookeeper/" title="Zookeeper deployment" class="md-nav__link">
       Zookeeper deployment
     </a>
   </li>
@@ -628,7 +576,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../deployments/eventstreams/" title="Event Streams deployment" class="md-nav__link">
+    <a href="../eventstreams/" title="Event Streams deployment" class="md-nav__link">
       Event Streams deployment
     </a>
   </li>
@@ -640,7 +588,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../serverless/" title="Serverless" class="md-nav__link">
+    <a href="../../serverless/" title="Serverless" class="md-nav__link">
       Serverless
     </a>
   </li>
@@ -650,11 +598,70 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../deployments/postgresql/" title="Postgresql" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Postgresql
+      </label>
+    
+    <a href="./" title="Postgresql" class="md-nav__link md-nav__link--active">
       Postgresql
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" title="Pre-requisites" class="md-nav__link">
+    Pre-requisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps" title="Steps" class="md-nav__link">
+    Steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshouting" title="Troubleshouting" class="md-nav__link">
+    Troubleshouting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-readings" title="More Readings" class="md-nav__link">
+    More Readings
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -669,7 +676,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../eda-skill-journey/" title="Skill Journey" class="md-nav__link">
+    <a href="../../eda-skill-journey/" title="Skill Journey" class="md-nav__link">
       Skill Journey
     </a>
   </li>
@@ -681,7 +688,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../compendium/" title="Compendium" class="md-nav__link">
+    <a href="../../compendium/" title="Compendium" class="md-nav__link">
       Compendium
     </a>
   </li>
@@ -708,22 +715,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#defining-the-event-backbone-for-the-event-driven-reference-architecture" title="Defining the Event Backbone for the event driven reference architecture" class="md-nav__link">
-    Defining the Event Backbone for the event driven reference architecture
+  <a href="#pre-requisites" title="Pre-requisites" class="md-nav__link">
+    Pre-requisites
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#supporting-products" title="Supporting products" class="md-nav__link">
-    Supporting products
+  <a href="#steps" title="Steps" class="md-nav__link">
+    Steps
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployments" title="Deployments" class="md-nav__link">
-    Deployments
+  <a href="#troubleshouting" title="Troubleshouting" class="md-nav__link">
+    Troubleshouting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-readings" title="More Readings" class="md-nav__link">
+    More Readings
   </a>
   
 </li>
@@ -744,52 +758,122 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/evt-backbone/README.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/deployments/postgresql/README.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="event-backbone">Event Backbone</h1>
-<p>The event backbone is the communication layer in the event driven architecture.  It provides the connection between event driven capabilities and in the <em>Cloud Native</em> it becomes the Pub/Sub communication layer for event driven microservices.</p>
-<p>At this high level we would consider two types of relevant technologies for the event backbone, <em>Message Brokers</em> and <em>Event Logs</em>.  Both technology types could be used to achieve the event communication style, with the "Publish and subscribe" model however, it is also important to consider other capabilities which are frequently used within event driven solutions:</p>
+                <h1 id="deploying-postgresql-to-icp">Deploying Postgresql to ICP</h1>
+<p>Update 05/10/2019 - ICP 3.2.1</p>
+<h2 id="pre-requisites">Pre-requisites</h2>
 <ul>
-<li>Keeping an <strong>Event Log</strong> as a time sequenced as it happened recording of events (Source of the truth).</li>
-<li>Enabling direct <strong>replay</strong> of events.</li>
-<li>Enabling <strong>Event Sourcing</strong> as a way of recording state changes in distributed systems.</li>
-<li>Enabling <strong>programmatic access</strong> to the <em>continuous event stream</em>.</li>
+<li>Access to an ICP cluster with an up to date catalog </li>
+<li>Once logged to the admin consoler (something like: https://172.16.254.80:8443) go to the Command Line Tools menu and download the IBM Cloud Private CLI. Rename the downloaded file to cloudctl and move it to a folder in your $PATH (e.g. /usr/local/bin/cloudctl)</li>
+<li>Download the kubeclt CLI that match ICP version. Rename and move the tool to /usr/local/bin/</li>
+<li>Download the kubeclt CLI that match ICP version. Rename and move the tool to /usr/local/bin/</li>
+<li>Get psql to access the postgresql.  </li>
 </ul>
-<p>When viewed across these wider event driven capabilities, an event log style technology can provide a central component which can support all of these capabilities, whereas a message broker would have to be extended with other components.</p>
-<h2 id="defining-the-event-backbone-for-the-event-driven-reference-architecture">Defining the Event Backbone for the event driven reference architecture</h2>
-<p><img alt="" src="evt-backbone.png" /></p>
-<p>For the event driven architecture we defined the following characteristics to be essential for the <em>event backbone</em></p>
+<h2 id="steps">Steps</h2>
 <ul>
-<li>Pub/Sub communication.</li>
-<li>Facilitate many consumers: Shared central “source of truth”.</li>
-<li>Capability to store events for a given period of time (event log).</li>
-<li>Provide replay of events from history for evolving application instances.</li>
-<li>Provide programmatic access to continuous event stream data.</li>
-<li>Must be highly scalable and resilient to cloud deployment levels.</li>
+<li>Login to the cluster: </li>
 </ul>
-<p>Looking across these capabilities, the potential technologies, the amount of adoption and community activity around the technologies lead us to selecting <em>Kafka</em> as the Open Source technology base for the event backbone.</p>
-<p>You can read more about Apache Kafka project here <a href="https://kafka.apache.org">https://kafka.apache.org</a></p>
-<h2 id="supporting-products">Supporting products</h2>
-<p>The IBM Event Streams offering provides a <em>Kafka</em> service for the Event Backbone. The service is available as a fully managed service within Public cloud and as a supported build for IBM Cloud Private.</p>
+<pre><code>cloudctl login -a https://172.16.254.80:8443 -u admin -p &lt;passwordyoushouldknow&gt;  --skip-ssl-validation
+</code></pre>
+
+<p>When selecting the postgresql tile in the database category of the catalog (https://172.16.254.80:8443/catalog/) the Overview gives some steps to follow, but those are from the product documentation and they may need some update. Below are the specifics we did:</p>
 <ul>
-<li><a href="https://console.bluemix.net/catalog/services/event-streams">IBM Event Streams Public Cloud</a></li>
-<li><a href="https://www.ibm.com/cloud/event-streams">IBM Event Streams Private Cloud</a></li>
-<li><a href="../kafka/readme/">See also our own Kafka study article</a> on how to support high availability and how to deploy to your local environment or to a kubernetes cluster like IBM Cloud Private.</li>
+<li>For the namespace we use <code>greencompute</code>, so the secret was something like:</li>
 </ul>
-<h2 id="deployments">Deployments</h2>
-<p>In term of event backbone deployment we propose different approaches:</p>
+<pre><code>$ kubectl create secret generic postgresql-pwd-secret --from-literal='postgresql-password=&lt;&gt;' --namespace greencompute
+secret &quot;postgresql-pwd-secret&quot; created
+</code></pre>
+
 <ul>
-<li><strong><a href="https://cloud.ibm.com/">IBM Cloud</a></strong> with the <a href="https://cloud.ibm.com/catalog/services/event-streams">Event Streams service</a>.<ul>
-<li>Deployment discussions for the KC solution are in <a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/iks/">this note</a></li>
+<li>Create a persistence volume. You can use HostPath for development purpose, or if you have a NFS or ceph cluster available adapt the CRD file</li>
 </ul>
-</li>
-<li><strong>IBM Cloud Private</strong><ul>
-<li><a href="../deployments/eventstreams/">Event Streams deployment</a>.</li>
-<li><a href="../deployments/zookeeper/">Zookeeper deployment</a> and <a href="../deployments/kafka/">Kafka deployment</a> for ICP.</li>
+<pre><code class="yaml">apiVersion: v1,
+kind: PersistentVolume,
+metadata:
+    name: posgresql-pv,
+spec:
+    capacity:
+      storage: 10Gi
+    hostPath:
+      path: /bitnami/postgresql,
+      type: &quot;&quot;
+    accessModes:
+      ReadWriteOnce
+    persistentVolumeReclaimPolicy: Retain
+</code></pre>
+
+<p>For NFS use the following changes:</p>
+<pre><code> spec:
+    nfs:
+      server:
+      path: /bitnami/postgresql
+</code></pre>
+
+<ul>
+<li>As we deploy postgres in a namespace scope, we need to specify an image policy to authorize access to docker.io repository:</li>
 </ul>
-</li>
-<li>Running locally with docker compose. See <a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/local/">this note</a> for details.</li>
+<pre><code class="yaml">apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
+kind: ImagePolicy
+namespace: greencompute
+metadata:
+  name: postgresql-image-policy
+spec:
+  repositories:
+    - name: docker.io/*
+      policy:
+        va:
+          enabled: false
+</code></pre>
+
+<p>save the file as <code>securitypolicies.yml</code> and then run:</p>
+<pre><code>$ kubectl apply -f securitypolicies.yml -n greencompute
+$ kubectl describe ImagePolicy postgresql-image-policy -n greencompute
+
+</code></pre>
+
+<ul>
+<li>Use helm to install the release. Here is an example</li>
+</ul>
+<pre><code>$ export PSWD=$(k get secret postgresql-pwd-secret -n greencompute -o jsonpath=&quot;{.data.postgresql-password}&quot;  | base64 --decode; echo)
+$ helm install stable/postgresql --name postgresql --namespace greencompute --set postgresqlPassword=$PSWD,postgresqlDatabase=postgres --tls
+</code></pre>
+
+<ul>
+<li>Access to the database with psql running locally on your computer</li>
+</ul>
+<p>In one terminal start a port forwarding using: <code>kubectl port-forward  postgresql-postgresql-0 5432:5432 &amp;&gt;&gt; /dev/null &amp;</code>. Now we can connect our local <code>psql</code> CLI to the remote server via a command like:</p>
+<pre><code>$ psql &quot;dbname=postgres host=127.0.0.1 user=postgres port=5432 password=$PSWD&quot;
+
+postgres=# \d containers
+ id           | character varying(255)      |           | not null | 
+ brand        | character varying(255)      |           |          | 
+ capacity     | integer                     |           | not null | 
+ created_at   | timestamp without time zone |           | not null | 
+ current_city | character varying(255)      |           |          | 
+ latitude     | double precision            |           | not null | 
+ longitude    | double precision            |           | not null | 
+ status       | integer                     |           |          | 
+ type         | character varying(255)      |           |          | 
+ updated_at   | timestamp without time zone |           | not null | 
+</code></pre>
+
+<p>For more information about the <code>psql</code> tool see <a href="http://postgresguide.com/utilities/psql.html">this note.</a></p>
+<h2 id="troubleshouting">Troubleshouting</h2>
+<blockquote>
+<p>admission webhook "trust.hooks.securityenforcement.admission.cloud.ibm.com" denied the request: Deny "docker.io/bitnami/postgresql:10.7.0", no matching repositories in ClusterImagePolicy and no ImagePolicies in the "greencompute" namespace</p>
+</blockquote>
+<p>Be sure to use a ImagePolicy and not a cluster policy when using namespace deployment.</p>
+<blockquote>
+<p>Error: release postgresql failed: Internal error occurred: admission webhook "trust.hooks.securityenforcement.admission.cloud.ibm.com" denied the request: Deny "docker.io/bitnami/postgresql:10.7.0", no matching repositories in the ImagePolicies</p>
+</blockquote>
+<p>Be sure to authorize docker.io/* in the ImagePolicy.</p>
+<h2 id="more-readings">More Readings</h2>
+<ul>
+<li><a href="https://developer.ibm.com/recipes/tutorials/deploy-postgresql-into-ibm-cloud-private/">ICP 2.1 Postgresql install recipe:</a> older recipeusing the configuration user interface in the ICP console.</li>
+<li><a href="https://github.com/helm/charts/tree/master/stable/postgresql">postgresql helm chart explanation and configuration</a>: a must read.</li>
+<li><a href="https://medium.com/@nicdoye/installing-postgresql-via-helm-237e026453b1"></a></li>
 </ul>
                 
                   
@@ -811,7 +895,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../evt-src/" title="Event Sources" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../serverless/" title="Serverless" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -820,19 +904,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Event Sources
+                Serverless
               </span>
             </div>
           </a>
         
         
-          <a href="../evt-action/" title="Event Actions" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../eda-skill-journey/" title="Skill Journey" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Event Actions
+                Skill Journey
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -860,9 +944,9 @@
       
     </div>
     
-      <script src="../assets/javascripts/application.b806dc00.js"></script>
+      <script src="../../assets/javascripts/application.b806dc00.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
     
   </body>
