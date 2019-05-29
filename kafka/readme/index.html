@@ -36,7 +36,7 @@
     
     
       
-        <title>Kafka summary - Event Driven Architecture</title>
+        <title>Kafka concepts summary - Event Driven Architecture</title>
       
     
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Kafka summary
+              Kafka concepts summary
             </span>
           
         </div>
@@ -328,6 +328,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arch/" title="Event Stream - Kafka architecture" class="md-nav__link">
+      Event Stream - Kafka architecture
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -358,8 +370,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../methodology/readme/" title="Workshop" class="md-nav__link">
-      Workshop
+    <a href="../../methodology/readme/" title="Event Storming Workshop" class="md-nav__link">
+      Event Storming Workshop
     </a>
   </li>
 
@@ -514,6 +526,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../arch/" title="Kafka architecture" class="md-nav__link">
+      Kafka architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -525,11 +549,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Kafka summary
+        Kafka concepts summary
       </label>
     
-    <a href="./" title="Kafka summary" class="md-nav__link md-nav__link--active">
-      Kafka summary
+    <a href="./" title="Kafka concepts summary" class="md-nav__link md-nav__link--active">
+      Kafka concepts summary
     </a>
     
       
@@ -615,17 +639,9 @@
     Architecture
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multi-regions" title="Multi regions" class="md-nav__link">
-    Multi regions
-  </a>
-  
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#solution-considerations" title="Solution considerations" class="md-nav__link">
     Solution considerations
   </a>
@@ -651,31 +667,6 @@
   <a href="#consumers" title="Consumers" class="md-nav__link">
     Consumers
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#high-availability-in-the-context-of-kubernetes-deployment" title="High Availability in the context of Kubernetes deployment" class="md-nav__link">
-    High Availability in the context of Kubernetes deployment
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kubernetes-operator" title="Kubernetes Operator" class="md-nav__link">
-    Kubernetes Operator
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -901,17 +892,9 @@
     Architecture
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multi-regions" title="Multi regions" class="md-nav__link">
-    Multi regions
-  </a>
-  
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#solution-considerations" title="Solution considerations" class="md-nav__link">
     Solution considerations
   </a>
@@ -937,31 +920,6 @@
   <a href="#consumers" title="Consumers" class="md-nav__link">
     Consumers
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#high-availability-in-the-context-of-kubernetes-deployment" title="High Availability in the context of Kubernetes deployment" class="md-nav__link">
-    High Availability in the context of Kubernetes deployment
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kubernetes-operator" title="Kubernetes Operator" class="md-nav__link">
-    Kubernetes Operator
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1051,34 +1009,10 @@
 <h3 id="consumer-group">Consumer group</h3>
 <p>This is the way to group consumers so the processing of event is parallelized. The number of consumers in a group is the same as the number of partition defined in a topic. We are detailinh consumer group implementation in <a href="../consumers/">this note</a></p>
 <h2 id="architecture">Architecture</h2>
-<p>As a distributed cluster, kafka brokers ensure high availability to process new events. Topic has replication factor to support not loosing data in case of broker failure. You need at least 3 brokers to ensure availability and a replication of 3 for each topic. Partition enables data locality, elasticity, scalability, high performance, parallelism, and fault tolerance. Each partitition is replicated at least 3 times and allocated in different brokers. One replicas is the lead. In the case of broker failure, one of the existing partition in remaining running brokers will take the lead:</p>
-<p><img alt="" src="../images/kafka-ha.png" /></p>
-<p>The keys in the data record determine the partitioning of data in <strong>Kafka</strong>. The records with the same key will be in the same partition.</p>
-<p>As kafka is keeping its cluster states in zookeeper, you also need to have at least a three node cluster for zookeeper. Writes to Zookeeper are only performed on changes to the membership of consumer groups or on changes to the Kafka cluster itself. Assuming you are using the most recent kafka version (after 0.9), it is possible to have a unique zookeeper cluster for multiple kafka clusters. But the latency between Kafka and zookeeper needs to be under few milliseconds anyway. Zookeepers and Brokers should have high availability communication, and each borker and node allocated on different racks and blades.</p>
-<p><img alt="" src="../images/ha-comp.png" /></p>
-<p>Consumers and producers are using a list of bootstrap server names (also named advertiser.listeners) to contact the cluster. The list is used for cluster discovery, it does not need to keep the full set of server names or ip addresses. A Kafka cluster has exactly one broker that acts as the controller.</p>
-<p>Per design Kafka aims to run within a single data center. But it is still recommended to use multiple racks connected with low laterncy dual network. With multiple racks you will have better fault tolerance, as one rack failure will impact only one broker. There is a configuration property to assign kafka broker using rack awareness. (See <a href="https://kafka.apache.org/documentation/#brokerconfigs">this configuration</a> from the product documentation).</p>
-<p>Always assess the latency requirements and consumers needs. Throughtput is linked to the number of partitions within a topic and having more consumers running in parallel. Consumers and producers should better run on separate servers than the brokers nodes. 
-For high availability assess any potential single point of failure, such as server, rack, network, power supply...</p>
-<p>The figure below illustrates a kubernetes deployment, where zookeeper and kafka brokers are allocated to 3 worker nodes (We recommend 5 nodes) and event driven microservices are deployed in separate nodes. Those microservices are consumers and producers of events from one to many topics. Kafka may be used as event sourcing.</p>
-<p><img alt="" src="../images/k8s-deploy.png" /></p>
-<p>We recommend reading <a href="https://ibm.github.io/event-streams/installing/planning/">this event stream article</a> for planning installation on k8s. 
-To add new broker, we can deploy the runtime to a new server / rack / blade, and give a unique ID. It will process new topic, but it is possible to use tool to migrate some existing topic/ partitions to the new server. The tool is used to reassign partitions across brokers. An ideal partition distribution would ensure even data load and partition sizes across all brokers. </p>
-<h3 id="multi-regions">Multi regions</h3>
-<p>With the current implementation it is recommended to have one cluster per data center. Consumers and producers are co-located to the broker cluster. When there are needs to keep some part of the data replicated in both data center, you need to assess what kind of data can be aggregated, and if Kafka mirroring tool can be used. The tool consumes from a source cluster, from a given topic, and produces to a destination cluster with the same named topic. It keeps the message key for partitioning so order is preserved. </p>
-<p><img alt="" src="images/ha-dc1.png" /></p>
-<p>The above diagram is using Kafka MirroeMaker with a master to slave deployment. Within the data center 2, the brokers are here to manage the topics and event. When there is no consumer running, nothing happen. Consumers and producers can be started when DC1 fails. In fact, we could have consumers within the DC2 processing topics to manage a readonly model, keeping in memory their projection view, as presented in the CQRS pattern. </p>
-<p>The second solution is to use one mirror maker in each site, for each topic. This is an active - actice topology: consumers and producers are on both sites. But to avoid infinite loop, we need to use naming convention for the topic, or only produce in the cluster of the main topic. Consumers consume from the replicated topic. </p>
-<p>When you want to deploy solution that spreads over multiple regions to support global streaming, you need to address challenges like:</p>
-<ul>
-<li>How do you make data available to applications across multiple data centers?</li>
-<li>How to serve data closer to the geography?</li>
-<li>How to be compliant on regulations, like GDPR?</li>
-<li>How to address no duplication of records?</li>
-</ul>
-<h3 id="solution-considerations">Solution considerations</h3>
+<p>See <a href="../arch/">this separate note</a></p>
+<h2 id="solution-considerations">Solution considerations</h2>
 <p>There are a set of design considerations to assess for each <strong>Kafka</strong> solution:</p>
-<h4 id="topics_1">Topics</h4>
+<h3 id="topics_1">Topics</h3>
 <p>Performance is more a function of number of partitions than topics. Expect that each topic has at least one partition. When considering latency you should aim for limiting to hundreds of topic-partition per broker node.</p>
 <p>What of the most important question is what topics to use?. What is an event type? Should we use one topic to support multiple event types? 
 Let define that an event type is linked to a main business entity like an Order, a ship, a FridgeredContainer. OrderCreated, OrderCancelled, OrderUpdated, OrderClosed are events linked to the states of the Order. The order of those events matter. So the natural approach is to use one topic per data type or schema, specially when using the topic as Event Sourcing where event order is important to build the audit log. You will use a unique partition to support that. The orderID is the partition key and all events related to the order are in the same topic.</p>
@@ -1093,7 +1027,7 @@ Let define that an event type is linked to a main business entity like an Order,
 <li>Clearly define the partition key as it could be an compound key based on multiple entities.</li>
 </ul>
 <p>With <strong>Kafka</strong> stream, state store or KTable, you should separate the changelog topic from the others.</p>
-<h4 id="producers">Producers</h4>
+<h3 id="producers">Producers</h3>
 <p>When developing a record producer you need to assess the following:</p>
 <ul>
 <li>What is the expected throughput to send events? Event size * average throughput combined with the expected latency help to compute buffer size.</li>
@@ -1102,7 +1036,7 @@ Let define that an event type is linked to a main business entity like an Order,
 <li>Assess <em>once to exactly once</em> delivery requirement. Look at idempotent producer.</li>
 </ul>
 <p>See <a href="../producers/">implementation considerations discussion</a></p>
-<h4 id="consumers">Consumers</h4>
+<h3 id="consumers">Consumers</h3>
 <p>From the consumer point of view a set of items need to be addressed during design phase:</p>
 <ul>
 <li>Do you need to group consumers for parallel consumption of events?</li>
@@ -1113,69 +1047,7 @@ Let define that an event type is linked to a main business entity like an Order,
 <li>Do the consumer needs to perform joins, aggregations between multiple partitions?</li>
 </ul>
 <p>See <a href="../consumers/">implementation considerations discussion</a></p>
-<h3 id="high-availability-in-the-context-of-kubernetes-deployment">High Availability in the context of Kubernetes deployment</h3>
-<p>The combination of kafka with kubernetes seems to be a sound approach, but it is not that easy to achieve. Kubernetes workloads prefer to be stateless, Kafka is stateful platform and manages its own brokers, and replications across known servers. It knows the underlying infrastructure. In kubernetes nodes and pods may change dynamically. </p>
-<p>For any Kubernetes deployment real high availability is constrained by the application / workload deployed on it. The Kubernetes platform supports high availability by having at least the following configuration:</p>
-<ul>
-<li>At least three master nodes (always an odd number of nodes). One is active at master, the others are in standby. The election of the master is using the quorum algorithm. </li>
-<li>Three proxy nodes.</li>
-<li>At least three worker nodes, but with zookeeper and Kafka clusters, we may need to define six nodes as we do not want to have zookeeper nodes with Kafka cluster broker on the same host.</li>
-<li>Externalize the management stack to three manager nodes</li>
-<li>Shared storage outside of the cluster to support private image registry, audit logs, and statefulset data persistence.</li>
-<li>Use <code>etcd</code> cluster: See recommendations <a href="https://github.com/coreos/etcd/blob/master/Documentation/op-guide/clustering.md">from this article</a>. The virtual IP manager assigns virtual IP addresses to master and proxy nodes and monitors the health of the cluster. It leverages <code>etcd</code> for storing information, so it is important that <code>etcd</code> is high available too and connected to low latency network below 10ms.</li>
-</ul>
-<p>For IBM Cloud private HA installation see the <a href="https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.3/installing/custom_install.html#HA">product documentation</a></p>
-<p>Traditionally disaster recovery and high availability were always consider separated subjects. Now active/active deployment where workloads are deployed in different data center, is more and more a common request. IBM Cloud Private is supporting <a href="https://github.com/ibm-cloud-architecture/refarch-privatecloud/blob/master/Resiliency/Federating_ICP_clusters.md">federation cross data centers</a>, but you need to ensure to have low latency network connections. Also not all deployment components of a solution are well suited for cross data center clustering.</p>
-<p>For <strong>Kafka</strong> context, the <em>Confluent</em> website presents an interesting article for <a href="https://docs.confluent.io/current/kafka/deployment.html"><strong>Kafka</strong> production deployment</a>. One of their recommendation is to avoid cluster that spans multiple data centers and specially long distance ones.
-But the semantic of the event processing may authorize some adaptations. For sure, you need multiple Kafka Brokers, which will connect to the same ZooKeeper ensemble running at least five nodes (you can tolerate the loss of one server during the planned maintenance of another server). One Zookeeper server acts as a lead and the two others as stand-by.</p>
-<p>The schema above illustrates the recommendations to separate Zookeeper from <strong>Kafka</strong> nodes for failover purpose as zookeeper keeps state of the <strong>Kafka</strong> cluster. We use Kubernetes <a href="https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity">anti-affinity</a> to ensure they are scheduled onto separate worker nodes that the ones used by zookeeper. It uses the labels on pods with a rule like:</p>
-<blockquote>
-<p><strong>Kafka</strong> pod should not run on same node as zookeeper pods.  </p>
-</blockquote>
-<p>Here is an example of such spec:</p>
-<pre><code class="yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: with-pod-affinity
-spec:
-  affinity:
-    podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            labelSelector:
-            matchExpressions:
-            - key: name
-              operator: In
-              values:
-              - gc-zookeeper
-          topologyKey: kubernetes.io/hostname
-</code></pre>
-
-<p>We recommend doing the <a href="https://kubernetes.io/docs/tutorials/stateful-application/zookeeper">running zookeeper in k8s tutorial</a> for understanding such configuration.
-Provision a <strong>fast storage class</strong> for persistence volume.</p>
-<p><strong>Kafka</strong> uses the log.dirs property to configure the driver to persist logs. So you need to define multiple volumes/ drives to support log.dirs.</p>
-<p>Zookeeper should not be used by other applications deployed in k8s cluster, it has to be dedicated for one <strong>Kafka</strong> cluster only.</p>
-<p>In a multi-cluster configuration being used for disaster recovery purposes, messages sent between clusters will have different offsets in the two clusters. It is usual to use timestamps for position information when restarting applications for recovery after a disaster. We are addressing offset management in one of our consumer projects <a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/">here</a>.</p>
-<p>For configuring ICP for HA on VmWare read <a href="https://github.com/ibm-cloud-architecture/refarch-privatecloud/blob/master/Configuring_ICP_for_HA_on_VMware.md">this note</a>.</p>
-<p>For <strong>Kafka</strong> streaming with stateful processing like joins, event aggregation and correlation coming from multiple partitions, it is not easy to achieve high availability cross clusters: in the strictest case every event must be processed by the streaming service exactly once. Which means:</p>
-<ul>
-<li>producer emits data to different sites and be able to re-emit in case of failure. Brokers are known by producer via a list of hostnames and port numbers.</li>
-<li>communications between zookeepers and cluster nodes are redundant and safe for data losses</li>
-<li>consumers ensure idempotence... They have to tolerate data duplication and manage data integrity in their persistence layer.</li>
-</ul>
-<p>Within Kafka's boundary, data will not be lost, when doing proper configuration, also to support high availability the complexity moves to the producer and the consumer implementation.</p>
-<p><strong>Kafka</strong> configuration is an art and you need to tune the parameters by use case:</p>
-<ul>
-<li>Partition replication for at least 3 replicas. Recall that in case of node failure,  coordination of partition re-assignments is provided with ZooKeeper.</li>
-<li>End to end latency needs to be measured from producer (when a message is sent) to consumer when it is read. A consumer is able to get a message when the broker finishes replicating to all in-synch replicas.</li>
-<li>Use the producer buffering capability to pace the message to the broker. Can use memory or time based threshold.</li>
-<li>Define the number of partitions to drive consumer parallelism. More consumers running in parallel the higher is the throughput.</li>
-<li>Assess the retention hours to control when old messages in topic can be deleted</li>
-<li>Control the maximum message size the server can receive.    </li>
-</ul>
-<p>Zookeeper is not CPU intensive and each server should have a least 2 GB of heap space and 4GB reserved. Two cpu per server should be sufficient. Servers keep their entire state machine in memory, and write every mutation to a durable WAL (Write Ahead Log) on persistent storage. To prevent the WAL from growing without bound, ZooKeeper servers periodically snapshot their in memory state to storage. Use fast and dynamically provisioned persistence storage for both WAL and snapshot.</p>
-<h4 id="kubernetes-operator">Kubernetes Operator</h4>
-<p>It is important to note that the deployment and management of stateful application in Kubernetes should now use the proposed <a href="https://github.com/operator-framework">Operator Framework</a> introduced by Red Hat and Google. One important contribution is the <a href="https://github.com/strimzi/strimzi-kafka-operator">Strinmzi kafka operator</a> that simplify the deployment of Kafka within k8s by adding a set of operators to deploy and manage kafka cluster, manage topics and manage users.</p>
-<p>See <a href="../../compendium/">compendium note</a> for more readings.</p>
+<p>See <a href="../../compendium/">also the compendium note</a> for more readings.</p>
                 
                   
                 
@@ -1196,7 +1068,7 @@ Provision a <strong>fast storage class</strong> for persistence volume.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../rt-analytics/" title="Real time analytics" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../arch/" title="Kafka architecture" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1205,7 +1077,7 @@ Provision a <strong>fast storage class</strong> for persistence volume.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Real time analytics
+                Kafka architecture
               </span>
             </div>
           </a>
