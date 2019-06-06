@@ -36,7 +36,7 @@
     
     
       
-        <title>Kafka producer - Event Driven Architecture</title>
+        <title>Event and Domain Driven Design - Event Driven Architecture</title>
       
     
     
@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#producers-considerations" tabindex="1" class="md-skip">
+      <a href="#event-and-domain-driven-design" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Kafka producer
+              Event and Domain Driven Design
             </span>
           
         </div>
@@ -334,7 +334,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../arch/" title="Event Stream - Kafka architecture" class="md-nav__link">
+    <a href="../../kafka/arch/" title="Event Stream - Kafka architecture" class="md-nav__link">
       Event Stream - Kafka architecture
     </a>
   </li>
@@ -370,7 +370,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../methodology/readme/" title="Event Storming Workshop" class="md-nav__link">
+    <a href="../readme/" title="Event Storming Workshop" class="md-nav__link">
       Event Storming Workshop
     </a>
   </li>
@@ -442,7 +442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../kafka-stream/" title="Event streaming processing" class="md-nav__link">
+    <a href="../../kafka/kafka-stream/" title="Event streaming processing" class="md-nav__link">
       Event streaming processing
     </a>
   </li>
@@ -505,12 +505,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
     <label class="md-nav__link" for="nav-8">
       Product guidances
@@ -528,7 +526,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../arch/" title="Kafka architecture" class="md-nav__link">
+    <a href="../../kafka/arch/" title="Kafka architecture" class="md-nav__link">
       Kafka architecture
     </a>
   </li>
@@ -540,7 +538,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../readme/" title="Kafka concepts summary" class="md-nav__link">
+    <a href="../../kafka/readme/" title="Kafka concepts summary" class="md-nav__link">
       Kafka concepts summary
     </a>
   </li>
@@ -550,84 +548,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Kafka producer
-      </label>
-    
-    <a href="./" title="Kafka producer" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../kafka/producers/" title="Kafka producer" class="md-nav__link">
       Kafka producer
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#design-considerations" title="Design considerations" class="md-nav__link">
-    Design considerations
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-code-structure" title="Typical code structure" class="md-nav__link">
-    Typical code structure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kafka-useful-producer-apis" title="Kafka useful Producer APIs" class="md-nav__link">
-    Kafka useful Producer APIs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#properties-to-consider" title="Properties to consider" class="md-nav__link">
-    Properties to consider
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-examples" title="Code Examples" class="md-nav__link">
-    Code Examples
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#more-readings" title="More readings" class="md-nav__link">
-    More readings
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -637,7 +562,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../consumers/" title="Kafka consumer" class="md-nav__link">
+    <a href="../../kafka/consumers/" title="Kafka consumer" class="md-nav__link">
       Kafka consumer
     </a>
   </li>
@@ -749,57 +674,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#design-considerations" title="Design considerations" class="md-nav__link">
-    Design considerations
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-code-structure" title="Typical code structure" class="md-nav__link">
-    Typical code structure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kafka-useful-producer-apis" title="Kafka useful Producer APIs" class="md-nav__link">
-    Kafka useful Producer APIs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#properties-to-consider" title="Properties to consider" class="md-nav__link">
-    Properties to consider
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-examples" title="Code Examples" class="md-nav__link">
-    Code Examples
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#more-readings" title="More readings" class="md-nav__link">
-    More readings
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -810,77 +684,11 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/kafka/producers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/methodology/ddd.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="producers-considerations">Producers considerations</h1>
-<p>A producer is a thread safe kafka client API that publishes records to the cluster. It uses buffers, thread pool, and serializer to send data. They are stateless. This is the consumers that are managing the offsets. The assignment of messae to partition is done following different algorithms: round-robin, simple load balancing, or custom defined. </p>
-<p>Producers are more simple to implement but still you need to assess some design considerations.</p>
-<h2 id="design-considerations">Design considerations</h2>
-<p>When developing a record producer you need to assess the following:</p>
-<ul>
-<li>What is the expected throughput to send events? Event size * average throughput combined with the expected latency help to compute buffer size. By default, the buffer size is set at 32Mb, but can be configured with <code>buffer.memory</code>. (See <a href="https://kafka.apache.org/10/javadoc/org/apache/kafka/clients/producer/ProducerConfig.html">producer configuration API</a></li>
-<li>Can the producer batch events together to send them in batch over one send operation? </li>
-<li>Is there a risk for loosing communication? Tune the RETRIES_CONFIG and buffer size, and ensure to have at least 3 brokers and even 5 to maintain quorum in case of one failure. The client API is implemented to support reconnection.</li>
-<li>Assess <em>once to exactly once</em> delivery requirement. Look at idempotent producer: retries will not introduce duplicate records.</li>
-<li>Where the event timestamp comes from? Should the producer send operation set it or is it loaded from external data? Remember that <code>LogAppendTime</code> is considered to be processing time, and <code>CreateTime</code> is considered to be event time.</li>
-</ul>
-<p>See related discussions <a href="https://www.confluent.io/blog/put-several-event-types-kafka-topic/">on confluent web site.</a></p>
-<h2 id="typical-code-structure">Typical code structure</h2>
-<p>The producer code does the following steps:</p>
-<ul>
-<li>define producer properties</li>
-<li>create a producer instance</li>
-<li>send event records and get resulting metadata. </li>
-</ul>
-<p>Producers are thread safe. The send() operation is asynchronous and returns immediately once record has been stored in the buffer of records, and it is possible to add a callback to process the broker acknowledgement. </p>
-<h2 id="kafka-useful-producer-apis">Kafka useful Producer APIs</h2>
-<p>Here is a list of common API to use in your producer and consumer code.</p>
-<ul>
-<li><a href="https://kafka.apache.org/11/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html">KafkaProducer</a> A Kafka client that publishes records to the Kafka cluster.  The send method is asynchronous. A producer is thread safe so we can have per topic to interface. </li>
-<li><a href="https://kafka.apache.org/11/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html">ProducerRecord</a> to be published to a topic</li>
-<li><a href="https://kafka.apache.org/11/javadoc/org/apache/kafka/clients/producer/RecordMetadata.html">RecordMetadata</a> metadata for a record that has been acknowledged by the server.</li>
-</ul>
-<h2 id="properties-to-consider">Properties to consider</h2>
-<p>The following properties are helpful to tune at each topic and producer and will vary depending on the deployment:  </p>
-<table>
-<thead>
-<tr>
-<th>Properties</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BOOTSTRAP_SERVERS_CONFIG</td>
-<td>A comma-separated list of host:port values for all the brokers deployed. So producer may use any brokers</td>
-</tr>
-<tr>
-<td>KEY_SERIALIZER_CLASS_CONFIG and VALUE_SERIALIZER_CLASS_CONFIG</td>
-<td>convert the keys and values into byte arrays. Using default String serializer should be a good solution for Json payload. For streaming app, use customer serializer.</td>
-</tr>
-<tr>
-<td>ACKS_CONFIG</td>
-<td>specifies the minimum number of acknowledgments from a broker that the producer will wait for before considering a record send completed. Values = all, 0, and 1. 0 is for fire and forget.</td>
-</tr>
-<tr>
-<td>RETRIES_CONFIG</td>
-<td>specifies the number of times to attempt to resend a batch of events.</td>
-</tr>
-<tr>
-<td>ENABLE_IDEMPOTENCE_CONFIG</td>
-<td>Set to tru, the number of retries will maximized, and the acks will be set to <code>All</code>.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="code-examples">Code Examples</h2>
-<ul>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/blob/master/asset-event-producer/src/main/java/ibm/cte/kafka/play/SimpleProducer.java">Simple text message</a></li>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/tree/master/asset-event-producer#pump-simulator">A Pump simulator</a></li>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-kc-ms">Ship movement and container metrics event producers</a></li>
-</ul>
-<h2 id="more-readings">More readings</h2>
-<p>*<a href="http://cloudurable.com/blog/kafka-tutorial-kafka-producer-advanced-java-examples/index.html">Creating advanced kafka producer in java - Cloudurable</a></p>
+                <h1 id="event-and-domain-driven-design">Event and Domain Driven Design</h1>
+<p>Event storming is part of the domain driven design methodology. There are a lot of literatures on domain-driven design, starting by <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=asc_df_0321125215/?tag=hyprod-20&amp;linkCode=df0&amp;hvadid=312118197030&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=3363692763187919455&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9032152&amp;hvtargid=pla-449269547899&amp;psc=1">Eric Evans's book</a> from 2004. At IBM we also summarized the concepts needed for implementing microservice in <a href="https://www.ibm.com/cloud/garage/practices/code/domain-driven-design/overview">Kyle Brown's article</a>. </p>
                 
                   
                 
@@ -897,41 +705,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../readme/" title="Kafka concepts summary" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Kafka concepts summary
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../consumers/" title="Kafka consumer" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Kafka consumer
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

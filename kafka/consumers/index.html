@@ -591,6 +591,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#important-concepts" title="Important concepts" class="md-nav__link">
+    Important concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#assess-number-of-consumer-needed" title="Assess number of consumer needed" class="md-nav__link">
     Assess number of consumer needed
   </a>
@@ -746,6 +753,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#important-concepts" title="Important concepts" class="md-nav__link">
+    Important concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#assess-number-of-consumer-needed" title="Assess number of consumer needed" class="md-nav__link">
     Assess number of consumer needed
   </a>
@@ -800,8 +814,12 @@
                 
                 
                 <h1 id="consumers-design-and-implementation-considerations">Consumers design and implementation considerations</h1>
-<p>Implementing a Topic consumer is using the kafka <a href="https://kafka.apache.org/10/javadoc/?org/apache/kafka/clients/consumer/KafkaConsumer.html">KafkaConsumer class</a> which the API documentation is a must read.
-The implementation is simple for a single thread consumer, and the code structure looks like:
+<h2 id="important-concepts">Important concepts</h2>
+<p>Consumers belong to <strong>consumer groups</strong>. You specify the group name as part of the connection parameters. </p>
+<p>Consumer groups are grouping consumers to cooperate to consume messages from one or more topics. Consumers can run in separate hosts and separate processes.</p>
+<p>Organized in cluster the coordinator servers are responsible for assigning partitions to the consumers in the group. The rebalancing of partition to consumer is done when a new consumer join or leave the group or when a new partition is added to an existing topic. There is always at least one consumer per partition. </p>
+<p>Implementing a Topic consumer is using the kafka <a href="https://kafka.apache.org/10/javadoc/?org/apache/kafka/clients/consumer/KafkaConsumer.html">KafkaConsumer class</a> which the API documentation is a must read.</p>
+<p>The implementation is simple for a single thread consumer, and the code structure looks like:
 <em> prepare the properties
 </em> create an instance of KafkaConsumer to connect to a topic and a partition
 * loop on polling events 
@@ -814,7 +832,6 @@ Example of Javascript implementation is in <a href="https://github.com/jbcodefor
 <p>If you need multiple consumers running in parallel to scale horizontally, you have to define multiple partitions while configuring the topic and use fine-grained control over offset persistence. You’ll use one consumer per partition of a topic. 
 This consumer-per-partition pattern maximizes throughput. When consumers run in parallel and you use multiple threads per soncumser you need to be sure the total number of threads across all instances do not exceed the total number of partitions in the topic.</p>
 <p>Also, a consumer can subscribe to multiple topics. The brokers are doing rebalancing of the assignment of topic-partition to a consumer that belong to a group. When creating a new consumer you can specify the group id in the options. </p>
-<p>Consumer groups are grouping consumers to cooperate to consume messages from one or more topics. Organized in cluster the coordinator servers are responsible for assigning partitions to the consumers in the group. The rebalancing of partition to consumer is done when a new consumer join or leave the group or when a new partition is added to an existing topic.</p>
 <h2 id="offset-management">Offset management</h2>
 <p>Recall that offset is just a numeric identifier of a consumer position of the last record read within a partition. Consumers periodically need to commit the offsets of messages they have received to show they have processed the message and in case of failure from where they should reconnect. It is possible to commit by calling API or by setting some properties at the consumer creation level to enable autocommit offset. When doing manual offet, there are two types of manually committed:
 <em> offsets—synchronous
