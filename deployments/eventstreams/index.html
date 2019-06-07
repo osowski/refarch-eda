@@ -36,7 +36,7 @@
     
     
       
-        <title>Event Streams deployment - Event Driven Architecture</title>
+        <title>Event Streams ICP deployment - Event Driven Architecture</title>
       
     
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Event Streams deployment
+              Event Streams ICP deployment
             </span>
           
         </div>
@@ -609,11 +609,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Event Streams deployment
+        Event Streams ICP deployment
       </label>
     
-    <a href="./" title="Event Streams deployment" class="md-nav__link md-nav__link--active">
-      Event Streams deployment
+    <a href="./" title="Event Streams ICP deployment" class="md-nav__link md-nav__link--active">
+      Event Streams ICP deployment
     </a>
     
       
@@ -625,6 +625,13 @@
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-parameters" title="Configuration Parameters" class="md-nav__link">
+    Configuration Parameters
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#some-challenges-during-the-installation" title="Some challenges during the installation" class="md-nav__link">
@@ -752,6 +759,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#configuration-parameters" title="Configuration Parameters" class="md-nav__link">
+    Configuration Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#some-challenges-during-the-installation" title="Some challenges during the installation" class="md-nav__link">
     Some challenges during the installation
   </a>
@@ -812,15 +826,18 @@
                 
                 
                 <h1 id="install-ibm-event-streams-on-icp">Install IBM Event Streams on ICP</h1>
-<p><em>(Tested on Nov 2018 on ibm-eventstreams-dev helm chart 0.1.2 on ICP 3.1)</em></p>
+<p><em>(Tested on April 2018 on ibm-eventstreams-dev helm chart 1.2.0 on ICP 3.1.2)</em></p>
 <p>You can use the <code>ibm-eventstreams-dev</code> Helm chart from ICP catalog or download the intallation image and made it available in your ICP catalog. The product installation instructions can be found <a href="https://ibm.github.io/event-streams/installing/installing/">here</a>.  </p>
-<p>As we do now want to rewrite the product documentation, we just want to highlight what was done for our deployment. Our cluster has the following characteristics:
-<em> Three masters also running ETCD cluster on 3 nodes
-</em> Three management nodes
-<em> Three proxy
-</em> Three worker nodes</p>
-<p>For worker nodes we need good CPUs and hard disk space. We allocated 12 CPUs - 32 Gb RAM. </p>
+<p>As we do not want to rewrite the product documentation, we just want to highlight what was done for our deployment. Our cluster has the following characteristics:</p>
+<ul>
+<li>Three masters also running ETCD cluster on 3 nodes</li>
+<li>Three management nodes</li>
+<li>Three proxy</li>
+<li>Six worker nodes</li>
+</ul>
+<p>For worker nodes we need good CPUs and hard disk space. We allocated 12 CPUs - 32 Gb RAM.  </p>
 <p>You need to decide if persistence should be enabled for ZooKeepers and Kafka brokers. Pre allocate one Persistence Volume per Kafka broker and one per ZooKeeper server.  If you use dynamic persistence volume provisioning, ensure the expected volumes are present at installation time.</p>
+<h3 id="configuration-parameters">Configuration Parameters</h3>
 <p>The following parameters were changed from default settings:  </p>
 <table>
 <thead>
@@ -863,6 +880,7 @@
 </tr>
 </tbody>
 </table>
+<p>The matching <code>server.properties</code> file is under the <code>deployments/eventstreams</code> folder. See parameters description in the <a href="https://kafka.apache.org/documentation/#brokerconfigs">product documentation</a> </p>
 <p>For the release name take care to do not use a too long name as there is an issue on name length limited to 63 characters. You can get the details of the release with: <code>helm list 'green-events-streams' --tls</code> or access helm detail via ICP console: Here is the helm release details:</p>
 <p><img alt="" src="images/ies-helm-rel01.png" /></p>
 <p>The figure above shows the following elements:
