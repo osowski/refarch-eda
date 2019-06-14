@@ -371,6 +371,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#change-data-capture-cdc" title="Change data capture (CDC)" class="md-nav__link">
+    Change data capture (CDC)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-adopting-kafka-for-data-replication" title="Why adopting kafka for data replication" class="md-nav__link">
     Why adopting kafka for data replication
   </a>
@@ -380,6 +387,13 @@
         <li class="md-nav__item">
   <a href="#ibm-data-replication-cdc" title="IBM Data Replication (CDC)" class="md-nav__link">
     IBM Data Replication (CDC)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debezium" title="Debezium" class="md-nav__link">
+    Debezium
   </a>
   
 </li>
@@ -564,6 +578,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#change-data-capture-cdc" title="Change data capture (CDC)" class="md-nav__link">
+    Change data capture (CDC)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-adopting-kafka-for-data-replication" title="Why adopting kafka for data replication" class="md-nav__link">
     Why adopting kafka for data replication
   </a>
@@ -573,6 +594,13 @@
         <li class="md-nav__item">
   <a href="#ibm-data-replication-cdc" title="IBM Data Replication (CDC)" class="md-nav__link">
     IBM Data Replication (CDC)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debezium" title="Debezium" class="md-nav__link">
+    Debezium
   </a>
   
 </li>
@@ -844,6 +872,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#change-data-capture-cdc" title="Change data capture (CDC)" class="md-nav__link">
+    Change data capture (CDC)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-adopting-kafka-for-data-replication" title="Why adopting kafka for data replication" class="md-nav__link">
     Why adopting kafka for data replication
   </a>
@@ -853,6 +888,13 @@
         <li class="md-nav__item">
   <a href="#ibm-data-replication-cdc" title="IBM Data Replication (CDC)" class="md-nav__link">
     IBM Data Replication (CDC)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debezium" title="Debezium" class="md-nav__link">
+    Debezium
   </a>
   
 </li>
@@ -892,7 +934,10 @@
                 
                 <h1 id="data-replication">Data replication</h1>
 <p>STILL UNDER CONSTRUCTION</p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
 <p>In this article, we are dealing with database replication to a microservice environment. This is also known as coexistence use case and can be summarized as supporting the following requirements:</p>
+</div>
 <ul>
 <li>Keep a RDBMS database like DB2 on the mainframe where transactions are supported</li>
 <li>Add cloud native applications in kubernetes environment, with a need to read data coming from the legacy DB, without impacting the DB server with a lot of new queries</li>
@@ -903,6 +948,10 @@
 <p>There are a lot of products which are addressing those requirements, but here we address the integration with Kafka for a pub/sub and event store need.</p>
 <p>The following diagram may illustrate what we want to build:</p>
 <p><img alt="" src="../images/data-replication-hl.png" /></p>
+<h2 id="change-data-capture-cdc">Change data capture (CDC)</h2>
+<p>At the high level we want to get an event stream for any change to data or schema of a database table, and propagated those changes for others to consume. </p>
+<p>The use cases are for data replication between database and continuous propagate changes in real time instead of doing it by batch with traditional ETL product. But it can also be used to feed analytics system and data warehouses.</p>
+<p>Other use cases are related to auditing anfd historical query on what happened on specific records. Using event sourcing, delivered out of the box with kafka, this will be easier to support. It can be used to propagate data changes to remote caches and invalidate them, to projection view in CQRS microservices, populate full text search in Elasticsearch, Apache Solr...</p>
 <h2 id="why-adopting-kafka-for-data-replication">Why adopting kafka for data replication</h2>
 <p>Using Kafka as a mediation layer bring the following advantages:</p>
 <ul>
@@ -931,11 +980,26 @@
 <p>The first time a subscription is running, a Refresh is performed: to allow the source and target to be exactly synchronized before the incremental, changes only get replicated down to the target. This means all the records in the source table will be written as Kafka events. </p>
 <p>When running subscription the first time, kafka topics are added: one to hold the records from the source table, and the second to keep track of which records have already been committed to the target. </p>
 <p>For more detail about this solution see <a href="https://www.ibm.com/cloud/garage/dte/producttour/ibm-infosphere-data-replication-product-tour">this product tour</a>.</p>
+<h2 id="debezium">Debezium</h2>
+<p><a href="https://debezium.io/">Debezium</a> is an open source distributed platform for change data capture. It retrieves change events from transaction logs from different databases and use kafka as backbone, and kafka connect.
+It uses the approach of one table to one topic. </p>
+<p>It can be used to do data synchronization between microservices using CDC at one service level and propagate changes via kafka. The implementation of the CQRS pattern may be simplified with this capability. </p>
+<p><img alt="" src="../../evt-microservices/cqrs-cdc.png" /></p>
 <h2 id="kafka-connect">Kafka connect</h2>
+<p><a href="https://kafka.apache.org/documentation/#connect">Kafka connect</a> simplifies the integration between kafka and other systems. It helps to standardize the integration via connector and configuration file. It is a distributed fault tolerant runtime to be able to easily scale horizontally. The set of connectors help developers reinvent the wheel.</p>
+<p>To get started read <a href="https://kafka.apache.org/documentation/#connec">this introduction</a> from product documentation. </p>
+<p>The kafka connect workers are stateless and can run easily on kubernetes or as standalone docker process. <code>Kafka Connect Source</code> is to get data to kafka, and <code>Kafka Connect Sink</code> to get data out of kafka.</p>
+<p><img alt="" src="../images/kconnect-arch.png" /></p>
+<p>A worker is a process. A connector is a re-usable piece of java code packaged as jars, and configuration. Both elements are defined a task. A connector can have multiple tasks. </p>
+<p>With distributed deployment the connector cluster supports easy scaling by adding new worker and performs rebalancing of worker tasks in case of worker failure. The configuration can be sent dynamically to the cluster via REST api.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are providing a special implementation of the container management service using kafka connect. </p>
+</div>
 <h2 id="recommended-readings">Recommended Readings</h2>
 <ul>
 <li><a href="https://www.ibm.com/cloud/garage/dte/producttour/ibm-infosphere-data-replication-product-tour">IBM InfoSphere Data Replication Product Tour</a></li>
-<li><a href=""></a></li>
+<li><a href="https://learning.oreilly.com/videos/apache-kafka-series">Kafka connect hands-on learning from Stéphane Maarek</a></li>
 </ul>
                 
                   
