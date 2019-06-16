@@ -848,7 +848,7 @@
 </ul>
 <p>Programming with KStream and Ktable is not easy at first, as there are a lot of concepts for data manipulations, serialization and operations chaining. It also uses function programming and chaining.</p>
 <p>A stateful operator uses the streaming Domain Specific Language, and is used for aggregation, join and time window operators. Stateful transformations require a state store associated with the stream processor. The code below comes from Kafka examples and is counting word occurrence in text:</p>
-<pre><code>    final StreamsBuilder builder = new StreamsBuilder();
+<div class="codehilite"><pre><span></span>    final StreamsBuilder builder = new StreamsBuilder();
     final Pattern pattern = Pattern.compile(&quot;\\W+&quot;);
 
     KStream&lt;String, String&gt; textLines = builder.stream(source);
@@ -862,7 +862,7 @@
 
     KafkaStreams streams = new KafkaStreams(builder.build(), props);
     streams.start();
-</code></pre>
+</pre></div>
 
 <ul>
 <li><a href="https://Kafka.apache.org/10/javadoc/org/apache/Kafka/streams/kstream/KStream.html">KStream</a> represents KeyValue records coming as event stream from the topic.</li>
@@ -877,32 +877,32 @@
 <ol>
 <li>Be sure to create the needed different topics once the Kafka broker is started (test-topic, streams-wordcount-output):</li>
 </ol>
-<pre><code>docker exec -ti Kafka /bin/bash
+<div class="codehilite"><pre><span></span>docker exec -ti Kafka /bin/bash
 cd /scripts
 ./createtopics.sh
-</code></pre>
+</pre></div>
 
 <ol>
 <li>Start a terminal window and execute the command to be ready to send message.</li>
 </ol>
-<pre><code>$ docker exec -ti Kafka /bin/bash
-# can use the /scripts/openProducer.sh or...
+<div class="codehilite"><pre><span></span>$ docker <span class="nb">exec</span> -ti Kafka /bin/bash
+<span class="c1"># can use the /scripts/openProducer.sh or...</span>
 root&gt; /opt/Kafka_2.11-0.10.1.0/bin/Kafka-console-producer.sh --broker-list localhost:9092 --topic streams-plaintext-input
-</code></pre>
+</pre></div>
 
 <ol>
 <li>Start another terminal to listen to the output topic:</li>
 </ol>
-<pre><code>$ docker exec -ti Kafka /bin/bash
-# can use the /scripts/consumeWordCount.sh or...
-root&gt; /opt/Kafka_2.11-0.10.1.0/bin/Kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic streams-wordcount-output --from-beginning --formatter Kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true --property key.deserializer=org.apache.Kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.Kafka.common.serialization.LongDeserializer
-</code></pre>
+<div class="codehilite"><pre><span></span>$ docker <span class="nb">exec</span> -ti Kafka /bin/bash
+<span class="c1"># can use the /scripts/consumeWordCount.sh or...</span>
+root&gt; /opt/Kafka_2.11-0.10.1.0/bin/Kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic streams-wordcount-output --from-beginning --formatter Kafka.tools.DefaultMessageFormatter --property print.key<span class="o">=</span><span class="nb">true</span> --property print.value<span class="o">=</span><span class="nb">true</span> --property key.deserializer<span class="o">=</span>org.apache.Kafka.common.serialization.StringDeserializer --property value.deserializer<span class="o">=</span>org.apache.Kafka.common.serialization.LongDeserializer
+</pre></div>
 
 <ol>
 <li>Start the stream client to count word in the entered lines</li>
 </ol>
-<pre><code>mvn exec:java -Dexec.mainClass=ibm.cte.Kafka.play.WordCount
-</code></pre>
+<div class="codehilite"><pre><span></span>mvn exec:java -Dexec.mainClass=ibm.cte.Kafka.play.WordCount
+</pre></div>
 
 <p>Outputs of the WordCount application is actually a continuous stream of updates, where each output record is an updated count of a single word. A KTable is counting the occurrence of word, and a KStream send the output message with updated count.</p>
 <h2 id="other-examples">Other examples</h2>

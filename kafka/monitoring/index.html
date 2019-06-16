@@ -887,7 +887,7 @@
 <p>For convenience and easy configuration, we will use Docker images from DockerHub and make few modifications to DockerFiles to include few additional steps to install, configure and start the servers and exporter agents locally.</p>
 <h4 id="kafka-and-zookeeper-servers-with-jmx-exporter"><font color=blue>Kafka and Zookeeper servers with JMX Exporter</font></h4>
 <p>We will start with the DockerFile of the <a href="https://hub.docker.com/r/spotify/kafka/~/DockerFile/">Spotify kafka image</a> from DockerHub as it includes Zookeeper and Kafka in a single image. The DockerFile was modified as shown below to download, install the Prometheus JMX exporter. The exporter can be configured to scrape and expose mBeans of a JMX target. It runs as a Java Agent, exposing a HTTP server and serving metrics of the JVM. In the DockerFile below, Kafka is started with JMX exporter agent on port 7071 and metrics will be expose in the /metrics endpoint.</p>
-<pre><code>FROM java:openjdk-8-jre
+<div class="codehilite"><pre><span></span>FROM java:openjdk-8-jre
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.11
@@ -925,47 +925,47 @@ EXPOSE 7071
 # **********
 
 CMD [&quot;supervisord&quot;, &quot;-n&quot;]
-</code></pre>
+</pre></div>
 
 <p>For your convenience, the modified DockerFile and scripts are available on this <a href="https://github.com/anagiordano/ibm-artifacts">GitHub repository</a>. You can run the following commands to create and run the container locally.</p>
 <ol>
 <li>download git repo with DockerFile and scripts</li>
 </ol>
-<pre><code>mkdir /tmp/monitor
+<div class="codehilite"><pre><span></span>mkdir /tmp/monitor
 git clone https://github.com/anagiordano/ibm-artifacts.git /tmp/monitor/.
-</code></pre>
+</pre></div>
 
 <ol>
 <li>Build image from DockerFile</li>
 </ol>
-<pre><code>docker build --tag kafka_i /tmp/monitor/kafka/.
-</code></pre>
+<div class="codehilite"><pre><span></span>docker build --tag kafka_i /tmp/monitor/kafka/.
+</pre></div>
 
 <ol>
 <li>Create/Run Docker container</li>
 </ol>
-<pre><code>docker run -d -p 2181:2181 -p 9092:9092 -p 7071:7071 --env ADVERTISED_PORT=9092 --name kafka_c kafka_i
-</code></pre>
+<div class="codehilite"><pre><span></span>docker run -d -p 2181:2181 -p 9092:9092 -p 7071:7071 --env ADVERTISED_PORT=9092 --name kafka_c kafka_i
+</pre></div>
 
 <ol>
 <li>Create kafka topics</li>
 </ol>
-<pre><code>docker exec -it kafka_c /bin/bash
+<div class="codehilite"><pre><span></span>docker exec -it kafka_c /bin/bash
 cd /opt/kafka*/bin
 export KAFKA_OPTS=&quot;&quot;
 ./kafka-topics.sh --create --zookeeper localhost:2181 --replication-fact 1 --partitions 1 --topic my-topic1
 ./kafka-topics.sh --create --zookeeper localhost:2181 --replication-fact 1 --partitions 1 --topic my-topic2
 ./kafka-topics.sh --list --zookeeper localhost:2181
-</code></pre>
+</pre></div>
 
 <ol>
 <li>(optional) Produce few message into
 topics from console and exit container</li>
 </ol>
-<pre><code>./kafka-console-producer.sh --broker-list localhost:9092 --topic my-topic1
+<div class="codehilite"><pre><span></span>./kafka-console-producer.sh --broker-list localhost:9092 --topic my-topic1
 ./kafka-console-producer.sh --broker-list localhost:9092 --topic my-topic2
 exit
-</code></pre>
+</pre></div>
 
 <p>Lastly you can validate that the /metrics endpoint is returning metrics from Kafka. On a browser, open the http://localhost:7071/metrics URL.</p>
 <p><img alt="" src="../images/metrics-endpoint.png" /></p>
@@ -983,39 +983,35 @@ exit
 <ol>
 <li>Create/run a docker container using Prometheus official image from DockerHub</li>
 </ol>
-<pre><code>docker run -d -p 9090:9090 prom/prometheus
-</code></pre>
+<div class="codehilite"><pre><span></span>docker run -d -p 9090:9090 prom/prometheus
+</pre></div>
 
 <ol>
 <li>Obtain the IP address of the Kafka container</li>
 </ol>
-<pre><code>docker inspect kafka_c | grep IPAddress
-</code></pre>
+<div class="codehilite"><pre><span></span>docker inspect kafka_c | grep IPAddress
+</pre></div>
 
 <ol>
 <li>Edit the prometheus.yml to add Kafka as a target</li>
 </ol>
-<pre><code>docker exec -it prometheus_c \sh
+<div class="codehilite"><pre><span></span>docker exec -it prometheus_c \sh
 vi /etc/prometheus/prometheus.yml
-</code></pre>
+</pre></div>
 
 <ol>
 <li>Locate the scrape_configs section in the properties file and add the lines below to define the Kafka job,
 where the IP should be the IP of the kafka container</li>
 </ol>
-<pre><code>  - job_name: 'kafka'                                                          
+<p><div class="codehilite"><pre><span></span>  - job_name: &#39;kafka&#39;                                                          
 
     static_configs:                                                            
-    - targets: ['172.17.0.4:7071']
-
-</code></pre>
-
-<ol>
-<li>Reload the configuration file</li>
-</ol>
-<pre><code>ps -ef
+    - targets: [&#39;172.17.0.4:7071&#39;]
+</pre></div>
+5. Reload the configuration file</p>
+<div class="codehilite"><pre><span></span>ps -ef
 kill -HUP &lt;prometheus PID&gt;
-</code></pre>
+</pre></div>
 
 <ol>
 <li>You can now verify that Kafka is listed as a target job in Prometheus. On a Browser, open the http://localhost:9090/targets URL.</li>
@@ -1033,8 +1029,8 @@ kill -HUP &lt;prometheus PID&gt;
 <ol>
 <li>Create a docker container using Prometheus official image from DockerHub</li>
 </ol>
-<pre><code>docker run -d --name=grafana_c -p 3000:3000 grafana/grafana
-</code></pre>
+<div class="codehilite"><pre><span></span>docker run -d --name=grafana_c -p 3000:3000 grafana/grafana
+</pre></div>
 
 <ol>
 <li>

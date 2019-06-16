@@ -952,27 +952,26 @@
 <em> The IBM Event Streams admin console is visible at the port 31253 on the k8s proxy IP address: 172.16.50.227
 </em> The REST api port 30121
 * stream proxy port bootstrap: 31348, broker 0: 32489...</p>
-<p>You get access to the Event Streams admin console by using the IP address of the master  / proxy node and the port number of the service, which you can get using the kubectl get service command like:</p>
-<pre><code>kubectl get svc -n streaming &quot;green-events-streams-ibm-es-ui-svc&quot; -o 'jsonpath={.spec.ports[?(@.name==&quot;admin-ui-https&quot;)].nodePort}'
+<p>You get access to the Event Streams admin console by using the IP address of the master  / proxy node and the port number of the service, which you can get using the kubectl get service command like:
+<div class="codehilite"><pre><span></span>kubectl get svc -n streaming &quot;green-events-streams-ibm-es-ui-svc&quot; -o &#39;jsonpath={.spec.ports[?(@.name==&quot;admin-ui-https&quot;)].nodePort}&#39;
 
-kubectl cluster-info | grep &quot;catalog&quot; | awk 'match($0, /([0-9]{1,3}\.){3}[0-9]{1,3}/) { print substr( $0, RSTART, RLENGTH )}'
-</code></pre>
-
+kubectl cluster-info | grep &quot;catalog&quot; | awk &#39;match($0, /([0-9]{1,3}\.){3}[0-9]{1,3}/) { print substr( $0, RSTART, RLENGTH )}&#39;
+</pre></div></p>
 <p>Here is the admin console home page:</p>
 <p><img alt="" src="images/event-stream-admin.png" /></p>
 <p>To connect an application or tool to this cluster, you will need the address of a bootstrap server, a certificate and an API key. The page to access this information, is on the top right corner: <code>Connect to this cluster</code>:</p>
 <p><img alt="" src="images/ies-cluster-connection.png" /></p>
 <p>Download certificate and Java truststore files, and the generated API key. A key can apply to all groups or being specific to a group. </p>
 <p>In Java to leverage the api key the code needs to set the some properties:</p>
-<pre><code class="java">properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, &quot;SASL_SSL&quot;);
-properties.put(SaslConfigs.SASL_MECHANISM, &quot;PLAIN&quot;);
-properties.put(SaslConfigs.SASL_JAAS_CONFIG,
-        &quot;org.apache.kafka.common.security.plain.PlainLoginModule required username=\&quot;token\&quot; password=\&quot;&quot;
-                + env.get(&quot;KAFKA_APIKEY&quot;) + &quot;\&quot;;&quot;);
-properties.put(SslConfigs.SSL_PROTOCOL_CONFIG, &quot;TLSv1.2&quot;);
-properties.put(SslConfigs.SSL_ENABLED_PROTOCOLS_CONFIG, &quot;TLSv1.2&quot;);
-properties.put(SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, &quot;HTTPS&quot;);
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">properties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">CommonClientConfigs</span><span class="o">.</span><span class="na">SECURITY_PROTOCOL_CONFIG</span><span class="o">,</span> <span class="s">&quot;SASL_SSL&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">SaslConfigs</span><span class="o">.</span><span class="na">SASL_MECHANISM</span><span class="o">,</span> <span class="s">&quot;PLAIN&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">SaslConfigs</span><span class="o">.</span><span class="na">SASL_JAAS_CONFIG</span><span class="o">,</span>
+        <span class="s">&quot;org.apache.kafka.common.security.plain.PlainLoginModule required username=\&quot;token\&quot; password=\&quot;&quot;</span>
+                <span class="o">+</span> <span class="n">env</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;KAFKA_APIKEY&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;\&quot;;&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">SslConfigs</span><span class="o">.</span><span class="na">SSL_PROTOCOL_CONFIG</span><span class="o">,</span> <span class="s">&quot;TLSv1.2&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">SslConfigs</span><span class="o">.</span><span class="na">SSL_ENABLED_PROTOCOLS_CONFIG</span><span class="o">,</span> <span class="s">&quot;TLSv1.2&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">SslConfigs</span><span class="o">.</span><span class="na">SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG</span><span class="o">,</span> <span class="s">&quot;HTTPS&quot;</span><span class="o">);</span>
+</pre></div>
 
 <p>See code example in <a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms/blob/a6b6a2d15085029f5d46b9826806e722a8c27bff/order-command-ms/src/main/java/ibm/labs/kc/order/command/kafka/ApplicationConfig.java#L71-L86">ApplicationConfig.java</a>.</p>
 <h2 id="some-challenges-during-the-installation">Some challenges during the installation</h2>
@@ -989,63 +988,57 @@ We have seen some Kafka brokers that could not be scheduled because some nodes h
 <p><img alt="" src="images/ies-start-app-run2.png" /> </p>
 <p>We have two solution implementations using Kafka and Event Streams <a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics">the manufacturing asset analytics</a> and the  most recent <a href="https://github.com/ibm-cloud-architecture/refarch-kc">KC container shipment solution</a>. We recommend using the second implementation.</p>
 <h2 id="verifying-icp-kafka-installation">Verifying ICP Kafka installation</h2>
-<p>Once connected to the cluster with kubectl, get the list of pods for the namespace you used to install Kafka or IBM Event Streams:</p>
-<pre><code>$ kubectl get pods -n streaming
+<p>Once connected to the cluster with kubectl, get the list of pods for the namespace you used to install Kafka or IBM Event Streams:
+<div class="codehilite"><pre><span></span>$ kubectl get pods -n streaming
 
 NAME                                                              READY     STATUS    RESTARTS
-green-even-c353-ibm-es-elas-ad8d-0                                1/1       Running   0          3d
-green-even-c353-ibm-es-elas-ad8d-1                                1/1       Running   0          3d
-green-even-c353-ibm-es-kafka-sts-0                                4/4       Running   2          3d
-green-even-c353-ibm-es-kafka-sts-1                                4/4       Running   2          3d
-green-even-c353-ibm-es-kafka-sts-2                                4/4       Running   5          3d
-green-even-c353-ibm-es-zook-c4c0-0                                1/1       Running   0          3d
-green-even-c353-ibm-es-zook-c4c0-1                                1/1       Running   0          3d
-green-even-c353-ibm-es-zook-c4c0-2                                1/1       Running   0          3d
-green-events-streams-ibm-es-access-controller-deploy-7cbf8jjs9n   2/2       Running   0          3d
-green-events-streams-ibm-es-access-controller-deploy-7cbf8st95z   2/2       Running   0          3d
-green-events-streams-ibm-es-indexmgr-deploy-6ff759779-c8ddc       1/1       Running   0          3d
-green-events-streams-ibm-es-proxy-deploy-777d6cf76c-bxjtq         1/1       Running   0          3d
-green-events-streams-ibm-es-proxy-deploy-777d6cf76c-p8rkc         1/1       Running   0          3d
-green-events-streams-ibm-es-rest-deploy-547cc6f9b-774xx           3/3       Running   0          3d
-green-events-streams-ibm-es-ui-deploy-7f9b9c6c6f-kvvs2            3/3       Running   0          3d
-
-</code></pre>
-
-<p>Select the first pod: green-even-c353-ibm-es-kafka-sts-0 , then execute a bash shell so you can access the Kafka tools:</p>
-<pre><code>$ kubectl exec green-even-c353-ibm-es-kafka-sts-0 -itn streaming -- bash
-bash-3.4# cd /opt/Kafka/bin
-</code></pre>
-
-<p>Now you have access to the kafka tools. The most important thing is to get the hostname and port number of the zookeeper server. To do so use the kubectl command:</p>
-<pre><code>$ kubectl describe pods green-even-c353-ibm-es-zook-c4c0-0  --namespace streaming
-</code></pre>
-
-<p>In the long result get the client port ( ZK_CLIENT_PORT: 2181) information and IP address (IP: 192.168.76.235). Using this information, in the bash shell within the Kafka broker server we can do the following command to get the topics configured.</p>
-<pre><code class="shell">$ ./Kafka-topics.sh --list -zookeeper  192.168.76.235:2181
-# We can also use the service name of zookeeper and let k8s DNS resolve the IP address
+green-even-c353-ibm-es-elas-ad8d-0                                <span class="m">1</span>/1       Running   <span class="m">0</span>          3d
+green-even-c353-ibm-es-elas-ad8d-1                                <span class="m">1</span>/1       Running   <span class="m">0</span>          3d
+green-even-c353-ibm-es-kafka-sts-0                                <span class="m">4</span>/4       Running   <span class="m">2</span>          3d
+green-even-c353-ibm-es-kafka-sts-1                                <span class="m">4</span>/4       Running   <span class="m">2</span>          3d
+green-even-c353-ibm-es-kafka-sts-2                                <span class="m">4</span>/4       Running   <span class="m">5</span>          3d
+green-even-c353-ibm-es-zook-c4c0-0                                <span class="m">1</span>/1       Running   <span class="m">0</span>          3d
+green-even-c353-ibm-es-zook-c4c0-1                                <span class="m">1</span>/1       Running   <span class="m">0</span>          3d
+green-even-c353-ibm-es-zook-c4c0-2                                <span class="m">1</span>/1       Running   <span class="m">0</span>          3d
+green-events-streams-ibm-es-access-controller-deploy-7cbf8jjs9n   <span class="m">2</span>/2       Running   <span class="m">0</span>          3d
+green-events-streams-ibm-es-access-controller-deploy-7cbf8st95z   <span class="m">2</span>/2       Running   <span class="m">0</span>          3d
+green-events-streams-ibm-es-indexmgr-deploy-6ff759779-c8ddc       <span class="m">1</span>/1       Running   <span class="m">0</span>          3d
+green-events-streams-ibm-es-proxy-deploy-777d6cf76c-bxjtq         <span class="m">1</span>/1       Running   <span class="m">0</span>          3d
+green-events-streams-ibm-es-proxy-deploy-777d6cf76c-p8rkc         <span class="m">1</span>/1       Running   <span class="m">0</span>          3d
+green-events-streams-ibm-es-rest-deploy-547cc6f9b-774xx           <span class="m">3</span>/3       Running   <span class="m">0</span>          3d
+green-events-streams-ibm-es-ui-deploy-7f9b9c6c6f-kvvs2            <span class="m">3</span>/3       Running   <span class="m">0</span>          3d
+</pre></div></p>
+<p>Select the first pod: green-even-c353-ibm-es-kafka-sts-0 , then execute a bash shell so you can access the Kafka tools:
+<div class="codehilite"><pre><span></span>$ kubectl <span class="nb">exec</span> green-even-c353-ibm-es-kafka-sts-0 -itn streaming -- bash
+bash-3.4# <span class="nb">cd</span> /opt/Kafka/bin
+</pre></div>
+Now you have access to the kafka tools. The most important thing is to get the hostname and port number of the zookeeper server. To do so use the kubectl command:
+<div class="codehilite"><pre><span></span>$ kubectl describe pods green-even-c353-ibm-es-zook-c4c0-0  --namespace streaming
+</pre></div>
+In the long result get the client port ( ZK_CLIENT_PORT: 2181) information and IP address (IP: 192.168.76.235). Using this information, in the bash shell within the Kafka broker server we can do the following command to get the topics configured.</p>
+<div class="codehilite"><pre><span></span>$ ./Kafka-topics.sh --list -zookeeper  <span class="m">192</span>.168.76.235:2181
+<span class="c1"># We can also use the service name of zookeeper and let k8s DNS resolve the IP address</span>
 $ ./Kafka-topics.sh --list -zookeeper  green-even-c353-ibm-es-zook-c4c0-0.streaming.svc.cluster.local:2181
-</code></pre>
+</pre></div>
 
 <h3 id="using-the-event-stream-cli">Using the Event Stream CLI</h3>
-<p>If not done already, you can install the Event Stream CLI on top of IBM cloud CLI by first downloading it from the Event Stream console and then running this command:</p>
-<pre><code>$ cloudctl plugin install ./es-plugin
-</code></pre>
-
-<p>Here is a simple summary of the possible <code>cloudctl es</code> commands:</p>
-<pre><code class="shell"># Connect to the cluster
+<p>If not done already, you can install the Event Stream CLI on top of IBM cloud CLI by first downloading it from the Event Stream console and then running this command:
+<div class="codehilite"><pre><span></span>$ cloudctl plugin install ./es-plugin
+</pre></div></p>
+<p>Here is a simple summary of the possible <code>cloudctl es</code> commands:
+<div class="codehilite"><pre><span></span><span class="c1"># Connect to the cluster</span>
 cloudctl es init
 
-# create a topic  - default is 3 replicas
+<span class="c1"># create a topic  - default is 3 replicas</span>
 cloudctl es topic-create streams-plaintext-input
-cloudctl es topic-create streams-wordcount-output --replication-factor 1 --partitions 1
+cloudctl es topic-create streams-wordcount-output --replication-factor <span class="m">1</span> --partitions <span class="m">1</span>
 
-# list topics
+<span class="c1"># list topics</span>
 cloudctl es topics
 
-# delete topic
+<span class="c1"># delete topic</span>
 cloudctl es topic-delete streams-plaintext-input
-</code></pre>
-
+</pre></div></p>
 <h2 id="further-readings">Further Readings</h2>
 <ul>
 <li><a href="https://www.ibm.com/cloud/event-streams">IBM Event Streams main page</a></li>

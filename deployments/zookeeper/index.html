@@ -750,21 +750,19 @@
 <p>Development deployment uses one zookeeper server. For production the replicas is set to 5 to tolerate one planned and one unplanned failure. The service defines 3 ports: one for the inter-server communication, one for client access and one for leader-election.
 Persistence volumes are needed to provide durable storage. Better to use network storage like NFS or glusterfs.</p>
 <p>The zookeeper manifests are defined in this project under the <code>deployments/zookeeper/dev</code> folder. We are using our own docker images and the Dockerfile to build this image is in <code>deployments/zookeeper</code>. The image is already pushed to the Docker Hub under ibmcase account.</p>
-<p>We are providing a script to install zookeeper as a kubernetes environment. First be sure to be connected to your kubernetes cluster then run the following command:</p>
-<pre><code>$ pwd
+<p>We are providing a script to install zookeeper as a kubernetes environment. First be sure to be connected to your kubernetes cluster then run the following command:
+<div class="codehilite"><pre><span></span>$ <span class="nb">pwd</span>
 &gt; refarch-eda/deployments/zookeeper
 $ ./deployZoopeeker.sh
 
 $ kubectl get pods -n greencompute
 NAME                            READY     STATUS    RESTARTS   AGE
-gc-zookeeper-57dc5679bb-bh29q   1/1       Running   0          1m
-</code></pre>
-
+gc-zookeeper-57dc5679bb-bh29q   <span class="m">1</span>/1       Running   <span class="m">0</span>          1m
+</pre></div></p>
 <p>It creates volume, services and deployment or statefulset.</p>
-<p>If you want to deploy it in more resilient deployment we provide other manifests under the prod folder. To install:</p>
-<pre><code>$ ./deployZoopeeker.sh prod
-</code></pre>
-
+<p>If you want to deploy it in more resilient deployment we provide other manifests under the prod folder. To install:
+<div class="codehilite"><pre><span></span>$ ./deployZoopeeker.sh prod
+</pre></div></p>
 <p>Once installed you do not need to reinstall it.</p>
 <p>We are also delivering a script to remove zookeeper when you are done using it. (./removeZookeeper.sh)</p>
 <p>When running in production it is better to use separate zookeeper ensemble for each <strong>Kafka</strong> cluster. Each server should have at least 2 GiB of heap with at least 4 GiB of reserved memory</p>

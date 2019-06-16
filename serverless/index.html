@@ -862,102 +862,92 @@
                 <h1 id="function-as-a-service">Function as a Service</h1>
 <h2 id="kubeless">Kubeless</h2>
 <p>To install kubeless on ICP we first connect to the cluster and then use the command below:</p>
-<pre><code>$ kubectl create namespace kubeless
+<p><div class="codehilite"><pre><span></span>$ kubectl create namespace kubeless
 $ kubectl create -f https://github.com/kubeless/kubeless/releases/download/v1.0.0-alpha.8/kubeless-v1.0.0-alpha.8.yaml -n kubeless
-</code></pre>
-
-<p>The image is using RBAC:</p>
+</pre></div>
+The image is using RBAC:</p>
 <p>The deployment creates one pod with 3 containers inside:
 <img src="kubeless-deploy.png" alt="drawing" width="400"/></p>
-<p>We need to have the <code>kubeless</code> CLI install:</p>
-<pre><code>$ export OS=$(uname -s| tr '[:upper:]' '[:lower:]')
-$ curl -OL https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless_$OS-amd64.zip &amp;&amp; \
-  unzip kubeless_$OS-amd64.zip &amp;&amp; \
-  sudo mv bundles/kubeless_$OS-amd64/kubeless /usr/local/bin/
-</code></pre>
-
+<p>We need to have the <code>kubeless</code> CLI install:
+<div class="codehilite"><pre><span></span>$ <span class="nb">export</span> <span class="nv">OS</span><span class="o">=</span><span class="k">$(</span>uname -s<span class="p">|</span> tr <span class="s1">&#39;[:upper:]&#39;</span> <span class="s1">&#39;[:lower:]&#39;</span><span class="k">)</span>
+$ curl -OL https://github.com/kubeless/kubeless/releases/download/<span class="nv">$RELEASE</span>/kubeless_<span class="nv">$OS</span>-amd64.zip <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  unzip kubeless_<span class="nv">$OS</span>-amd64.zip <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  sudo mv bundles/kubeless_<span class="nv">$OS</span>-amd64/kubeless /usr/local/bin/
+</pre></div></p>
 <h3 id="to-deploy-a-simple-hello">To deploy a simple hello</h3>
 <p>The code for this function is under <a href="https://github.com/ibm-cloud-architecture/refarch-cognitive-analytics/tree/master/src/functions">this repository</a>
-but it is a simple python function implementing the serverless 'interface':</p>
-<pre><code class="python3">def hello(event, context):
-  print(event)
-  return event['data']
-</code></pre>
-
-<p>To deploy we can use the command:</p>
-<pre><code>$ kubeless function deploy hellojb --runtime python3.6  --trigger-http --from-file functionHello.py --handler functionHello.hello
-INFO[0000] Deploying function...                        
-INFO[0001] Function hellojb submitted for deployment    
-INFO[0001] Check the deployment status executing 'kubeless function ls hellojb'
-</code></pre>
-
-<p>To see the functions deployed</p>
-<pre><code>$ kubectl get functions
-</code></pre>
-
-<p>or</p>
-<pre><code>$ kubeless function ls
+but it is a simple python function implementing the serverless 'interface':
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+</pre></div>
+To deploy we can use the command:
+<div class="codehilite"><pre><span></span>$ kubeless <span class="k">function</span> deploy hellojb --runtime python3.6  --trigger-http --from-file functionHello.py --handler functionHello.hello
+INFO<span class="o">[</span><span class="m">0000</span><span class="o">]</span> Deploying <span class="k">function</span>...                        
+INFO<span class="o">[</span><span class="m">0001</span><span class="o">]</span> Function hellojb submitted <span class="k">for</span> deployment    
+INFO<span class="o">[</span><span class="m">0001</span><span class="o">]</span> Check the deployment status executing <span class="s1">&#39;kubeless function ls hellojb&#39;</span>
+</pre></div></p>
+<p>To see the functions deployed
+<div class="codehilite"><pre><span></span>$ kubectl get functions
+</pre></div>
+or
+<div class="codehilite"><pre><span></span>$ kubeless <span class="k">function</span> ls
 NAME    NAMESPACE       HANDLER     RUNTIME     DEPENDENCIES    STATUS       
-hellojb greencompute    test.hello  python3.6                   1/1 READY
-</code></pre>
-
-<p>The deployment of a function creates automatically a pod:</p>
-<pre><code>$ kubectl describe pod hellojb
+hellojb greencompute    test.hello  python3.6                   <span class="m">1</span>/1 READY
+</pre></div></p>
+<p>The deployment of a function creates automatically a pod:
+<div class="codehilite"><pre><span></span>$ kubectl describe pod hellojb
 ...
 Containers:
   hellojb:
     Container ID:   docker://53ca1131747e5b18bfeb67609b4e7bb2400cf45202ade2c03274b9df1eff9bc2
     Image:          kubeless/python@sha256:0c9f8f727d42625a4e25230cfe612df7488b65f283e7972f84108d87e7443d72
     Image ID:       docker-pullable://kubeless/python@sha256:0c9f8f727d42625a4e25230cfe612df7488b65f283e7972f84108d87e7443d72
-    Port:           8080/TCP
-    Host Port:      0/TCP
+    Port:           <span class="m">8080</span>/TCP
+    Host Port:      <span class="m">0</span>/TCP
     State:          Running
-      Started:      Thu, 06 Sep 2018 17:12:52 -0700
+      Started:      Thu, <span class="m">06</span> Sep <span class="m">2018</span> <span class="m">17</span>:12:52 -0700
     Ready:          True
-    Restart Count:  0
-    Liveness:       http-get http://:8080/healthz delay=3s timeout=1s period=30s #success=1 #failure=3
+    Restart Count:  <span class="m">0</span>
+    Liveness:       http-get http://:8080/healthz <span class="nv">delay</span><span class="o">=</span>3s <span class="nv">timeout</span><span class="o">=</span>1s <span class="nv">period</span><span class="o">=</span>30s <span class="c1">#success=1 #failure=3</span>
     Environment:
       FUNC_HANDLER:       hello
-      MOD_NAME:           test
-      FUNC_TIMEOUT:       180
+      MOD_NAME:           <span class="nb">test</span>
+      FUNC_TIMEOUT:       <span class="m">180</span>
       FUNC_RUNTIME:       python3.6
-      FUNC_MEMORY_LIMIT:  0
-      FUNC_PORT:          8080
+      FUNC_MEMORY_LIMIT:  <span class="m">0</span>
+      FUNC_PORT:          <span class="m">8080</span>
       PYTHONPATH:         /kubeless/lib/python3.6/site-packages:/kubeless
     Mounts:
-      /kubeless from hellojb (rw)
-      /var/run/secrets/kubernetes.io/serviceaccount from default-token-9nw2z (ro)
-</code></pre>
-
-<p>and kubeless create service for each function:</p>
-<pre><code>$ kubectl describe svc hellojb
-Name:              hellojb
-Namespace:         greencompute
-Labels:            created-by=kubeless
-                   function=hellojb
-Annotations:       &lt;none&gt;
-Selector:          created-by=kubeless,function=hellojb
-Type:              ClusterIP
-IP:                10.10.10.41
-Port:              http-function-port  8080/TCP
-TargetPort:        8080/TCP
-Endpoints:         192.168.130.101:8080
-Session Affinity:  None
-Events:            &lt;none&gt;
-</code></pre>
-
+      /kubeless from hellojb <span class="o">(</span>rw<span class="o">)</span>
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-9nw2z <span class="o">(</span>ro<span class="o">)</span>
+</pre></div>
+and kubeless create service for each function:
+<div class="codehilite"><pre><span></span><span class="err">$</span> <span class="n">kubectl</span> <span class="n">describe</span> <span class="n">svc</span> <span class="n">hellojb</span>
+<span class="n">Name</span><span class="p">:</span>              <span class="n">hellojb</span>
+<span class="n">Namespace</span><span class="p">:</span>         <span class="n">greencompute</span>
+<span class="n">Labels</span><span class="p">:</span>            <span class="n">created</span><span class="o">-</span><span class="n">by</span><span class="o">=</span><span class="n">kubeless</span>
+                   <span class="n">function</span><span class="o">=</span><span class="n">hellojb</span>
+<span class="n">Annotations</span><span class="p">:</span>       <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>
+<span class="n">Selector</span><span class="p">:</span>          <span class="n">created</span><span class="o">-</span><span class="n">by</span><span class="o">=</span><span class="n">kubeless</span><span class="p">,</span><span class="n">function</span><span class="o">=</span><span class="n">hellojb</span>
+<span class="n">Type</span><span class="p">:</span>              <span class="n">ClusterIP</span>
+<span class="n">IP</span><span class="p">:</span>                <span class="mf">10.10</span><span class="p">.</span><span class="mf">10.41</span>
+<span class="n">Port</span><span class="p">:</span>              <span class="n">http</span><span class="o">-</span><span class="n">function</span><span class="o">-</span><span class="n">port</span>  <span class="mi">8080</span><span class="o">/</span><span class="n">TCP</span>
+<span class="n">TargetPort</span><span class="p">:</span>        <span class="mi">8080</span><span class="o">/</span><span class="n">TCP</span>
+<span class="n">Endpoints</span><span class="p">:</span>         <span class="mf">192.168</span><span class="p">.</span><span class="mf">130.101</span><span class="p">:</span><span class="mi">8080</span>
+<span class="n">Session</span> <span class="n">Affinity</span><span class="p">:</span>  <span class="n">None</span>
+<span class="n">Events</span><span class="p">:</span>            <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>
+</pre></div></p>
 <ul>
-<li>Remove the function</li>
+<li>Remove the function
+<div class="codehilite"><pre><span></span>kubeless delete
+</pre></div></li>
 </ul>
-<pre><code>kubeless delete
-</code></pre>
-
 <h3 id="calling-the-function">Calling the function</h3>
-<p>The quickest way is to proxy the server and then call the local URL:</p>
-<pre><code>$ kubectl proxy -p 8080 &amp;
-$ kubeless function call hellojb --data 'Hello Bill!'
-</code></pre>
-
+<p>The quickest way is to proxy the server and then call the local URL:
+<div class="codehilite"><pre><span></span>$ kubectl proxy -p <span class="m">8080</span> <span class="p">&amp;</span>
+$ kubeless <span class="k">function</span> call hellojb --data <span class="s1">&#39;Hello Bill!&#39;</span>
+</pre></div></p>
 <p>A second way is to test using HTTP client.</p>
 <h2 id="developing-a-predictive-scoring-function">Developing a predictive scoring function</h2>
 <p>In <a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/tree/master/asset-predictive-scoring">this project</a> we are addressing how to develop a scoring service using Python, sklearn and serveless to deploy the model as function.</p>

@@ -895,22 +895,22 @@ But the semantic of the event processing may authorize some adaptations. For sur
 <p><strong>Kafka</strong> pod should not run on same node as zookeeper pods.  </p>
 </blockquote>
 <p>Here is an example of such spec:</p>
-<pre><code class="yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: with-pod-affinity
-spec:
-  affinity:
-    podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            labelSelector:
-            matchExpressions:
-            - key: name
-              operator: In
-              values:
-              - gc-zookeeper
-          topologyKey: kubernetes.io/hostname
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">with-pod-affinity</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">affinity</span><span class="p">:</span>
+    <span class="nt">podAntiAffinity</span><span class="p">:</span>
+          <span class="nt">requiredDuringSchedulingIgnoredDuringExecution</span><span class="p">:</span>
+            <span class="nt">labelSelector</span><span class="p">:</span>
+            <span class="nt">matchExpressions</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+              <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">In</span>
+              <span class="nt">values</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gc-zookeeper</span>
+          <span class="nt">topologyKey</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubernetes.io/hostname</span>
+</pre></div>
 
 <p>We recommend doing the <a href="https://kubernetes.io/docs/tutorials/stateful-application/zookeeper">running zookeeper in k8s tutorial</a> for understanding such configuration.
 Provision a <strong>fast storage class</strong> for persistence volume.</p>
