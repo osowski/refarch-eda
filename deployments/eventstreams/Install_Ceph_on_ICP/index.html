@@ -36,7 +36,7 @@
     
     
       
-        <title>Install Ceph on ICP - Event Driven Architecture</title>
+        <title>Ceph deployment on ICP - Event Driven Architecture</title>
       
     
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Install Ceph on ICP
+              Ceph deployment on ICP
             </span>
           
         </div>
@@ -478,7 +478,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../kafka/data-replication.md" title="Data Replication Pattern" class="md-nav__link">
+    <a href="https://ibm-cloud-architecture.github.io/refarch-data-ai-analytics/preparation/data-replication/" title="Data Replication Pattern" class="md-nav__link">
       Data Replication Pattern
     </a>
   </li>
@@ -541,10 +541,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
     
     <label class="md-nav__link" for="nav-8">
       Product guidances
@@ -644,6 +646,124 @@
           
           
 
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Ceph deployment on ICP
+      </label>
+    
+    <a href="./" title="Ceph deployment on ICP" class="md-nav__link md-nav__link--active">
+      Ceph deployment on ICP
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#environment" title="Environment" class="md-nav__link">
+    Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" title="Setup" class="md-nav__link">
+    Setup
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-download-the-required-setup-files" title="1. Download the required setup files" class="md-nav__link">
+    1. Download the required setup files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-logon-to-ibm-cloud-private-cluster" title="2. Logon to IBM Cloud Private Cluster" class="md-nav__link">
+    2. Logon to IBM Cloud Private Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-setup-ceph-cluster" title="3. Setup Ceph Cluster" class="md-nav__link">
+    3. Setup Ceph Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-ceph-cluster" title="4. Verify Ceph cluster" class="md-nav__link">
+    4. Verify Ceph cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-troubleshooting-ceph-setup" title="5. Troubleshooting Ceph setup" class="md-nav__link">
+    5. Troubleshooting Ceph setup
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-steps-for-reseting-an-used-disk" title="5.1 Steps for reseting an used disk" class="md-nav__link">
+    5.1 Steps for reseting an used disk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-steps-for-uninstalling-the-rook-ceph-setup" title="5.2 Steps for uninstalling the rook-ceph setup" class="md-nav__link">
+    5.2 Steps for uninstalling the rook-ceph setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
 
   <li class="md-nav__item">
     <a href="../" title="Event Streams ICP deployment" class="md-nav__link">
@@ -734,6 +854,90 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#environment" title="Environment" class="md-nav__link">
+    Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" title="Setup" class="md-nav__link">
+    Setup
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-download-the-required-setup-files" title="1. Download the required setup files" class="md-nav__link">
+    1. Download the required setup files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-logon-to-ibm-cloud-private-cluster" title="2. Logon to IBM Cloud Private Cluster" class="md-nav__link">
+    2. Logon to IBM Cloud Private Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-setup-ceph-cluster" title="3. Setup Ceph Cluster" class="md-nav__link">
+    3. Setup Ceph Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-ceph-cluster" title="4. Verify Ceph cluster" class="md-nav__link">
+    4. Verify Ceph cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-troubleshooting-ceph-setup" title="5. Troubleshooting Ceph setup" class="md-nav__link">
+    5. Troubleshooting Ceph setup
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-steps-for-reseting-an-used-disk" title="5.1 Steps for reseting an used disk" class="md-nav__link">
+    5.1 Steps for reseting an used disk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-steps-for-uninstalling-the-rook-ceph-setup" title="5.2 Steps for uninstalling the rook-ceph setup" class="md-nav__link">
+    5.2 Steps for uninstalling the rook-ceph setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -748,13 +952,15 @@
                 
                 
                 <h1 id="install-and-configure-ceph-for-ibm-cloud-private">Install and configure Ceph for IBM Cloud Private</h1>
-<h1 id="introduction">Introduction</h1>
 <p><a href="https://ceph.com/">Ceph</a> is open source software designed to provide highly scalable object, block and file-based storage under a unified system.</p>
 <p>Ceph provides a POSIX-compliant network file system (CephFS) that aims for high performance, large data storage, and maximum compatibility with legacy applications.</p>
 <p><a href="https://github.com/rook/rook">Rook</a> is an open source orchestrator for distributed storage systems running in cloud native environments.</p>
 <p>Rook turns storage software into self-managing, self-scaling, and self-healing storage services. It does this by automating deployment, bootstrapping, configuration, provisioning, scaling, upgrading, migration, disaster recovery, monitoring, and resource management. Rook uses the facilities provided by the underlying cloud-native container management, scheduling and orchestration platform to perform its duties.</p>
-<p><strong>Note</strong> The Helm chart <em>ibm-rook-rbd-cluster</em> is used for setting up Ceph Cluster in IBM Cloud Private.   </p>
-<h1 id="environment">Environment</h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Helm chart <em>ibm-rook-rbd-cluster</em> is used for setting up Ceph Cluster in IBM Cloud Private.   </p>
+</div>
+<h2 id="environment">Environment</h2>
 <p>A typical IBM Cloud Private Environment includes Boot node, Master node, Management node, Proxy node and Worker nodes. When the Ceph RBD Cluster is used for providing storage for API Connect, any three worker nodes should be configured to have additional raw disks.</p>
 <p>The following set of systems can be used as reference for building <em>development (non-HA) environment</em> that runs IBM API Connect workload on IBM Cloud Private.</p>
 <table>
@@ -868,8 +1074,11 @@
 </tr>
 </tbody>
 </table>
-<p><strong>NOTE:</strong> Additional worker nodes will be required when there is a a need to run workloads other than IBM API Connect on IBM Cloud Private.</p>
-<h1 id="setup">Setup</h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Additional worker nodes will be required when there is a a need to run workloads other than IBM API Connect on IBM Cloud Private.</p>
+</div>
+<h2 id="setup">Setup</h2>
 <p>This document covers the setup of <em>Ceph</em> storage using <em>Rook</em>.</p>
 <p>The following tasks are performed for setting up the Ceph Cluster. </p>
 <ol>
@@ -880,72 +1089,32 @@
 <li><a href="#5-troubleshooting-ceph-setup">Troubleshooting Ceph setup</a></li>
 </ol>
 <h3 id="1-download-the-required-setup-files">1. Download the required setup files</h3>
-<p><strong>Note:</strong> The following files are required for installing <em>ibm-rook-rbd-cluster</em> chart and setting up Ceph cluster</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following files are required for installing <em>ibm-rook-rbd-cluster</em> chart and setting up Ceph cluster</p>
+</div>
 <ul>
-<li><a href="./apic-install/login.sh">login.sh</a> - Utility for logging onto IBM Cloud Private</li>
-<li><a href="./apic-install/apic/fixHelm.sh">fixHelm.sh</a> - Utility to fix default helm to add --notls flag </li>
-<li><a href="./apic-install/apic/helm">helm</a> - New helm utility that appends --notls </li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/scripts/icp/login.sh">login.sh</a> - Utility for logging onto IBM Cloud Private</li>
 <li><a href="https://raw.githubusercontent.com/IBM/charts/master/repo/stable/ibm-rook-rbd-cluster-0.8.3.tgz">ibm-rook-rbd-cluster-0.8.3.tgz</a> - IBM Chart for Rook RBD Cluster</li>
-<li><a href="./apic-install/ceph/ceph-values.yaml">ceph-values.yaml</a> - Sample values.yaml for installing Ceph Cluster </li>
-<li><a href="./apic-install/ceph/rook-ceph-cluster-role-binding.yaml">rook-ceph-cluster-role-binding.yaml</a> - ClusterRoleBinding for the service account rook-ceph-cluster</li>
-<li><a href="./apic-install/ceph/rook-ceph-operator-values.yaml">rook-ceph-operator-values.yaml</a> - Sample values.yaml for installing rook operator</li>
-<li><a href="./apic-install/ceph/rook-cluster-role.yaml">rook-cluster-role.yaml</a> - ClusterRole for the resource rook-privileged</li>
-<li><a href="./apic-install/ceph/rook-pod-security-policy.yaml">rook-pod-security-policy.yaml</a> - Define PodSecurityPolicy rook-privileged</li>
-<li><a href="./apic-install/ceph/setup.sh">setup.sh</a> - Utility for setting up Ceph Cluster </li>
-<li><a href="./apic-install/ceph/status.sh">status.sh</a> - Utility for verifying Ceph Cluster </li>
-<li><a href="./apic-install/ceph/cleanup.sh">cleanup.sh</a> - Utility for cleaning up Ceph Cluster </li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/ceph-values.yaml">ceph-values.yaml</a> - Sample values.yaml for installing Ceph Cluster </li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/rook-ceph-cluster-role-binding.yaml">rook-ceph-cluster-role-binding.yaml</a> - ClusterRoleBinding for the service account rook-ceph-cluster</li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/rook-ceph-operator-values.yaml">rook-ceph-operator-values.yaml</a> - Sample values.yaml for installing rook operator</li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/rook-cluster-role.yaml">rook-cluster-role.yaml</a> - ClusterRole for the resource rook-privileged</li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/rook-pod-security-policy.yaml">rook-pod-security-policy.yaml</a> - Define PodSecurityPolicy rook-privileged</li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/setup.sh">setup.sh</a> - Utility for setting up Ceph Cluster </li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/status.sh">status.sh</a> - Utility for verifying Ceph Cluster </li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/cleanup.sh">cleanup.sh</a> - Utility for cleaning up Ceph Cluster </li>
 </ul>
 <h3 id="2-logon-to-ibm-cloud-private-cluster">2. Logon to IBM Cloud Private Cluster</h3>
-<p><strong>Step #1</strong>  The script <a href="./apic-install/fixHelm.sh">fixHelm.sh</a> can be run to enable helm to suffix <strong>--tls</strong> when running a command. </p>
-<p>The contents of the script <a href="./apic-install/fixHelm.sh">fixHelm.sh</a> is as follows: </p>
-<p><div class="codehilite"><pre><span></span>#
-# Run this script only once
-#
-
-#!/bin/bash
-FILE=/usr/local/bin/helmOrig
-
-if [ ! -f &quot;$FILE&quot; ]
-then
-    echo &quot;File $FILE does not exist&quot;
-    cp /usr/local/bin/helm /usr/local/bin/helmOrig
-    cp ./helm  /usr/local/bin/helm
-fi
-</pre></div>
-Sample run of the fixHelm script is as follows: </p>
-<p><img alt="" src="./images/fixHelmTLSIssue.png" /></p>
-<p><strong>Step #2</strong>  The script <a href="./apic-install/login.sh">login.sh</a> can be run to login to IBM Cloud Private Cluster. </p>
-<p>The contents of the script <a href="./apic-install/login.sh">login.sh</a> is as follows: </p>
-<div class="codehilite"><pre><span></span>#
-# UPDATE VARIABLES TO MATCH THE ENVIRONMENT
-#
-
-# Define ICP Cluster name
-CLUSTER_NAME=mycluster.icp
-
-echo &#39;Logging onto IBM Cloud Private CLI&#39;
-echo 
-cloudctl login -a https://$CLUSTER_NAME:8443 --skip-ssl-validation
-
-echo &#39;Logging onto Docker Registry&#39;
-echo 
-docker login $CLUSTER_NAME:8500
-
-echo &#39;Initializing Helm&#39;
-echo
-helmICP init --client-only
-helm version
-</pre></div>
-
-<p><strong>Note:</strong>  The script should be updated to include the correct value for <em>CLUSTER_NAME</em>.</p>
+<p>The script <a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/scripts/icp/login.sh">login.sh</a> can be run to login to IBM Cloud Private Cluster. </p>
+<p>!! note
+    The script should be updated to include the correct value for <em>CLUSTER_NAME</em>.</p>
 <p>Sample run of the login script is as follows: </p>
-<p><img alt="" src="./images/loginToDefaultNamespace.png" /></p>
+<p><img alt="" src="../images/loginToDefaultNamespace.png" /></p>
 <h3 id="3-setup-ceph-cluster">3. Setup Ceph Cluster</h3>
-<p><strong>Step #1</strong> Update the <em>ceph-values.yaml</em>  to match the environment.</p>
+<p><strong>Step #1</strong> Update the <a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/ceph-values.yaml">ceph-values.yaml</a> to match your environment.</p>
 <p>The file <em>ceph-values.yaml</em> needs to be updated to list the IP address of the storage node within the IBM Cloud Private cluster. </p>
 <div class="codehilite"><pre><span></span>...
-...
-...
 #
 # UPDATE VARIABLES TO MATCH THE ENVIRONMENT
 #   
@@ -961,11 +1130,10 @@ helm version
       - name: &quot;DISK_NAME&quot;
 ...
 ...
-...
 </pre></div>
 
-<p><strong>Step #2</strong> Run the setup script to install Rook Operator chart and the IBM Rook RBD Cluster chart</p>
-<p>The contents of the script <a href="./apic-install/ceph/setup.sh">setup.sh</a> is as follows: </p>
+<p><strong>Step #2</strong> Modify and run the setup script to install Rook Operator chart and the IBM Rook RBD Cluster chart</p>
+<p>The contents of the script <a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/setup.sh">setup.sh</a> is as follows: </p>
 <div class="codehilite"><pre><span></span>#
 # UPDATE VARIABLES TO MATCH THE ENVIRONMENT
 #
@@ -973,42 +1141,25 @@ helm version
 # Define the location of images 
 IMAGE_DIR=/DIRECTORY_HAVING_IMAGES
 
-# Create namespaces
-kubectl create namespace rook-ceph 
-
-# Install Rook 
-helmICP repo add rook-beta https://charts.rook.io/beta
-helmICP search rook-ceph
-helm install --name rook-ceph-v0.8.3 rook-beta/rook-ceph --version v0.8.3 -f rook-ceph-operator-values.yaml --debug --namespace rook-ceph
-
-# Apply security policies
-kubectl apply  -f rook-pod-security-policy.yaml
-kubectl apply  -f rook-cluster-role.yaml
-kubectl create -f rook-ceph-cluster-role-binding.yaml
-
-echo &quot;Waiting for the pods to come up&quot;
-sleep 2m
-./status.sh
-
-# Install Ceph cluster 
-helm install --name ibm-rook-rbd-cluster-v0.8.3 -f ceph-values.yaml $IMAGE_DIR/ibm-rook-rbd-cluster --debug --namespace rook-ceph
+...
 </pre></div>
 
-<p><strong>Note:</strong>  The script should be updated to include the correct location for <em>IMAGE_DIR</em> that has the location where the chart <a href="./apic-install/charts/ibm-rook-rbd-cluster-0.8.3.tgz">ibm-rook-rbd-cluster-0.8.3.tgz</a> is downloaded and unzipped. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The script should be updated to include the correct location for <em>IMAGE_DIR</em> that has the location where the chart ibm-rook-rbd-cluster-0.8.3.tgz is downloaded and unzipped. </p>
+</div>
 <p>The output of Ceph install is listed below for reference: </p>
 <ul>
-<li><a href="./apic-install/samples/ceph_install.log">ceph_install.log</a></li>
+<li><a href="../samples/ceph_install.log">ceph_install.log</a></li>
 </ul>
 <h3 id="4-verify-ceph-cluster">4. Verify Ceph cluster</h3>
-<p>The script <a href="./apic-install/ceph/status.sh">status.sh</a> can be run to check if Ceph cluster is working as expected. </p>
-<p>The contents of the script <a href="./apic-install/ceph/status.sh">status.sh</a> is as follows: </p>
-<div class="codehilite"><pre><span></span># Get status 
-kubectl get pods -n rook-ceph 
-kubectl get jobs -n rook-ceph 
+<p>The script <a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/status.sh">status.sh</a> can be run to check if Ceph cluster is working as expected. </p>
+<p>The contents of the script <a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/status.sh">status.sh</a> is as follows: </p>
+<div class="codehilite"><pre><span></span>./deployments/ceph/status.sh 
 </pre></div>
 
 <p>Expected output is listed below. </p>
-<p><img alt="" src="./images/cephGetStatus.png" /></p>
+<p><img alt="" src="../images/cephGetStatus.png" /></p>
 <h3 id="5-troubleshooting-ceph-setup">5. Troubleshooting Ceph setup</h3>
 <h4 id="51-steps-for-reseting-an-used-disk">5.1 Steps for reseting an used disk</h4>
 <p>It is possible that sometimes OSD pods does't start up even though the OSD prepare jobs have completed successfully. 
@@ -1067,21 +1218,8 @@ pvremove PHYSICAL_VOLUME
 </pre></div>
 
 <h4 id="52-steps-for-uninstalling-the-rook-ceph-setup">5.2 Steps for uninstalling the rook-ceph setup</h4>
-<p><strong>Step #1</strong> The script <a href="./apic-install/ceph/cleanup.sh">cleanup.sh</a> can be run to remove the Ceph setup completely.</p>
-<p>The contents of the script <a href="./apic-install/ceph/cleanup.sh">cleanup.sh</a> is as follows: </p>
-<div class="codehilite"><pre><span></span># Delete the Helm Chart 
-helm delete ibm-rook-rbd-cluster-v0.8.3 --purge 
-sleep 1m
-helm delete rook-ceph-v0.8.3 --purge 
-sleep 1m
-
-# Delete the policies
-kubectl delete -f rook-ceph-cluster-role-binding.yaml
-kubectl delete -f rook-cluster-role.yaml
-kubectl delete -f rook-pod-security-policy.yaml
-
-# Delete namespaces
-kubectl delete namespace rook-ceph
+<p><strong>Step #1</strong> The script <a href="https://github.com/ibm-cloud-architecture/refarch-eda/blob/master/deployments/ceph/cleanup.sh">cleanup.sh</a> can be run to remove the Ceph setup completely.</p>
+<div class="codehilite"><pre><span></span>./deployments/ceph/cleanup.sh
 </pre></div>
 
 <p><strong>Step #2</strong> Remove the contents of the temporary directory used by rook: <em>/var/lib/rook</em></p>
@@ -1153,6 +1291,41 @@ ceph pg stat
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../zookeeper/" title="Zookeeper deployment" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Zookeeper deployment
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../" title="Event Streams ICP deployment" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Event Streams ICP deployment
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#event-stream-kafka-architecture-considerations" tabindex="1" class="md-skip">
+      <a href="#ibm-event-streams-kafka-architecture-considerations" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -478,7 +478,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../data-replication.md" title="Data Replication Pattern" class="md-nav__link">
+    <a href="https://ibm-cloud-architecture.github.io/refarch-data-ai-analytics/preparation/data-replication/" title="Data Replication Pattern" class="md-nav__link">
       Data Replication Pattern
     </a>
   </li>
@@ -720,6 +720,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../deployments/eventstreams/Install_Ceph_on_ICP/" title="Ceph deployment on ICP" class="md-nav__link">
+      Ceph deployment on ICP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../deployments/eventstreams/" title="Event Streams ICP deployment" class="md-nav__link">
       Event Streams ICP deployment
     </a>
@@ -871,7 +883,7 @@
                   <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/kafka/arch.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="event-stream-kafka-architecture-considerations">Event Stream / Kafka Architecture Considerations</h1>
+                <h1 id="ibm-event-streams-kafka-architecture-considerations">IBM Event Streams / Kafka Architecture Considerations</h1>
 <p>If you need to know the key concepts read <a href="../readme/">this article</a>. </p>
 <h2 id="high-availability">High Availability</h2>
 <p>As a distributed cluster, kafka brokers ensure high availability to process new events. Topic has replication factor to support not loosing data in case of broker failure. You need at least 3 brokers to ensure availability and a replication factor set to 3 for each topic, so no data will be lost. Partition enables data locality, elasticity, scalability, high performance, parallelism, and fault tolerance. Each partitition is replicated at least 3 times and allocated in different brokers. One replicas is the <strong>leader</strong>. In the case of broker failure (broker 1 in figure below), one of the existing partition in the remaining running brokers will take the leader role (e.g. red partition in broker 3):</p>
@@ -954,6 +966,7 @@ Provision a <strong>fast storage class</strong> for persistence volume.</p>
 <p><img alt="" src="../images/ha-dc1.png" /></p>
 <p>The above diagram is using Kafka MirrorMaker with a master to slave deployment. Within the data center 2, the brokers are here to manage the topics and events. When there is no consumer running, nothing happen. Consumers and producers can be started when DC1 fails. This is the active/passive model. In fact, we could have consumers within the DC2 processing topics to manage a readonly model, keeping in memory their projection view, as presented in the <a href="https://ibm-cloud-architecture.github.io/refarch-eda/evt-microservices/ED-patterns/#command-query-responsibility-segregation-cqrs-pattern">CQRS pattern</a>. </p>
 <p>The second solution is to use one mirror maker in each site, for each topic. This is an active - actice topology: consumers and producers are on both sites. But to avoid infinite loop, we need to use naming convention for the topic, or only produce in the cluster of the main topic. Consumers consume from the replicated topic. </p>
+<p><img alt="" src="../images/ha-dc2.png" /></p>
 <p>When you want to deploy solution that spreads over multiple regions to support global streaming, you need to address the following challenges:</p>
 <ul>
 <li>How do you make data available to applications across multiple data centers?</li>
@@ -962,10 +975,12 @@ Provision a <strong>fast storage class</strong> for persistence volume.</p>
 <li>How to address no duplication of records?</li>
 </ul>
 <h2 id="mq-integration">MQ integration</h2>
-<p>IBM has created a pair of connectors, available as source code or as part of IBM Event Streams. The Source Connector, from MQ queue to Kafka topic is available in the github repository named <a href="https://github.com/ibm-messaging/kafka-connect-mq-source">ibm-messaging/kafka-connect-mq-source</a></p>
+<p>IBM has created a pair of connectors, available as source code or as part of IBM Event Streams product. The Source Connector responsible to support the integration from MQ queue to Kafka topic is available in the github repository named <a href="https://github.com/ibm-messaging/kafka-connect-mq-source">ibm-messaging/kafka-connect-mq-source</a></p>
 <p>while the sink connector, from Kafka topic to MQ queue is at <a href="https://github.com/ibm-messaging/kafka-connect-mq-sink">ibm-messaging/kafka-connect-mq-sink</a></p>
+<p>The following figure illustrates the high level components.</p>
 <p><img alt="" src="../mq-kafka-connectors.png" /></p>
-<p>We are proposing an MQ to Kafka implementation sample in <a href="https://ibm-cloud-architecture.github.io/refarch-container-inventory/">this repository</a>.</p>
+<p>It is important to note that the Kafka connectors is a cluster deployment for local high availability and scalability. </p>
+<p>We are proposing an MQ to Kafka implementation sample in <a href="https://ibm-cloud-architecture.github.io/refarch-container-inventory/">the container inventory repository</a> where we mockup the integration of a legacy DB managing shipment container inventory, it runs as a java appm jms producer and consumer on MQ queues. This solution is integrated in the global EDA reference solution implementation and specially the <a href="https://ibm-cloud-architecture.github.io/refarch-kc-container-ms">Reefer container management</a> microservice. </p>
                 
                   
                 
