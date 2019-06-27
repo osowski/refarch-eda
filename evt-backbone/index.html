@@ -341,6 +341,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#messaging-versus-event-streaming" title="Messaging versus event streaming" class="md-nav__link">
+    Messaging versus event streaming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deployments" title="Deployments" class="md-nav__link">
     Deployments
   </a>
@@ -818,6 +825,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#messaging-versus-event-streaming" title="Messaging versus event streaming" class="md-nav__link">
+    Messaging versus event streaming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deployments" title="Deployments" class="md-nav__link">
     Deployments
   </a>
@@ -873,8 +887,22 @@
 <li><a href="https://www.ibm.com/cloud/event-streams">IBM Event Streams Private Cloud</a></li>
 <li><a href="../kafka/readme/">See also our own Kafka study article</a> on how to support high availability and how to deploy to your local environment or to a kubernetes cluster like IBM Cloud Private.</li>
 </ul>
+<h2 id="messaging-versus-event-streaming">Messaging versus event streaming</h2>
+<p>We recommend reading <a href="https://developer.ibm.com/messaging/2018/05/18/comparing-messaging-event-streaming-use-cases/">this article</a> and <a href="https://developer.ibm.com/messaging/2019/02/05/comparing-messaging-pub-sub-and-event-streams/">this one</a>, to get insight between messaging (focusing on operations / actions to be performed by a system or service) versus event (focusing on the state / facts of a system with no knowledge of the downstream processing. To summarize messaging (like MQ) are to support:</p>
+<ul>
+<li>Transient Data – data is only stored until a consumer has processed the message, or it expires</li>
+<li>request / reply most of the time</li>
+<li>Targeted reliable delivery: targeted to the entity that will process the request or receive the response. Reliable with transaction support.</li>
+</ul>
+<p>For events:</p>
+<ul>
+<li>Stream history: consumers are interested by history and not just the most recent event</li>
+<li>Scalable Consumption: A single event is consumed by many consumers with limited impact as the number of consumers grow.</li>
+<li>Immutable Data </li>
+</ul>
+<p><img alt="" src="evt-msg.png" /></p>
 <h2 id="deployments">Deployments</h2>
-<p>In term of event backbone deployment we propose different approaches:</p>
+<p>In term of event backbone deployment environment we propose different approaches:</p>
 <ul>
 <li><strong><a href="https://cloud.ibm.com/">IBM Cloud</a></strong> with the <a href="https://cloud.ibm.com/catalog/services/event-streams">Event Streams service</a>.<ul>
 <li>Deployment discussions for the KC solution are in <a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/iks/">this note</a></li>

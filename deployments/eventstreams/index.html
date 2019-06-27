@@ -961,9 +961,11 @@
 <p>The matching <code>server.properties</code> file is under the <code>deployments/eventstreams</code> folder. See parameters description in the <a href="https://kafka.apache.org/documentation/#brokerconfigs">product documentation</a> </p>
 <p>You can get the details of the release with: <code>helm list 'green-events-streams' --tls</code> or access helm detail via ICP console: Here is the helm release details:</p>
 <p><img alt="" src="images/ies-helm-rel01.png" /></p>
-<p>The figure above shows the following elements:
-<em> ConfigMaps for UI, Kafka proxy
-</em> The five deployments for each major components: UI, REST, proxy and access controller.</p>
+<p>The figure above shows the following elements:</p>
+<ul>
+<li>ConfigMaps for UI, Kafka proxy</li>
+<li>The five deployments for each major components: UI, REST, proxy and access controller.</li>
+</ul>
 <p>Next is the job list which shows what was run during installation. The panel lists also the current network policies: </p>
 <p><img alt="" src="images/ies-helm-rel02.png" /></p>
 <blockquote>
@@ -978,10 +980,12 @@
 <p><img alt="" src="images/ies-helm-rel03.png" /></p>
 <p>The figure below shows the services for zookeeper, Kafka and Event Stream REST api and user interface:  </p>
 <p><img alt="" src="images/ies-helm-serv.png" /></p>
-<p>The services expose capabilities to external world via nodePort type:
-<em> The IBM Event Streams admin console is visible at the port 31253 on the k8s proxy IP address: 172.16.50.227
-</em> The REST api port 30121
-* stream proxy port bootstrap: 31348, broker 0: 32489...</p>
+<p>The services expose capabilities to external world via nodePort type:</p>
+<ul>
+<li>The IBM Event Streams admin console is visible at the port 31253 on the k8s proxy IP address: 172.16.50.227</li>
+<li>The REST api port 30121</li>
+<li>stream proxy port bootstrap: 31348, broker 0: 32489...</li>
+</ul>
 <p>You get access to the Event Streams admin console by using the IP address of the master  / proxy node and the port number of the service, which you can get using the kubectl get service command like:
 <div class="codehilite"><pre><span></span>kubectl get svc -n streaming &quot;green-events-streams-ibm-es-ui-svc&quot; -o &#39;jsonpath={.spec.ports[?(@.name==&quot;admin-ui-https&quot;)].nodePort}&#39;
 

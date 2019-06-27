@@ -964,10 +964,12 @@
                 
                 
                 <h1 id="kafka-deployment">Kafka Deployment</h1>
-<p>We are proposing three deployment approaches:
-<em> Using IBM Event Streams (See <a href="../eventstreams/">separate note</a>)
-</em> Using Kafka on development environment, mostly developer workstation
-* Using IBM Cloud private for production</p>
+<p>We are proposing three deployment approaches:</p>
+<ul>
+<li>Using IBM Event Streams (See <a href="../eventstreams/">separate note</a>)</li>
+<li>Using Kafka on development environment, mostly developer workstation</li>
+<li>Using IBM Cloud private for production</li>
+</ul>
 <p>We are defining two types of manifests, one set for development environment and one for production. The manifests and scripts are under each deployment folders.</p>
 <h2 id="development">Development</h2>
 <p>For kafka the manifests are in this project under the <code>deployments/kafka/dev</code> folder. We are using the google image: <code>gcr.io/google_samples/k8skafka:v1</code>.</p>

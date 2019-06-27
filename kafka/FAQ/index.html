@@ -652,6 +652,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#why-does-kafka-use-zookeeper" title="Why does kafka use zookeeper?" class="md-nav__link">
+    Why does kafka use zookeeper?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differences-between-akka-and-kafka" title="Differences between Akka and Kafka?" class="md-nav__link">
+    Differences between Akka and Kafka?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-faqs" title="Other FAQs" class="md-nav__link">
+    Other FAQs
+  </a>
+  
+</li>
+      
       
       
       
@@ -810,6 +831,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#why-does-kafka-use-zookeeper" title="Why does kafka use zookeeper?" class="md-nav__link">
+    Why does kafka use zookeeper?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differences-between-akka-and-kafka" title="Differences between Akka and Kafka?" class="md-nav__link">
+    Differences between Akka and Kafka?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-faqs" title="Other FAQs" class="md-nav__link">
+    Other FAQs
+  </a>
+  
+</li>
+      
       
       
       
@@ -835,6 +877,14 @@
 <h2 id="how-to-support-exactly-once-delivery">How to support exactly once delivery?</h2>
 <p>See the section in the producer implementation considerations <a href="../producers/">note</a>.</p>
 <p>Also it is important to note that the Kafka Stream API supports exactly once semantics with the config: <code>processing.guarantee=exactly_once</code>. Each task within a read-process-write flow may fail so this setting is important to be sure the right answer is delivered, even in case of task failure, and the process is executed exactly once. </p>
+<h2 id="why-does-kafka-use-zookeeper">Why does kafka use zookeeper?</h2>
+<p>Kafka as a distributed system using cluster, it needs to keep cluster states, sharing configuration like topic, assess which node is still alive within the cluster, support registrering new node added to the cluster, being able to support dynamic restart. Zookeeper is an orchestrator for distributed system, it maintains kafka cluster integrity, select broker leader... </p>
+<h2 id="differences-between-akka-and-kafka">Differences between Akka and Kafka?</h2>
+<p><a href="https://akka.io/">Akka</a> is a open source toolkit for Scala or Java to simplify multithreading programming and makes application more reactive by adopting an asynchronous mechanism to access to io: database or HTTP request. To support asynchronous communication between 'actors', it uses messaging, internal to the JVM. 
+Kafka is part of the architecture, while Akka is an implementation choice for one of the component of the business application deployed inside the architecture. </p>
+<p><a href="https://vertx.io/">vert.x</a> is another open source implementation of such internal messaging mechanism but supporting more language:  Java, Groovy, Ruby, JavaScript, Ceylon, Scala, and Kotlin.</p>
+<h2 id="other-faqs">Other FAQs</h2>
+<p><a href="https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowareKafkabrokersdependonZookeeper?">FAQ from confluent</a></p>
                 
                   
                 
