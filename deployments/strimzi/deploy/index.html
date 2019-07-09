@@ -36,7 +36,7 @@
     
     
       
-        <title>Strimzi Kafka deployment on Minikube - Event Driven Architecture</title>
+        <title>Kafka deployment with Strimzi - Event Driven Architecture</title>
       
     
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Strimzi Kafka deployment on Minikube
+              Kafka deployment with Strimzi
             </span>
           
         </div>
@@ -586,8 +586,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../kafka/producers/" title="Kafka producer" class="md-nav__link">
-      Kafka producer
+    <a href="../../../kafka/producers/" title="Kafka producer development practices" class="md-nav__link">
+      Kafka producer development practices
     </a>
   </li>
 
@@ -598,8 +598,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../kafka/consumers/" title="Kafka consumer" class="md-nav__link">
-      Kafka consumer
+    <a href="../../../kafka/consumers/" title="Kafka consumer development practices" class="md-nav__link">
+      Kafka consumer development practices
     </a>
   </li>
 
@@ -612,6 +612,68 @@
   <li class="md-nav__item">
     <a href="../../../kafka/FAQ/" title="Kafka FAQ" class="md-nav__link">
       Kafka FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../kafka/monitoring/" title="Kafka Monitoring" class="md-nav__link">
+      Kafka Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../serverless/" title="Serverless" class="md-nav__link">
+      Serverless
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" checked>
+    
+    <label class="md-nav__link" for="nav-9">
+      Deployments
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Deployments
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../eventstreams/" title="Event Streams ICP deployment" class="md-nav__link">
+      Event Streams ICP deployment
     </a>
   </li>
 
@@ -646,6 +708,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../postgresql/" title="Postgresql" class="md-nav__link">
+      Postgresql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../eventstreams/Install_Ceph_on_ICP/" title="Ceph deployment on ICP" class="md-nav__link">
       Ceph deployment on ICP
     </a>
@@ -656,11 +730,70 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../eventstreams/" title="Event Streams ICP deployment" class="md-nav__link">
-      Event Streams ICP deployment
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Kafka deployment with Strimzi
+      </label>
+    
+    <a href="./" title="Kafka deployment with Strimzi" class="md-nav__link md-nav__link--active">
+      Kafka deployment with Strimzi
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-namespace" title="Create a namespace" class="md-nav__link">
+    Create a namespace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-strimzi-installation-file" title="Apply Strimzi installation file" class="md-nav__link">
+    Apply Strimzi installation file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provision-kafka-cluster" title="Provision Kafka cluster" class="md-nav__link">
+    Provision Kafka cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-topic" title="Create a topic" class="md-nav__link">
+    Create a topic
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -670,32 +803,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../kafka/monitoring/" title="Kafka Monitoring" class="md-nav__link">
-      Kafka Monitoring
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../serverless/" title="Serverless" class="md-nav__link">
-      Serverless
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../postgresql/" title="Postgresql" class="md-nav__link">
-      Postgresql
+    <a href="https://github.com/ibm-cloud-architecture/refarch-integration/blob/master/docs/icp/troubleshooting.md" title="ICP Troubleshouting" class="md-nav__link">
+      ICP Troubleshouting
     </a>
   </li>
 
@@ -832,6 +941,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../eventstreams/Install_Ceph_on_ICP/" title="Ceph deployment on ICP" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Ceph deployment on ICP
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../../eda-skill-journey/" title="Skill Journey" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Skill Journey
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
