@@ -932,7 +932,7 @@
                 
                 
                 <h1 id="ibm-event-streams-kafka-architecture-considerations">IBM Event Streams / Kafka Architecture Considerations</h1>
-<p>If you need to know the key concepts read <a href="../readme/">this article</a>. </p>
+<p>If you need to understand the Kafka key concepts read <a href="../readme/">this article</a>. </p>
 <h2 id="high-availability">High Availability</h2>
 <p>As a distributed cluster, kafka brokers ensure high availability to process new events. Topic has replication factor to support not loosing data in case of broker failure. You need at least 3 brokers to ensure availability and a replication factor set to 3 for each topic, so no data will be lost. Partition enables data locality, elasticity, scalability, high performance, parallelism, and fault tolerance. Each partitition is replicated at least 3 times and allocated in different brokers. One replicas is the <strong>leader</strong>. In the case of broker failure (broker 1 in figure below), one of the existing partition in the remaining running brokers will take the leader role (e.g. red partition in broker 3):</p>
 <p><img alt="" src="../images/kafka-ha.png" /></p>

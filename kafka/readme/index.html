@@ -1082,28 +1082,27 @@
                 
                 
                 <h1 id="apache-kafka">Apache Kafka</h1>
-<p>In this article we are summarizing what Apache <a href="https://Kafka.apache.org/"><strong>Kafka</strong></a> is and group some references and notes we gathered during our different implementations and  <strong>Kafka</strong> deployment within Kubernetes cluster. We are documenting how to deploy Kafka on IBM Cloud Private or deploying <a href="https://developer.ibm.com/messaging/event-streams/">IBM Event Streams product</a>. This content does not replace <a href="https://Kafka.apache.org/intro/">the excellent introduction</a> every developer using Kafka should read.</p>
-<p>Update 06/2019 - <em>Author: <a href="https://www.linkedin.com/in/jeromeboyer/">Jerome Boyer</a></em>  </p>
+<p>In this article we are summarizing what Apache <a href="https://Kafka.apache.org/"><strong>Kafka</strong></a> is and are grouping some references and notes we gathered during our different implementations and  <strong>Kafka</strong> deployment within Kubernetes cluster. We are documenting how to deploy Kafka on IBM Cloud Private or deploying <a href="https://developer.ibm.com/messaging/event-streams/">IBM Event Streams product</a>. This content does not replace <a href="https://Kafka.apache.org/intro/">the excellent introduction</a> every developer using Kafka should read.</p>
 <h2 id="introduction">Introduction</h2>
 <p><a href="https://Kafka.apache.org/">Kafka</a> is a distributed real time event streaming platform with the following key capabilities:</p>
 <ul>
 <li>Publish and subscribe streams of records. Data are stored so consuming applications can pull the information they need, and keep track of what they have seen so far.</li>
-<li>It can handle hundred of reads and writes operation per second from many producers and consumers</li>
+<li>It can handle hundreds of read and write operations per second from many producers and consumers</li>
 <li>Atomic broadcast, send a record once, every subscriber gets it once.</li>
-<li>Store streams of data records on disk and replicate within the distributed cluster for fault-tolerance. Keep data for a time period before delete.</li>
-<li>Can grow elastically and transparently with no downtime</li>
+<li>Store streams of data records on disk and replicate within the distributed cluster for fault-tolerance. Persist data for a given time period before delete.</li>
+<li>Can grow elastically and transparently with no downtime.</li>
 <li>Built on top of the ZooKeeper synchronization service to keep topic, partitions and metadata highly available.</li>
 </ul>
 <h3 id="use-cases">Use cases</h3>
 <p>The typical use cases where <strong>Kafka</strong> helps are:</p>
 <ul>
-<li>Centralize online data pipeline to decouple applications and microservices</li>
-<li>pub/sub messaging</li>
+<li>Centralize online data pipeline to decouple applications and microservices.</li>
+<li>Pub/sub messaging for cloud native application inter microservices.</li>
 <li>Aggregation of event coming from multiple producers.</li>
 <li>Monitor distributed applications to produce centralized feed of operational data.</li>
-<li>Logs collector from multiple services</li>
-<li>Implement <a href="../../evt-microservices/ED-patterns/">event soucing pattern</a> out of the box, using configuration to keep message for a long time period. Data are replicated between broker within the cluster and cross availability zones if needed. </li>
-<li>Manage loosely coupled communication between microservices. (See <a href="https://github.com/ibm-cloud-architecture/refarch-integration/blob/master/docs/service-mesh.md#asynchronous-loosely-coupled-solution-using-events">this note</a> where I present a way to support a service mesh solution using asynchronous event)</li>
+<li>Logs collector from multiple services.</li>
+<li>Implement <a href="../../evt-microservices/ED-patterns/">event soucing pattern</a> out of the box, using configuration to keep message for a long time period. Data are replicated between brokers within the cluster and cross availability zones if needed. </li>
+<li>Manage loosely coupled communication between microservices. (See <a href="https://ibm-cloud-architecture.github.io/refarch-integration/service-mesh/readme/#asynchronous-loosely-coupled-solution-using-events">this note</a> where we present a way to support a service mesh solution using asynchronous event)</li>
 </ul>
 <h2 id="key-concepts">Key concepts</h2>
 <p>The diagram below presents Kafka's key components:  </p>
