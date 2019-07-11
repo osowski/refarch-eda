@@ -856,8 +856,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lab3-methodology-2-hours-read" title="Lab3: Methodology (2 hours read)" class="md-nav__link">
-    Lab3: Methodology (2 hours read)
+  <a href="#lab-3-methodology-2-hours-read" title="Lab 3: Methodology (2 hours read)" class="md-nav__link">
+    Lab 3: Methodology (2 hours read)
   </a>
   
 </li>
@@ -890,15 +890,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-and-run-the-solution" title="Build and run the solution" class="md-nav__link">
-    Build and run the solution
+  <a href="#lab-5-build-and-run-the-solution" title="Lab 5: Build and run the solution" class="md-nav__link">
+    Lab 5: Build and run the solution
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#review-event-driven-patterns" title="Review event driven patterns" class="md-nav__link">
-    Review event driven patterns
+  <a href="#lab-6-review-event-driven-patterns-implementation" title="Lab 6: Review event driven patterns implementation" class="md-nav__link">
+    Lab 6: Review event driven patterns implementation
   </a>
   
     <nav class="md-nav">
@@ -1056,8 +1056,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lab3-methodology-2-hours-read" title="Lab3: Methodology (2 hours read)" class="md-nav__link">
-    Lab3: Methodology (2 hours read)
+  <a href="#lab-3-methodology-2-hours-read" title="Lab 3: Methodology (2 hours read)" class="md-nav__link">
+    Lab 3: Methodology (2 hours read)
   </a>
   
 </li>
@@ -1090,15 +1090,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-and-run-the-solution" title="Build and run the solution" class="md-nav__link">
-    Build and run the solution
+  <a href="#lab-5-build-and-run-the-solution" title="Lab 5: Build and run the solution" class="md-nav__link">
+    Lab 5: Build and run the solution
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#review-event-driven-patterns" title="Review event driven patterns" class="md-nav__link">
-    Review event driven patterns
+  <a href="#lab-6-review-event-driven-patterns-implementation" title="Lab 6: Review event driven patterns implementation" class="md-nav__link">
+    Lab 6: Review event driven patterns implementation
   </a>
   
     <nav class="md-nav">
@@ -1239,7 +1239,7 @@
 <li>The Cloud Private <a href="https://www.ibm.com/cloud/event-streams">IBM Event Streams</a> product running on  private cloud</li>
 <li>Read introduction to <a href="../evt-action/">act on events with IBM Cloud Functions</a></li>
 </ul>
-<h3 id="lab3-methodology-2-hours-read">Lab3: Methodology (2 hours read)</h3>
+<h3 id="lab-3-methodology-2-hours-read">Lab 3: Methodology (2 hours read)</h3>
 <p>This lab persents how to start an event driven solution implementation. </p>
 <ul>
 <li>The adopted approach in the industry is the <a href="https://ibm-cloud-architecture.github.io/refarch-eda/methodology/readme/">Event storming methodology</a> which we are extending with event insight practices to identify potential real time analytics use cases.</li>
@@ -1263,29 +1263,18 @@
 <li>and <a href="https://ibm-cloud-architecture.github.io/refarch-kc/design/readme/">the derived design</a> from this analysis. (15 minutes reading)</li>
 </ul>
 <h3 id="lab-4-prepare-a-local-environment">Lab 4: Prepare a local environment</h3>
+<div class="admonition goals">
+<p class="admonition-title">Goals</p>
+<p>Install Kafka - zookeeper and postgresql docker images and start them in docker-compose or minikube</p>
+</div>
 <p>As the goal of those labs is not to redo IKS service creation, or installing products training, we can support to run all the components on the same computer. To do so, you have two options: running with docker compose, or running within Minikube.</p>
-<p>First be sure to have cloned the solution implementation repository using git command: 
-<div class="codehilite"><pre><span></span>git clone https://github.com/ibm-cloud-architecture/refarch-kc/
-</pre></div></p>
-<p>Open a terminal window and go to the <code>refarch-kc</code> folder.</p>
-<p>Use the command:
-<div class="codehilite"><pre><span></span>./script/clone.sh
-</pre></div></p>
-<p>to get all the solution repositories. You should have at least the following repositories:</p>
-<div class="codehilite"><pre><span></span>refarch-kc-container-ms
-refarch-kc-order-ms
-refarch-kc-ui
-refarch-kc
-refarch-kc-ms
-refarch-kc-streams
-</pre></div>
-
+<p>First be sure to complete the pre-requisites by following <a href="ttps://ibm-cloud-architecture.github.io/refarch-kc/pre-requisites.md">those steps</a>.</p>
 <p>Then do one of the following choice:</p>
 <ol>
 <li>To run the solution with a local Kafka / zookeeper backbone using docker compose, in <a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/local/#start-kafka-and-zookeeper">less than 3 minutes with the steps describe in this note</a>.</li>
 <li>Or use <a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/minikube/#pre-requisites">Minikube</a> to get kafka, zookeeper and poastgreSQl up and running on kubernetes</li>
 </ol>
-<h3 id="build-and-run-the-solution">Build and run the solution</h3>
+<h3 id="lab-5-build-and-run-the-solution">Lab 5: Build and run the solution</h3>
 <div class="admonition goals">
 <p class="admonition-title">Goals</p>
 <p>Build and run the solution so you can understand the Java-maven, Nodejs build process with docker stage build.</p>
@@ -1294,11 +1283,13 @@ refarch-kc-streams
 <li><a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/local/#build-the-solution">Build and deploy the solution locally using docker compose</a></li>
 <li><a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/minikube/#deploy-each-component-of-the-solution">Or build and deploy the solution locally using Minikube</a></li>
 <li><a href="https://ibm-cloud-architecture.github.io/refarch-kc/itg-tests/">Execute the integration tests</a> to validate the solution end to end.</li>
-<li>[Optional] <a href="https://ibm-cloud-architecture.github.io/refarch-kc/demo/readme/">Execute the demonstration script</a></li>
+<li>[Optional]: <a href="https://ibm-cloud-architecture.github.io/refarch-kc/demo/readme/">Execute the demonstration script</a></li>
 </ul>
-<h3 id="review-event-driven-patterns">Review event driven patterns</h3>
+<h3 id="lab-6-review-event-driven-patterns-implementation">Lab 6: Review event driven patterns implementation</h3>
 <ul>
-<li>Review the <a href="https://ibm-cloud-architecture.github.io/refarch-eda/evt-microservices/ED-patterns/#event-sourcing">Event sourcing explanations</a></li>
+<li>
+<p>Review the <a href="https://ibm-cloud-architecture.github.io/refarch-eda/evt-microservices/ED-patterns/#event-sourcing">Event sourcing explanations</a> and how it is tested with some integration tests: </p>
+</li>
 <li>
 <p>Review the <a href="https://ibm-cloud-architecture.github.io/refarch-eda/evt-microservices/ED-patterns/#command-query-responsibility-segregation-cqrs-pattern">CQRS pattern</a> and the implementation in the <a href="">order microservice</a>.</p>
 </li>
