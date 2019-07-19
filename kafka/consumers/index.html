@@ -953,9 +953,11 @@ Example of Javascript implementation is in <a href="https://github.com/jbcodefor
 This consumer-per-partition pattern maximizes throughput. When consumers run in parallel and you use multiple threads per soncumser you need to be sure the total number of threads across all instances do not exceed the total number of partitions in the topic.</p>
 <p>Also, a consumer can subscribe to multiple topics. The brokers are doing rebalancing of the assignment of topic-partition to a consumer that belong to a group. When creating a new consumer you can specify the group id in the options. </p>
 <h2 id="offset-management">Offset management</h2>
-<p>Recall that offset is just a numeric identifier of a consumer position of the last record read within a partition. Consumers periodically need to commit the offsets of messages they have received to show they have processed the message and in case of failure from where they should reconnect. It is possible to commit by calling API or by setting some properties at the consumer creation level to enable autocommit offset. When doing manual offet, there are two types of manually committed:
-<em> offsets—synchronous
-</em> asynchronous. </p>
+<p>Recall that offset is just a numeric identifier of a consumer position of the last record read within a partition. Consumers periodically need to commit the offsets of messages they have received to show they have processed the message and in case of failure from where they should reconnect. It is possible to commit by calling API or by setting some properties at the consumer creation level to enable autocommit offset. When doing manual offet, there are two types of manually committed:</p>
+<ul>
+<li>offsets—synchronous</li>
+<li>asynchronous. </li>
+</ul>
 <p>When dealing with heavy load storing offset in zookeeper is non advisable. It is even now recognize as a bad practice. To manage offset use the new consumer API, and for example commits offset synchronously when a specified number of events are read from the topic and the persistence to the back end succeed.</p>
 <p>Assess if it is possible to lose messages from topic.  If so, when a consumer restarts it will start consuming the topic from the end of the queue.</p>
 <p>Do the solution is fine with at-least-once delivery or exactly-once is a must have? As the operation to store a message and the storage of offsets are two separate operations, and in case of failure between them, it is possible to have stale offsets, which will introduce duplicate messages when consumers restart to process from last known committed offset. "exactly-once" means grouping record and offset persistence in an atomic operation.</p>
