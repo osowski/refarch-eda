@@ -36,7 +36,7 @@
     
     
       
-        <title>Zookeeper deployment - Event Driven Architecture</title>
+        <title>Getting started around the core technologies used in EDA - Event Driven Architecture</title>
       
     
     
@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#zookeeper-deployment" tabindex="1" class="md-skip">
+      <a href="#getting-started-around-the-core-technologies-used-in-eda" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Zookeeper deployment
+              Getting started around the core technologies used in EDA
             </span>
           
         </div>
@@ -625,12 +625,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
     <label class="md-nav__link" for="nav-8">
       Deployments
@@ -648,7 +646,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../eventstreams/" title="Event Streams ICP deployment" class="md-nav__link">
+    <a href="../../deployments/eventstreams/" title="Event Streams ICP deployment" class="md-nav__link">
       Event Streams ICP deployment
     </a>
   </li>
@@ -660,7 +658,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../kafka/" title="Kafka deployment" class="md-nav__link">
+    <a href="../../deployments/kafka/" title="Kafka deployment" class="md-nav__link">
       Kafka deployment
     </a>
   </li>
@@ -670,20 +668,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Zookeeper deployment" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../deployments/zookeeper/" title="Zookeeper deployment" class="md-nav__link">
       Zookeeper deployment
     </a>
-    
   </li>
 
         
@@ -693,7 +682,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../postgresql/" title="Postgresql" class="md-nav__link">
+    <a href="../../deployments/postgresql/" title="Postgresql" class="md-nav__link">
       Postgresql
     </a>
   </li>
@@ -705,7 +694,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../eventstreams/Install_Ceph_on_ICP/" title="Ceph deployment on ICP" class="md-nav__link">
+    <a href="../../deployments/eventstreams/Install_Ceph_on_ICP/" title="Ceph deployment on ICP" class="md-nav__link">
       Ceph deployment on ICP
     </a>
   </li>
@@ -717,7 +706,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../strimzi/deploy/" title="Kafka deployment with Strimzi" class="md-nav__link">
+    <a href="../../deployments/strimzi/deploy/" title="Kafka deployment with Strimzi" class="md-nav__link">
       Kafka deployment with Strimzi
     </a>
   </li>
@@ -758,7 +747,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../training/eda-skill-journey/" title="Skill journey" class="md-nav__link">
+    <a href="../eda-skill-journey/" title="Skill journey" class="md-nav__link">
       Skill journey
     </a>
   </li>
@@ -793,6 +782,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#java" title="Java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodejs" title="Nodejs" class="md-nav__link">
+    Nodejs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#angular" title="Angular" class="md-nav__link">
+    Angular
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" title="Python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-docker" title="Kubernetes, docker" class="md-nav__link">
+    Kubernetes, docker
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -803,29 +836,62 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/deployments/zookeeper/README.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/training/core-techno-getstarted.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="zookeeper-deployment">Zookeeper Deployment</h1>
-<p>Development deployment uses one zookeeper server. For production the replicas is set to 5 to tolerate one planned and one unplanned failure. The service defines 3 ports: one for the inter-server communication, one for client access and one for leader-election.
-Persistence volumes are needed to provide durable storage. Better to use network storage like NFS or glusterfs.</p>
-<p>The zookeeper manifests are defined in this project under the <code>deployments/zookeeper/dev</code> folder. We are using our own docker images and the Dockerfile to build this image is in <code>deployments/zookeeper</code>. The image is already pushed to the Docker Hub under ibmcase account.</p>
-<p>We are providing a script to install zookeeper as a kubernetes environment. First be sure to be connected to your kubernetes cluster then run the following command:
-<div class="codehilite"><pre><span></span>$ <span class="nb">pwd</span>
-&gt; refarch-eda/deployments/zookeeper
-$ ./deployZoopeeker.sh
-
-$ kubectl get pods -n greencompute
-NAME                            READY     STATUS    RESTARTS   AGE
-gc-zookeeper-57dc5679bb-bh29q   <span class="m">1</span>/1       Running   <span class="m">0</span>          1m
-</pre></div></p>
-<p>It creates volume, services and deployment or statefulset.</p>
-<p>If you want to deploy it in more resilient deployment we provide other manifests under the prod folder. To install:
-<div class="codehilite"><pre><span></span>$ ./deployZoopeeker.sh prod
-</pre></div></p>
-<p>Once installed you do not need to reinstall it.</p>
-<p>We are also delivering a script to remove zookeeper when you are done using it. (./removeZookeeper.sh)</p>
-<p>When running in production it is better to use separate zookeeper ensemble for each <strong>Kafka</strong> cluster. Each server should have at least 2 GiB of heap with at least 4 GiB of reserved memory</p>
+                <h1 id="getting-started-around-the-core-technologies-used-in-eda">Getting started around the core technologies used in EDA</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>We expect you have some good understanding of the following technologies:</p>
+<ul>
+<li>Nodejs / Javascript / Typescripts</li>
+<li>Java 1.8 amd microprofile architecture</li>
+<li>Python 3.6</li>
+<li>Angular 7, HTML, CSS  - This is for the user interface but this is more optional.</li>
+<li>Maven, npm, bash</li>
+<li>WebSphere Liberty or OpenLiberty</li>
+<li>Docker</li>
+<li>Docker compose</li>
+<li>Helm</li>
+<li>Kubernetes</li>
+<li>Apache Kafka, Kafka API</li>
+</ul>
+</div>
+<p>From the list above, the following getting started and tutorials can be studied to get a good pre-requisite knowledge for EDA adoption. You can skip those tutorials if you are already confortable on those technologies.</p>
+<h3 id="java">Java</h3>
+<ul>
+<li><a href="https://www.infoworld.com/article/3130466/java/java-8-programming-for-beginners-go-from-zero-to-hero.html">From zero to hero in Java 1.8 - an infoworld good article</a></li>
+<li><a href="https://openliberty.io/guides/getting-started.html">Getting started with Open Liberty from the openliberty.io site.</a></li>
+<li>Another <a href="https://github.com/IBM-Cloud/get-started-java">Open Liberty getting started application from IBM Cloud team</a></li>
+<li><a href="https://maven.apache.org/what-is-maven.html">Getting started with Apache Maven</a></li>
+<li><a href="https://microprofile.io/">Java microprofile application</a></li>
+<li><a href="https://developer.ibm.com/patterns/deploy-microprofile-java-microservices-on-kubernetes/">Deploy MicroProfile-based Java microservices on Kubernetes</a></li>
+</ul>
+<h3 id="nodejs">Nodejs</h3>
+<ul>
+<li><a href="https://nodejs.org/en/docs/guides/getting-started-guide/">Getting started Nodejs and npm</a></li>
+</ul>
+<h3 id="angular">Angular</h3>
+<p>One of the repository includes an Angular app, so if you want to be familiar with Angular here are two good articles:</p>
+<ul>
+<li><a href="https://angular.io/tutorial">Angular tutorial</a> - This is for the user interface but this is more optional.</li>
+<li><a href="https://github.com/ibm-cloud-architecture/refarch-caseportal-app/blob/master/docs/tdd.md">Applying a test driven practice for angular application</a></li>
+</ul>
+<h3 id="python">Python</h3>
+<p>The integration tests are done in Python to illustrate how to integrate kafka with python, and also because it is simple to do develop tests with this scripting language: </p>
+<ul>
+<li>A good <a href="https://www.python.org/about/gettingstarted/">getting started in Python</a></li>
+</ul>
+<h3 id="kubernetes-docker">Kubernetes, docker</h3>
+<ul>
+<li>In case you do not know it, there is this <a href="https://docs.docker.com/get-started/">Docker getting started tutorial</a></li>
+<li>As we can use docker compose to control the dependencies between microservices and run all the solution as docker containers, it is important to read the <a href="https://docs.docker.com/compose/gettingstarted/">Docker compose - getting started</a> article. </li>
+<li><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/">Kubernetes</a> and IBM developer <a href="https://developer.ibm.com/series/kubernetes-learning-path/">learning path for Kubernetes</a> and the Garage course <a href="https://www.ibm.com/cloud/garage/content/course/kubernetes-101/0">Kubernetes 101</a>.</li>
+<li><a href="https://www.ibm.com/cloud/garage/tutorials/use-develop-kubernetes-app-with-helm-toolchain">Use the "Develop a Kubernetes app with Helm" toolchain on IBM Cloud</a></li>
+<li><a href="https://docs.docker.com/network/">Understand docker networking</a> as we use docker compose to run the reference implementation locally. </li>
+<li>This is still optional but as we will adopt Knative, <a href="https://developer.ibm.com/articles/knative-what-is-it-why-you-should-care/">this introduction</a> is relevant to read.</li>
+<li><a href="https://www.ibm.com/blogs/bluemix/2017/05/kubernetes-and-bluemix-container-based-workloads-part1/">How to deploy, manage, and secure your container-based workloads on IKS</a> and <a href="https://www.ibm.com/blogs/bluemix/2017/05/kubernetes-and-bluemix-container-based-workloads-part2/">part 2</a></li>
+</ul>
                 
                   
                 
@@ -842,41 +908,6 @@ gc-zookeeper-57dc5679bb-bh29q   <span class="m">1</span>/1       Running   <span
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../kafka/" title="Kafka deployment" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Kafka deployment
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../postgresql/" title="Postgresql" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Postgresql
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
