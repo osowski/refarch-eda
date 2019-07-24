@@ -610,8 +610,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#assess-number-of-consumer-needed" title="Assess number of consumer needed" class="md-nav__link">
-    Assess number of consumer needed
+  <a href="#assess-number-of-consumers-needed" title="Assess number of consumers needed" class="md-nav__link">
+    Assess number of consumers needed
   </a>
   
 </li>
@@ -714,6 +714,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployments/eventstreams/es-ibm-cloud/" title="Event Streams IBM CLOUD deployment" class="md-nav__link">
+      Event Streams IBM CLOUD deployment
+    </a>
+  </li>
+
         
           
           
@@ -868,8 +880,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#assess-number-of-consumer-needed" title="Assess number of consumer needed" class="md-nav__link">
-    Assess number of consumer needed
+  <a href="#assess-number-of-consumers-needed" title="Assess number of consumers needed" class="md-nav__link">
+    Assess number of consumers needed
   </a>
   
 </li>
@@ -924,18 +936,23 @@
                 <h1 id="consumers-design-and-implementation-considerations">Consumers design and implementation considerations</h1>
 <h2 id="important-concepts">Important concepts</h2>
 <p>Consumers belong to <strong>consumer groups</strong>. You specify the group name as part of the connection parameters. </p>
+<div class="codehilite"><pre><span></span>
+</pre></div>
+
 <p>Consumer groups are grouping consumers to cooperate to consume messages from one or more topics. Consumers can run in separate hosts and separate processes.</p>
 <p>Organized in cluster the coordinator servers are responsible for assigning partitions to the consumers in the group. The rebalancing of partition to consumer is done when a new consumer join or leave the group or when a new partition is added to an existing topic. There is always at least one consumer per partition. </p>
 <p>Implementing a Topic consumer is using the kafka <a href="https://kafka.apache.org/10/javadoc/?org/apache/kafka/clients/consumer/KafkaConsumer.html">KafkaConsumer class</a> which the API documentation is a must read.</p>
-<p>The implementation is simple for a single thread consumer, and the code structure looks like:
-<em> prepare the properties
-</em> create an instance of KafkaConsumer to connect to a topic and a partition
-* loop on polling events 
-  * process the ConsumerRecords and commit the offset by code or use the autocommit attibute of the consumer,   </p>
+<p>The implementation is simple for a single thread consumer, and the code structure looks like:</p>
+<ul>
+<li>prepare the properties</li>
+<li>create an instance of KafkaConsumer to connect to a topic and a partition</li>
+<li>loop on polling events </li>
+<li>process the ConsumerRecords and commit the offset by code or use the autocommit attibute of the consumer,   </li>
+</ul>
 <p>Examples of Java consumers can be found in <a href="https://github.com/ibm-cloud-architecture/refarch-kc-ms">this project</a>.
 Example of Javascript implementation is in <a href="https://github.com/jbcodeforce/nodejs-kafka">this repository</a></p>
 <p>But the complexity comes from the offset management and multithreading needs. So the following important considerations need to be addressed while implementing a consumer:</p>
-<h2 id="assess-number-of-consumer-needed">Assess number of consumer needed</h2>
+<h2 id="assess-number-of-consumers-needed">Assess number of consumers needed</h2>
 <p>The KafkaConsumer is not thread safe so it is recommended to run in a unique thread. But if needed you can implement a multi-threads solution, but as each thread will open a TCP connection to the Kafka broker, be sure to close the connection to avoid memory leak. The alternate is to start n processus. </p>
 <p>If you need multiple consumers running in parallel to scale horizontally, you have to define multiple partitions while configuring the topic and use fine-grained control over offset persistence. You’ll use one consumer per partition of a topic. 
 This consumer-per-partition pattern maximizes throughput. When consumers run in parallel and you use multiple threads per soncumser you need to be sure the total number of threads across all instances do not exceed the total number of partitions in the topic.</p>
