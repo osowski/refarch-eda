@@ -548,6 +548,26 @@
     Saga pattern
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services-choreography" title="Services choreography" class="md-nav__link">
+    Services choreography
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services-orchestration" title="Services orchestration" class="md-nav__link">
+    Services orchestration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1010,6 +1030,26 @@
     Saga pattern
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services-choreography" title="Services choreography" class="md-nav__link">
+    Services choreography
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services-orchestration" title="Services orchestration" class="md-nav__link">
+    Services orchestration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1180,13 +1220,15 @@ With event sourcing pattern, the source of trust is the event source. It acts as
 <p><img alt="" src="../saga-ctx.png" /></p>
 <p>When the order is created, it can be updated at any time by the user until he/she books it as the final order. As soon as the order is booked, the process needs to allocate the voyage, assigns containers and updates the list of containers to load on the ship. Those actions / commands are chained. The final state (in this schema not in the reality as the process has more steps) is the Order assigned state in the order microservice.</p>
 <p>SAGA pattern supports two types of implementation: Choreography and Orchestration. </p>
+<h3 id="services-choreography">Services choreography</h3>
 <p>With Choreography each service produces and listens to other service’s events and decides if an action should be taken or not.</p>
 <p><img alt="" src="../saga-choreo.png" /></p>
 <p>The first service executes a transaction and then publishes an event. It maintains the business entity status, (order.status) to the pending state until it is completed. This event is listened by one or more services which execute local transactions and publish new events.
 The distributed transaction ends when the last service executes its local transaction or when a service does not publish any events or the event published is not polled by any of the saga’s participants.</p>
 <p>In case of failure, the source microservice is keeping state and timer to monitor for the completion event.</p>
 <p><img alt="" src="../saga-choreo-fail.png" /></p>
-<p>Rolling back a distributed transaction does not come for free. Normally you have to implement another operation/transaction to compensate for what has been done before.</p>
+<p>Rolling back a distributed transaction does not come for free. Normally you have to implement another operation/transaction to compensate for what has been done before. This will be a new event sent by the service responsible of the transaction integrity.</p>
+<h3 id="services-orchestration">Services orchestration</h3>
 <p>With orchestration, one service is responsible to drive each participant on what to do and when.</p>
 <p><img alt="" src="../saga-ochestration.png" /></p>
 <p>If anything fails, the orchestrator is also responsible for coordinating the rollback by sending commands to each participant to undo the previous operation.
