@@ -655,6 +655,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-are-the-topic-characteristics-i-need-to-define-during-requirements" title="What are the topic characteristics I need to define during requirements?" class="md-nav__link">
+    What are the topic characteristics I need to define during requirements?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#differences-between-akka-and-kafka" title="Differences between Akka and Kafka?" class="md-nav__link">
     Differences between Akka and Kafka?
   </a>
@@ -949,6 +956,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-are-the-topic-characteristics-i-need-to-define-during-requirements" title="What are the topic characteristics I need to define during requirements?" class="md-nav__link">
+    What are the topic characteristics I need to define during requirements?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#differences-between-akka-and-kafka" title="Differences between Akka and Kafka?" class="md-nav__link">
     Differences between Akka and Kafka?
   </a>
@@ -997,6 +1011,18 @@
 </pre></div>
 
 <p>But there is also the <code>offsets.retention.minutes</code> property, set at the cluster level to control when the offset information will be deleted. It is defaulted to 1 day, but the max possible value is 7 days. This is to avoid keeping too much information in the broker memory and avoid to miss data when consumers run not continuously. So consumers need to commit their offset. If the consumer properties <code>auto.offset.reset=earliest</code> it will reprocess all the events, or skips to the latest if set to latest. In this last case if the consumers are offline for more than this time window, they will lose events.</p>
+<h2 id="what-are-the-topic-characteristics-i-need-to-define-during-requirements">What are the topic characteristics I need to define during requirements?</h2>
+<p>This is a requirement gathering related question, to understand what need to be done for configuration topic configuration but also consumer and producer configuration, as well as retention strategy.</p>
+<ul>
+<li>Number of brokers in the cluster</li>
+<li>fire or forget or persist data for which amount of time</li>
+<li>Need for HA, set replicas to number of broker or at least the value of 3</li>
+<li>Type of data to transport </li>
+<li>volume per day</li>
+<li>Accept snapshot</li>
+<li>Need to do ge replication to other kafka cluster</li>
+<li>Network filesystem used on the target kubernetes cluster and current storage class</li>
+</ul>
 <h2 id="differences-between-akka-and-kafka">Differences between Akka and Kafka?</h2>
 <p><a href="https://akka.io/">Akka</a> is a open source toolkit for Scala or Java to simplify multithreading programming and makes application more reactive by adopting an asynchronous mechanism to access to io: database or HTTP request. To support asynchronous communication between 'actors', it uses messaging, internal to the JVM. 
 Kafka is part of the architecture, while Akka is an implementation choice for one of the component of the business application deployed inside the architecture. </p>
