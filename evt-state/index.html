@@ -495,11 +495,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
-      Event driven patterns
+      Event driven design patterns
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
-        Event driven patterns
+        Event driven design patterns
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -522,8 +522,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../evt-microservices/ED-patterns/" title="Event-driven patterns" class="md-nav__link">
+    <a href="../design-patterns/ED-patterns/" title="Event-driven patterns" class="md-nav__link">
       Event-driven patterns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../design-patterns/event-sourcing/" title="Event Sourcing" class="md-nav__link">
+      Event Sourcing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../design-patterns/cqrs/" title="CQRS" class="md-nav__link">
+      CQRS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../design-patterns/saga/" title="Saga" class="md-nav__link">
+      Saga
     </a>
   </li>
 
@@ -975,10 +1011,10 @@
 <li>Command Query Response Separation (CQRS) as an optimization that separates updates and reads across different stores.</li>
 </ul>
 <h2 id="event-sourcing">Event sourcing</h2>
-<p>When the state of a system changes, an application issues a notification event of the state change. We are detailing this pattern <a href="../evt-microservices/ED-patterns/">here &gt;&gt;</a> </p>
+<p>When the state of a system changes, an application issues a notification event of the state change. We are detailing this pattern <a href="../design-patterns/event-sourcing/">here &gt;&gt;</a> </p>
 <h2 id="command-query-responsibility-segregation-cqrs">Command Query Responsibility Segregation (CQRS)</h2>
 <p>The event log leads to more work to support business query as it requires converting the events into the application state suitable to the query.</p>
-<p>We are detailing this pattern <a href="../evt-microservices/ED-patterns/">here &gt;&gt;</a> </p>
+<p>We are detailing this pattern <a href="../design-patterns/cqrs/">here &gt;&gt;</a> </p>
 <p>See the following <a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms">order management project</a> for a detail explanation and implementation of the CQRS and event sourcing patterns.</p>
 <h2 id="event-sourcing-cqrs-and-microservices">Event sourcing, CQRS and microservices</h2>
 <p>With the adoption of microservices you have explicitly separated state, so that a microservice is bounded with its own state. Further, with the use of event sourcing, you create a history log that is not easy to query. The challenge now comes when you need to implement a query that requires a joining of data from multiple services.

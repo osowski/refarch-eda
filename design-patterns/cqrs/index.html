@@ -36,7 +36,7 @@
     
     
       
-        <title>Event-driven patterns - Event Driven Architecture</title>
+        <title>CQRS - Event Driven Architecture</title>
       
     
     
@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#understanding-event-driven-microservice-patterns" tabindex="1" class="md-skip">
+      <a href="#command-query-responsibility-segregation-cqrs-pattern" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Event-driven patterns
+              CQRS
             </span>
           
         </div>
@@ -429,11 +429,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
-      Event driven patterns
+      Event driven design patterns
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
-        Event driven patterns
+        Event driven design patterns
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -444,8 +444,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../" title="Microservices" class="md-nav__link">
+    <a href="../../evt-microservices/" title="Microservices" class="md-nav__link">
       Microservices
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ED-patterns/" title="Event-driven patterns" class="md-nav__link">
+      Event-driven patterns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../event-sourcing/" title="Event Sourcing" class="md-nav__link">
+      Event Sourcing
     </a>
   </li>
 
@@ -465,11 +489,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Event-driven patterns
+        CQRS
       </label>
     
-    <a href="./" title="Event-driven patterns" class="md-nav__link md-nav__link--active">
-      Event-driven patterns
+    <a href="./" title="CQRS" class="md-nav__link md-nav__link--active">
+      CQRS
     </a>
     
       
@@ -483,28 +507,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#event-sourcing" title="Event sourcing" class="md-nav__link">
-    Event sourcing
+  <a href="#problems-and-constraints" title="Problems and Constraints" class="md-nav__link">
+    Problems and Constraints
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#command-sourcing" title="Command sourcing" class="md-nav__link">
-    Command sourcing
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#command-query-responsibility-segregation-cqrs-pattern" title="Command Query Responsibility Segregation (CQRS) pattern" class="md-nav__link">
-    Command Query Responsibility Segregation (CQRS) pattern
+  <a href="#solution-and-pattern" title="Solution and Pattern" class="md-nav__link">
+    Solution and Pattern
   </a>
   
     <nav class="md-nav">
@@ -543,67 +554,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#saga-pattern" title="Saga pattern" class="md-nav__link">
-    Saga pattern
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#services-choreography" title="Services choreography" class="md-nav__link">
-    Services choreography
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#services-orchestration" title="Services orchestration" class="md-nav__link">
-    Services orchestration
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#strangler-pattern" title="Strangler pattern" class="md-nav__link">
-    Strangler pattern
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#problem" title="Problem" class="md-nav__link">
-    Problem
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#solution" title="Solution" class="md-nav__link">
-    Solution
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-references" title="Code References" class="md-nav__link">
-    Code References
-  </a>
-  
-</li>
-      
       
       
       
@@ -612,6 +562,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../saga/" title="Saga" class="md-nav__link">
+      Saga
+    </a>
   </li>
 
         
@@ -1001,28 +963,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#event-sourcing" title="Event sourcing" class="md-nav__link">
-    Event sourcing
+  <a href="#problems-and-constraints" title="Problems and Constraints" class="md-nav__link">
+    Problems and Constraints
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#command-sourcing" title="Command sourcing" class="md-nav__link">
-    Command sourcing
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#command-query-responsibility-segregation-cqrs-pattern" title="Command Query Responsibility Segregation (CQRS) pattern" class="md-nav__link">
-    Command Query Responsibility Segregation (CQRS) pattern
+  <a href="#solution-and-pattern" title="Solution and Pattern" class="md-nav__link">
+    Solution and Pattern
   </a>
   
     <nav class="md-nav">
@@ -1061,67 +1010,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#saga-pattern" title="Saga pattern" class="md-nav__link">
-    Saga pattern
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#services-choreography" title="Services choreography" class="md-nav__link">
-    Services choreography
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#services-orchestration" title="Services orchestration" class="md-nav__link">
-    Services orchestration
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#strangler-pattern" title="Strangler pattern" class="md-nav__link">
-    Strangler pattern
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#problem" title="Problem" class="md-nav__link">
-    Problem
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#solution" title="Solution" class="md-nav__link">
-    Solution
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-references" title="Code References" class="md-nav__link">
-    Code References
-  </a>
-  
-</li>
-      
       
       
       
@@ -1138,69 +1026,26 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/evt-microservices/ED-patterns.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/design-patterns/cqrs.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="understanding-event-driven-microservice-patterns">Understanding event driven microservice patterns</h1>
-<div class="admonition abstract">
-<p class="admonition-title">Abstract</p>
-<p>In this article, we are detailing some of the most import event-driven patterns to be used during your microservice implementation and when adopting kafka as an event backbone.</p>
-</div>
-<p>Adopting messaging (Pub/Sub) as a microservice communication backbone involves using at least the following patterns:</p>
-<ul>
-<li><a href="https://microservices.io/patterns/decomposition/decompose-by-subdomain.html">Decompose by subdomain</a>, event driven microservices are still microservices, so we need to find them, and the domain-driven subdomains is a good approach to identify and classify business function and therefore microservices. With the event storming method, aggregates help to find those subdomain of responsibility. </li>
-<li><a href="https://microservices.io/patterns/data/database-per-service.html">Database per service</a> to enforce each service persists data privately and is accessible only via its API. Services are loosely coupled limiting impact to other service when database schema changes. The database technology is selected from business requirements. The implementation of transactions that span multiple services is complex and enforce using the Saga pattern. Queries that goes over multiple entities is a challenge and CQRS represents an interesting solution. </li>
-<li><a href="#strangler-pattern">Strangler pattern</a> is used to incrementally migrate an existing, monolytic application by replacing a set of features to a microservice but keep both running in parallel. Applying a domain driven design approach, you may strangle the application using bounded context. But then aS soon as this pattern is applied, you need to assess the co-existence between existing bounded contexts and the new microservices. One of the challenges will be to define where the write and read operations occurs, and how data should be replicated between the contexts. This is where event driven architecture helps. </li>
-<li><a href="#event-sourcing">Event sourcing</a> persists the state of a business entity such an Order as a sequence of state-changing events. </li>
-<li><a href="#command-query-responsibility-segregation-cqrs-pattern">Command Query Responsibility Segregation</a> helps to separate queries from commands and help to address queries with cross-microservice boundary.</li>
-<li><a href="#saga-pattern">Saga pattern:</a> Microservices publish events when something happens in the scope of their control like an update in the business entities they are responsible for. A microservice interested in other business entities, subscribe to those events and it can update its own states and business entities when receiving such events. Business entity keys needs to be unique, immutable.</li>
-</ul>
-<p>Update 08/2019 - <em>Author: <a href="https://www.linkedin.com/in/jeromeboyer/">Jerome Boyer</a></em>  </p>
-<h2 id="event-sourcing">Event sourcing</h2>
-<p>Most business applications are state based persistent where any update changes the previous state of business entities. The database keeps the last committed update. But some business application needs to <strong>explain how it reaches its current state</strong>. For that the application needs to keep history of business facts. 
-Traditional domain oriented implementation builds a domain data model and map it to a RDBMS. As an example, in the simple <code>Order model</code> below, the database record will keep the last state of the order, the different addresses and the last ordered items in separate tables.</p>
-<p><img alt="" src="../evt-src-ex1.png" />   </p>
-<p>If you need to implement a query that looks at what happened to the order over a time period, you need to change the model and add historical records, basically building a log table. Designing a service to manage the life cycle of this order will, most of the time, add a "delete operation" to remove data.  For legal reason, most businesses do not remove data. As an example, a business ledger has to include new record(s) to compensate a previous transaction. There is no erasing of previously logged transactions. It is always possible to understand what was done in the past. Most business application needs to keep this capability.</p>
-<p><strong>Event sourcing</strong> persists the state of a business entity, such an Order, as a sequence of state-changing events or "facts" ordered over time. When the state of a system changes, an application issues a notification event of the state change. Any interested parties can become consumers of the event and take required actions.  The state-change event is immutable stored in an event log or event store in time order.  The event log or store becomes the principal source of truth. The system state can be recreated from a point in time by reprocessing the events. The history of state changes becomes an audit record for the business and is often a useful source of data for business analysts to gain insights into the business.</p>
-<p>The previous order model changes to a time oriented immutable stream of events, organized by the orderID key:</p>
-<p><img alt="" src="../evt-src.png" />   </p>
-<p>You can see the "removing an item" in the order is a new event. With this capability, we can count how often a specific product is removed. </p>
-<p>In some cases, the event sourcing pattern is implemented completely within the event backbone.  Kafka topic and partitions are the building blocks for event sourcing. However, you can also consider implementing the pattern with an external event store, which provides optimizations for how the data may be accessed and used. For example <a href="https://www.ibm.com/products/db2-event-store">IBM Db2 Event store</a> can provide the handlers and event store connected to the backbone and can provide optimization for down stream analytical processing of the data.</p>
-<p>An event store needs to store only three pieces of information:</p>
-<ul>
-<li>The type of event or aggregate.</li>
-<li>The sequence number of the event.</li>
-<li>The data as a serialized entity.</li>
-</ul>
-<p>More data can be added to help with diagnosis and audit, but the core functionality only requires a narrow set of fields. This gives rise to a very simple data design that can be heavily optimized for appending and retrieving sequences of records.</p>
-<p>With a central event logs, producers append events to the log, and consumers read them from an <strong>offset</strong> (the last committed read). </p>
-<p><img alt="" src="../evt-sourcing.png" /></p>
-<p>To get the final state of an entity, the consumer needs to replay all the events, which means replaying the changes to the state from the last committed offset or from the last snapshot or the origin of "time". </p>
-<p>When replaying the event, it may be important to avoid generating side effects. A common side effect is to send a notification on state change to other consumers. So the consumer of events need to be adapted to the query and business requirement. For example if the code needs to answer to the question: "what happened to the order over time for order ID = 75?" then there is no side effect, only a report can be created each time the consumer runs.</p>
-<p>Sometime it may be too long to replay hundreds of events. In that case we can use snapshot, to capture the current state of an entity, and then replay events from the most recent snapshot. This is an optimization technique not needed for all event sourcing implementations. When state change events are in low volume there is no need for snapshots. </p>
-<p>Kafka is supporting the event sourcing pattern with <a href="../../kafka/readme/">the topic and partition</a>. In our <a href="https://ibm-cloud-architecture.github.io/refarch-kc">reference implementation</a> we are validating event sourcing with Kafka in the <a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms">Order microservices</a> and specially <a href="https://ibm-cloud-architecture.github.io/refarch-kc/itg-tests/#how-to-proof-the-event-sourcing">this set of test cases.</a></p>
-<p>The event sourcing pattern is well described in <a href="https://microservices.io/patterns/data/event-sourcing.html">this article on microservices.io</a>. It is a very important pattern to support eventual data consistency between microservices and for data synchronization between system as the event store becomes the source of truth.</p>
-<p>See also this <a href="https://martinfowler.com/eaaDev/EventSourcing.html">event sourcing article</a> from Martin Fowler, where he is also using ship movement examples. <a href="https://github.com/ibm-cloud-architecture/refarch-kc">Our implementation</a> differs as we are using Kafka topic as event store and use different entities to support the container shipping process: the Orders, ShipLocations, Containers entities...</p>
-<p>Another common use case, where event sourcing helps, is when developers push a new code version that corrupts the data: being able to see what was done on the data, and being able to reload from a previous state helps fixing problems. </p>
-<h3 id="command-sourcing">Command sourcing</h3>
-<p>Command sourcing is a similar pattern as the event sourcing one, but the commands that modify the states are persisted instead of the events. This allows commands to be processed asynchronously, which can be relevant when the command execution takes a lot of time.
-One derived challenge is that the command may be executed multiple times, especially in case of failure. Therefore, it has to be idempotent ( making multiple identical requests has the same effect as making a single request). Finally, there is a need also to perform validation of the command to avoid keeping wrong commands in queue. For example, <code>AddItem</code> command is becoming <code>AddItemValidated</code>, then once persisted to a database it becomes an event as <code>ItemAdded</code>. So mixing command and event sourcing is a common practice.</p>
-<ul>
-<li>Business transactions are not ACID and span multiple services, they are more a serie of steps, each step is supported by a microservice responsible to update its own entity. We talk about "eventual data consistency".</li>
-<li>The event backbone needs to guarantee that events are delivered at least once and the microservices are responsible to manage their offset from the stream source and deal with inconsistency, by detecting duplicate events.</li>
-<li>At the microservice level, updating data and emitting event needs to be an atomic operation, to avoid inconsistency if the service crashes after the update to the datasource and before emitting the event. This can be done with an eventTable added to the microservice datasource and an event publisher that reads this table on a regular basis and change the state of the event once published. Another solution is to have a database transaction log reader or miner responsible to publish event on new row added to the log.</li>
-<li>One other approach to avoid the two-phase commit and inconsistency is to use an Event Store or Event Sourcing pattern to keep track of what is done on the business entity with enough information to rebuild the data state. Events are becoming facts describing state changes done on the business entity.</li>
-</ul>
-<h2 id="command-query-responsibility-segregation-cqrs-pattern">Command Query Responsibility Segregation (CQRS) pattern</h2>
+                <h1 id="command-query-responsibility-segregation-cqrs-pattern">Command Query Responsibility Segregation (CQRS) pattern</h1>
+<h2 id="problems-and-constraints">Problems and Constraints</h2>
+<p>An app accesses data both to read the data and to modify the data. The primitive data tasks are often expressed as create, read, update, and delete (CRUD); using them is known as CRUDing the data. App code usually does not make much distinction between the tasks; individual operations often mix reading the data with changing the data as needed.</p>
+<p>As part of application modernisation and the adoption of microservice, the database per service approach leads to interesting challenges of how to support business queries joining different data sources. </p>
+<p>Each microservice should store and manage its own data, user interface may need to display data from several microservices, or a business report needs to combined data from multiple microservices. Where this query should be implemented?</p>
+<p>Another example is an enterprise database of record managing data required by many apps. It can become overloaded with too many clients needing too many connections to run too many threads performing too many transactions—such that the database becomes a performance bottleneck and can even crash. If the database contains data that is used by much of the enterprise, how can it be made more scalable?</p>
+<h2 id="solution-and-pattern">Solution and Pattern</h2>
+<p>The CQRS pattern strictly segregates operations that read data from operations that update data, which can make using data much more manageable in several respects. An operation can read data (the R in CRUD) or can write data (the CUD in CRUD), but not both. Doing so can make the read operations and the write operations simpler to implement because their functionality is more finely focused. The operations can be developed independently, potentially by separate teams. The operations can be optimized independently and can evolve independently, following changing user requirements more easily. These optimized operations can scale better, perform better, and security can be applied more precisely. </p>
 <p>When doing event sourcing and domain driven design, we event source the aggregates or root entities. Aggregate creates events that are persisted. On top of the simple create, update and read by ID operations, the business requirements want to perform complex queries that can't be answered by a single aggregate. By just using event sourcing to be able to respond to a query like "what are the orders of a customer", then we have to rebuild the history of all orders and filter per customer. It is a lot of computation. This is linked to the problem of having conflicting domain models between query and persistence.<br />
 Command Query Responsibility Segregation, CQRS, separates the "command" operations, used to update application state (also named the 'write model'), from the "query/read" operations (the 'read model').  Updates are done as state notification events (change of state), and are persisted in the event log/store. On the "read model" side, you have the option of persisting the state in different stores optimized for how other applications may query/read the data.</p>
 <p>The CQRS application pattern is frequently associated with event sourcing.</p>
 <p>The following figure presents the high level principles:</p>
-<p><img alt="" src="../cqrs.png" /></p>
+<p><img alt="" src="../images/cqrs.png" /></p>
 <p>The service exposes CUD operations, some basic Read by Id and then queries APIs. The domain model is separated into write and read models. Combined with Event Sourcing (ES) the <code>write model</code> goes to the event store. Then we have a separate process that consumes those events and build a projection for future queries. The "write" part may persist in SQL while the read may use document oriented database with strong indexing and query capabilities. Or use in-memory database, or distributed cache... They do not need to be in the same language. With CQRS and ES the projections are retroactives. New query equals implementing new projection and read the events from the beginning of time or the recent committed state and snapshot. Read and write models are strongly decoupled and can evolve independently. It is important to note that the 'Command' part can still handle simple queries, primary-key based, like get order by id, or queries that do not involve joins.</p>
 <p>With this structure, the <code>Read model</code> microservice will most likely consume events from multiple topics to build the data projection based on joining those data streams. A query, to assess if the cold-chain was respected on the fresh food order shipment, will go to the voyage, container metrics, and order to be able to answer this question. This is where CQRS shines.</p>
 <p>A second view of the previous diagram presents how we can separate the API definition and management in a API gateway, the Order command and write model has its own microservice, the event sourcing supported by a Kafka topic, and the query - read model as a set of different microservices or event functions as a service:</p>
-<p><img alt="" src="../cqrs-es-api.png" /></p>
+<p><img alt="" src="../images/cqrs-es-api.png" /></p>
 <p>The <a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms">shipment order microservice</a> is implementing this pattern. </p>
 <p>Some implementation items to consider: </p>
 <ul>
@@ -1222,7 +1067,7 @@ Command Query Responsibility Segregation, CQRS, separates the "command" operatio
 <p>As introduced in previous section there is potentially a problem of data consistency: the command part saves the data into the database and is not able to send the event to the topic, then consumers do not see the new or updated data.<br />
 With traditional Java service, using JPA and JMS, the save and send operations can be part of the same transaction and both succeed or both failed.<br />
 With event sourcing pattern, the source of trust is the event source. It acts as a version control system. So the service should start by creating the event (1) and then persists the data into the database, it uses a topic consumer, get the payload from the event (2) and uses this data to save in its local datasource (3). It derives state solely from the events. If it fails to save, it can persist the event to an error log (4) and then it will be possible to trigger the replay, via an admin API and Command Line Interface (5,6), by searching in the topic using this order id to replay the save operation. Here is a diagram to illustrate that process:</p>
-<p><img alt="" src="../cqrs-es-error-handling.png" /></p>
+<p><img alt="" src="../images/cqrs-es-error-handling.png" /></p>
 <p>This implementation brings a problem on the <code>createOrder(order): order</code> operation, as the returned order was supposed to have the order id as unique key, so most likely, a key created by the database... To avoid this we can generate the key by code and enforce this key in the database if the underlying technology supports it. </p>
 <p>It is important to clearly study the Kafka consumer API and the different parameters on how to support the read offset. We are addressing those implementation best practices in <a href="../../kafka/consumers/">our consumer note.</a></p>
 <h3 id="cqrs-and-change-data-capture">CQRS and Change Data Capture</h3>
@@ -1233,7 +1078,7 @@ With event sourcing pattern, the source of trust is the event source. It acts as
 <li>Use the Change Data Capture from the database transaction log and generate events from this log. The IBM <a href="https://www.ibm.com/support/knowledgecenter/cs/SSTRGZ_10.2.0/com.ibm.cdcdoc.mcadminguide.doc/concepts/overview_of_cdc.html">Infosphere CDC</a> product helps to implement this pattern. For more detail about this solution see <a href="https://www.ibm.com/cloud/garage/dte/producttour/ibm-infosphere-data-replication-product-tour">this product tour</a>.</li>
 </ul>
 <p>The CQRS implementation using CDC will look like in the following diagram:</p>
-<p><img alt="" src="../cqrs-cdc.png" /></p>
+<p><img alt="" src="../images/cqrs-cdc.png" /></p>
 <p>What is important to note is that the event needs to be flexible on the data payload. We are presenting a <a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms#data-and-event-model">event model</a> in the reference implementation.</p>
 <p>On the view side, updates to the view part need to be idempotent. </p>
 <h3 id="delay-in-the-view">Delay in the view</h3>
@@ -1250,43 +1095,6 @@ With event sourcing pattern, the source of trust is the event source. It acts as
 <h3 id="schema-change">Schema change</h3>
 <p>What to do when we need to add attribute to event?. So we need to create a versioninig schema for event structure. You need to use flexible schema like json schema, <a href="https://avro.apache.org/docs/current/">Apache Avro</a> or <a href="https://developers.google.com/protocol-buffers/">protocol buffer</a> and may be, add an event adapter (as a function?) to translate between the different event structures. </p>
 <p><ToBeCompleted></p>
-<h2 id="saga-pattern">Saga pattern</h2>
-<p>With the adoption of one data source per microservice, there is an interesting challenge on how to support long running transaction cross microservices. With event backbone two phase commit is not an option. Introduced in 1987 <a href="https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf">by Hector Garcaa-Molrna Kenneth Salem paper</a> the Saga pattern help to support a long running transaction that can be broken up to a collection of sub transactions that can be interleaved any way with other transactions. </p>
-<p>With microservice each transaction updates data within a single service, each subsequent steps may be triggered by previous completion. The following figure, based on <a href="https://ibm-cloud-architecture.github.io/refarch-kc">our solution implementation</a>, illustrates those concepts for an order:</p>
-<p><img alt="" src="../saga-ctx.png" /></p>
-<p>When the order is created, it can be updated at any time by the user until he/she books it as the final order. As soon as the order is booked, the process needs to allocate the voyage, assigns containers and updates the list of containers to load on the ship. Those actions / commands are chained. The final state (in this schema not in the reality as the process has more steps) is the Order assigned state in the order microservice.</p>
-<p>SAGA pattern supports two types of implementation: Choreography and Orchestration. </p>
-<h3 id="services-choreography">Services choreography</h3>
-<p>With Choreography each service produces and listens to other service’s events and decides if an action should be taken or not.</p>
-<p><img alt="" src="../saga-choreo.png" /></p>
-<p>The first service executes a transaction and then publishes an event. It maintains the business entity status, (order.status) to the pending state until it is completed. This event is listened by one or more services which execute local transactions and publish new events.
-The distributed transaction ends when the last service executes its local transaction or when a service does not publish any events or the event published is not polled by any of the saga’s participants.</p>
-<p>In case of failure, the source microservice is keeping state and timer to monitor for the completion event.</p>
-<p><img alt="" src="../saga-choreo-fail.png" /></p>
-<p>Rolling back a distributed transaction does not come for free. Normally you have to implement another operation/transaction to compensate for what has been done before. This will be a new event sent by the service responsible of the transaction integrity.</p>
-<h3 id="services-orchestration">Services orchestration</h3>
-<p>With orchestration, one service is responsible to drive each participant on what to do and when.</p>
-<p><img alt="" src="../saga-ochestration.png" /></p>
-<p>If anything fails, the orchestrator is also responsible for coordinating the rollback by sending commands to each participant to undo the previous operation.
-Orchestrator is a State Machine where each transformation corresponds to a command or message.
-Rollbacks are a lot easier when you have an orchestrator to coordinate everything.</p>
-<p>See also <a href="https://microservices.io/patterns/data/saga.html">this article</a> from Chris Richardson on the Saga pattern.</p>
-<h2 id="strangler-pattern">Strangler pattern</h2>
-<h3 id="problem">Problem</h3>
-<p>How to migrate a monolytics application to microservice without doing a big bang, redeveloping the application from white page. Replacing and rewritting an existing application can be a huge investment. Rewritting a subset of business functions while running current application in parallel may be relevant and reduce risk and velocity of changes. </p>
-<h3 id="solution">Solution</h3>
-<p>The approach is to use a "strangler" interface to dispatch request to new or old features. Existing features to migrate are selected by trying to isolate sub components. </p>
-<p>One of main challenge is to isolate data store and how the new microservices and the legacy application are accessing the shared data. Continuous data replication can be a solution to propagate write model to read model. Write model will most likely stays on the monolitic application, change data capture can be used, with event backbone to propagate change to read model.</p>
-<p>The facade needs to be scalable and not a single point of failure. It needs to support new APIs (RESTful) and old API (most likely SOAP).</p>
-<h2 id="code-references">Code References</h2>
-<ul>
-<li>The K Containers shipment use cases provides a supporting EDA example <a href="ttps://github.com/ibm-cloud-architecture/refarch-kc">https://github.com/ibm-cloud-architecture/refarch-kc</a></li>
-<li>Within K Containers shipment the following are example microservices illustrating some of those patterns  <ul>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-kc-ms">https://github.com/ibm-cloud-architecture/refarch-kc-ms</a></li>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms">https://github.com/ibm-cloud-architecture/refarch-kc-order-ms</a></li>
-</ul>
-</li>
-</ul>
                 
                   
                 
@@ -1307,7 +1115,7 @@ Rollbacks are a lot easier when you have an orchestrator to coordinate everythin
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../" title="Microservices" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../event-sourcing/" title="Event Sourcing" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1316,19 +1124,19 @@ Rollbacks are a lot easier when you have an orchestrator to coordinate everythin
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Microservices
+                Event Sourcing
               </span>
             </div>
           </a>
         
         
-          <a href="../../kafka/kafka-stream/" title="Kafka streaming processing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../saga/" title="Saga" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Kafka streaming processing
+                Saga
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

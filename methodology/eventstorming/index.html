@@ -597,11 +597,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
-      Event driven patterns
+      Event driven design patterns
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
-        Event driven patterns
+        Event driven design patterns
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -624,8 +624,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../../evt-microservices/ED-patterns/" title="Event-driven patterns" class="md-nav__link">
+    <a href="../../design-patterns/ED-patterns/" title="Event-driven patterns" class="md-nav__link">
       Event-driven patterns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../design-patterns/event-sourcing/" title="Event Sourcing" class="md-nav__link">
+      Event Sourcing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../design-patterns/cqrs/" title="CQRS" class="md-nav__link">
+      CQRS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../design-patterns/saga/" title="Saga" class="md-nav__link">
+      Saga
     </a>
   </li>
 
@@ -1204,7 +1240,7 @@ The following diagrams present the elements used during the analysis.  The first
 <p>One-View Figure.</p>
 <ul>
 <li><strong>Actors</strong> consume data by using a user interface and use the UI to interact with the system via commands. Actors could also be replace by articial intelligent agents.</li>
-<li><strong>Commands</strong> are the result of some user decision or policy, and act on relevant data which are part of a Read model in the <a href="../../evt-microservices/ED-patterns/#command-query-responsibility-segregation">CQRS</a> pattern.</li>
+<li><strong>Commands</strong> are the result of some user decision or policy, and act on relevant data which are part of a Read model in the <a href="../../design-patterns/cqrs/">CQRS</a> pattern.</li>
 <li><strong>Policies</strong> (represented by lilac stickies) are reactive logics that take place after an event occurs, and trigger other commands. Policies always start with the phrase "whenever...". They can be a manual step a human follows, such as a documented procedure or guidance, or they may be automated. When applying the <a href="http://abrd.github.io">Agile Business Rule Development methodology</a> it will be mapped to a Decision within the <a href="https://www.omg.org/spec/DMN/About-DMN/">Decision Model Notation</a>.</li>
 <li><strong>External systems</strong> produce events.</li>
 <li><strong>Data</strong> can be presented to users in a user interface or modified by the system.</li>
@@ -1246,7 +1282,7 @@ In this step you focus on the mainline "happy" end-to-end path to avoid getting 
 <p>The triggering command is identified in a blue (sticky) note this may become a microservice api in a later implementation the human persona issuing the command is identified and shown in a yellow note. The diagram in next section illustrates the manufacturer actor using the place a shipment order command to create a shipment order placed event as a result of getting a quote from a previous request for quotation so he can deliver goods in container.</p>
 <p>It is possible to chain events and commands as presented in the "one view" figure above in the concepts section.</p>
 <h4 id="step-5-describe-the-data">Step 5: Describe the Data</h4>
-<p>You can't truly define a command without understanding the data that is needed for the command to execute in order to produce the event. You can identify several types of data during this step.  First, users (personas) need data from the user interface in order to make decisions before executing a command.  That data forms part of the read model in a <a href="../../evt-microservices/ED-patterns/">CQRS</a> implementation. For each command and event pair, you add a data description of the expected attributes and data elements needed to take such a decision. Here is a simple example for a <code>shipment order placed</code> event created from a <code>place a shipment order action</code>.</p>
+<p>You can't truly define a command without understanding the data that is needed for the command to execute in order to produce the event. You can identify several types of data during this step.  First, users (personas) need data from the user interface in order to make decisions before executing a command.  That data forms part of the read model in a <a href="../../design-patterns/cqrs/">CQRS</a> implementation. For each command and event pair, you add a data description of the expected attributes and data elements needed to take such a decision. Here is a simple example for a <code>shipment order placed</code> event created from a <code>place a shipment order action</code>.</p>
 <p><img alt="evt-stm-data" src="../evt-stm-data.png" /></p>
 <p>Another important part of the process that becomes more fully fleshed out at this step is the description of <em>policies</em> that can trigger the generation of an event from a previous event (or set of events).  </p>
 <p>Assess if the data element is a main business entity, uniquely identified by a key, supported by multiple commands. It  has a life span over the business process. This will lead to develop an entity life cycle analysis.</p>
