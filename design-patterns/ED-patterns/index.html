@@ -509,13 +509,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#code-references" title="Code References" class="md-nav__link">
-    Code References
-  </a>
-  
-</li>
-      
       
       
       
@@ -975,13 +968,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#code-references" title="Code References" class="md-nav__link">
-    Code References
-  </a>
-  
-</li>
-      
       
       
       
@@ -1022,15 +1008,6 @@
 <p>The approach is to use a "strangler" interface to dispatch request to new or old features. Existing features to migrate are selected by trying to isolate sub components. </p>
 <p>One of main challenge is to isolate data store and how the new microservices and the legacy application are accessing the shared data. Continuous data replication can be a solution to propagate write model to read model. Write model will most likely stays on the monolitic application, change data capture can be used, with event backbone to propagate change to read model.</p>
 <p>The facade needs to be scalable and not a single point of failure. It needs to support new APIs (RESTful) and old API (most likely SOAP).</p>
-<h2 id="code-references">Code References</h2>
-<ul>
-<li>The K Containers shipment use cases provides a supporting EDA example <a href="ttps://github.com/ibm-cloud-architecture/refarch-kc">https://github.com/ibm-cloud-architecture/refarch-kc</a></li>
-<li>Within K Containers shipment the following are example microservices illustrating some of those patterns  <ul>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-kc-ms">https://github.com/ibm-cloud-architecture/refarch-kc-ms</a></li>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms">https://github.com/ibm-cloud-architecture/refarch-kc-order-ms</a></li>
-</ul>
-</li>
-</ul>
                 
                   
                 
