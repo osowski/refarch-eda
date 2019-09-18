@@ -550,6 +550,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#considerations" title="Considerations" class="md-nav__link">
+    Considerations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#combining-event-sourcing-and-cqrs" title="Combining event sourcing and CQRS" class="md-nav__link">
     Combining event sourcing and CQRS
   </a>
@@ -1055,6 +1062,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#considerations" title="Considerations" class="md-nav__link">
+    Considerations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#combining-event-sourcing-and-cqrs" title="Combining event sourcing and CQRS" class="md-nav__link">
     Combining event sourcing and CQRS
   </a>
@@ -1191,6 +1205,18 @@
 <li>Creates an update event describing the change and publishes it to the event bus</li>
 </ul>
 <p>The changes that are logged can be the commands from the command bus or the update events published to the event bus</p>
+<h3 id="considerations">Considerations</h3>
+<p>Keep these decisions in mind while applying this pattern:</p>
+<ul>
+<li><strong>Client impact</strong>: Applying CQRS not only changes how data is stored and accessed, but also changes the APIs that clients use to access data. This means that each client must be redesigned to use the new APIs.</li>
+<li><strong>Riskiness</strong>: A lot of the complexity of the pattern solution involves duplicating the data in two databases and keeping them synchronized. Risk comes from querying data that is stale or downright wrong because of problems with the synchronization. Eventual data consistency is given in microservice world, and acceptable in a lot of case.</li>
+<li><strong>Command queuing</strong>: Using a command bus as part of the write solution to queue the commands is optional but powerful (in the next section we illustrate a way to use event bus for command too). In addition to the benefits of queuing, the command objects can easily be stored in the change log and easily be converted into notification events.</li>
+<li><strong>Change log</strong>: The log of changes to the database of record can be either the list of commands from the command bus or the list of event notifications published on the event bus. The Event Sourcing pattern assumes it’s a log of events, but that pattern doesn’t include the command bus. An event list may be easier to scan as a history, whereas a command list is easier to replay.</li>
+<li><strong>Create commands</strong>: Strick interpretation of the Command Query Separation (CQS) pattern says that command operations do not have return types. A possible exception is commands that create data: An operation that creates a new record or document typically returns the key for accessing the new data, which is convenient for the client. However, if the create operation is invoked by a command on a command bus, returning the key to the client involve promise and callbacks.</li>
+<li><strong>Messaging queues and topics</strong>: While messaging is used to implement both the command bus and event bus, the two busses use messaging differently. The command bus uses a semantic to guarantee exactly once delivery. The event bus uses topics so that each event is broadcast to all event processors.</li>
+<li><strong>Query database persistence</strong>: The database of record is always persistent. The query database is a cache that can be a persistent cache or an in-memory cache. If the cache is in-memory and is lost, it must be rebuilt completely from the database of record.</li>
+<li><strong>Security</strong>: Controls on reading data and updating data can be applied separately using the two parts of the solution.</li>
+</ul>
 <h3 id="combining-event-sourcing-and-cqrs">Combining event sourcing and CQRS</h3>
 <p>The CQRS application pattern is frequently associated with event sourcing: when doing event sourcing and domain driven design, we event source the aggregates or root entities. Aggregate creates events that are persisted. On top of the simple create, update and read by ID operations, the business requirements want to perform complex queries that can't be answered by a single aggregate. By just using event sourcing to be able to respond to a query like "what are the orders of a customer", then we have to rebuild the history of all orders and filter per customer. It is a lot of computation. This is linked to the problem of having conflicting domain models between query and persistence.  </p>
 <p>As introduced in previous section, creations and updates are done as state notification events (change of state), and are persisted in the event log/store. The following figure, presents two separate microservices, one supporting the write model, and multiple other supporting the queries:</p>
