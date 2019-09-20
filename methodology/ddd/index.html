@@ -36,7 +36,7 @@
     
     
       
-        <title>Domain driven design - Event Driven Architecture</title>
+        <title>Domain driven design for event based solution - Event Driven Architecture</title>
       
     
     
@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#event-and-domain-driven-design" tabindex="1" class="md-skip">
+      <a href="#starting-materials-generated-during-event-storming-and-analysis" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Domain driven design
+              Domain driven design for event based solution
             </span>
           
         </div>
@@ -413,12 +413,147 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
-      
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Domain driven design for event based solution
+      </label>
     
-    <a href="./" title="Domain driven design" class="md-nav__link md-nav__link--active">
-      Domain driven design
+    <a href="./" title="Domain driven design for event based solution" class="md-nav__link md-nav__link--active">
+      Domain driven design for event based solution
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#starting-materials-generated-during-event-storming-and-analysis" title="Starting materials generated during Event Storming and Analysis" class="md-nav__link">
+    Starting materials generated during Event Storming and Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps-in-the-design-process" title="Steps in the design process" class="md-nav__link">
+    Steps in the design process
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-assess-domain-and-subdomains" title="Step 1: Assess domain and subdomains" class="md-nav__link">
+    Step 1: Assess domain and subdomains
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-defined-the-potential-applications" title="Step 2: Defined the potential applications" class="md-nav__link">
+    Step 2: Defined the potential applications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-define-the-ubiquitous-language" title="Step 3: Define the ubiquitous language" class="md-nav__link">
+    Step 3: Define the ubiquitous language
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entities-and-value-objects" title="Entities and Value Objects" class="md-nav__link">
+    Entities and Value Objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-boundaries" title="Aggregate boundaries" class="md-nav__link">
+    Aggregate boundaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounded-contexts" title="Bounded Contexts" class="md-nav__link">
+    Bounded Contexts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repositories" title="Repositories" class="md-nav__link">
+    Repositories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-linked-microservices-design-structure" title="Event linked microservices design - structure" class="md-nav__link">
+    Event linked microservices design - structure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-define-modules" title="Step 4: Define modules" class="md-nav__link">
+    Step 4: Define modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-limit-the-context-and-scope-for-this-particular-build-sprint" title="Step 5: Limit the context and scope for this particular build / sprint" class="md-nav__link">
+    Step 5: Limit the context and scope for this particular build / sprint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-generate-microservice-interaction-diagrams-for-the-build" title="Step 6: Generate microservice interaction diagrams for the build" class="md-nav__link">
+    Step 6: Generate microservice interaction diagrams for the build
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-specify-recovery-approach-in-case-a-microservice-fails" title="Step 7: Specify recovery approach in case a microservice fails" class="md-nav__link">
+    Step 7: Specify recovery approach in case a microservice fails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concepts-and-rationale-underlying-the-design-approach" title="Concepts and rationale underlying the design approach" class="md-nav__link">
+    Concepts and rationale underlying the design approach
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -886,8 +1021,132 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#starting-materials-generated-during-event-storming-and-analysis" title="Starting materials generated during Event Storming and Analysis" class="md-nav__link">
+    Starting materials generated during Event Storming and Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps-in-the-design-process" title="Steps in the design process" class="md-nav__link">
+    Steps in the design process
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-assess-domain-and-subdomains" title="Step 1: Assess domain and subdomains" class="md-nav__link">
+    Step 1: Assess domain and subdomains
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-defined-the-potential-applications" title="Step 2: Defined the potential applications" class="md-nav__link">
+    Step 2: Defined the potential applications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-define-the-ubiquitous-language" title="Step 3: Define the ubiquitous language" class="md-nav__link">
+    Step 3: Define the ubiquitous language
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entities-and-value-objects" title="Entities and Value Objects" class="md-nav__link">
+    Entities and Value Objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-boundaries" title="Aggregate boundaries" class="md-nav__link">
+    Aggregate boundaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounded-contexts" title="Bounded Contexts" class="md-nav__link">
+    Bounded Contexts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repositories" title="Repositories" class="md-nav__link">
+    Repositories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-linked-microservices-design-structure" title="Event linked microservices design - structure" class="md-nav__link">
+    Event linked microservices design - structure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-define-modules" title="Step 4: Define modules" class="md-nav__link">
+    Step 4: Define modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-limit-the-context-and-scope-for-this-particular-build-sprint" title="Step 5: Limit the context and scope for this particular build / sprint" class="md-nav__link">
+    Step 5: Limit the context and scope for this particular build / sprint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-generate-microservice-interaction-diagrams-for-the-build" title="Step 6: Generate microservice interaction diagrams for the build" class="md-nav__link">
+    Step 6: Generate microservice interaction diagrams for the build
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-specify-recovery-approach-in-case-a-microservice-fails" title="Step 7: Specify recovery approach in case a microservice fails" class="md-nav__link">
+    Step 7: Specify recovery approach in case a microservice fails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concepts-and-rationale-underlying-the-design-approach" title="Concepts and rationale underlying the design approach" class="md-nav__link">
+    Concepts and rationale underlying the design approach
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
   
 </nav>
                   </div>
@@ -902,9 +1161,148 @@
                   <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/methodology/ddd.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="event-and-domain-driven-design">Event and Domain Driven Design</h1>
-<p>Event storming is part of the domain driven design methodology. There are a lot of literatures on domain-driven design, starting by <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=asc_df_0321125215/?tag=hyprod-20&amp;linkCode=df0&amp;hvadid=312118197030&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=3363692763187919455&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9032152&amp;hvtargid=pla-449269547899&amp;psc=1">Eric Evans's book</a> from 2004. At IBM we also summarized the concepts needed for implementing microservice in <a href="https://www.ibm.com/cloud/garage/practices/code/domain-driven-design/overview">Kyle Brown's article</a>. </p>
-<p>UNDER CONSTRUCTION</p>
+                  <h1>Domain driven design for event based solution</h1>
+                
+                <p>This section describes how to apply domain driven design with event based application and describe the high level steps which uses output from the event storming session and derives a set of micro services design specifications.</p>
+<p><a href="../eventstorming/">Event storming</a> is part of the domain driven design methodology. And domain-driven design was deeply describe in <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=asc_df_0321125215/?tag=hyprod-20&amp;linkCode=df0&amp;hvadid=312118197030&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=3363692763187919455&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9032152&amp;hvtargid=pla-449269547899&amp;psc=1">Eric Evans's "Domain Driven Design: Tackling Complexity in the Heart of Software" book</a> from 2004. At IBM we also summarized the concepts needed for implementing microservice in <a href="https://www.ibm.com/cloud/garage/practices/code/domain-driven-design/overview">Kyle Brown's article</a>. </p>
+<p>The goals for the design step and the resulting specifications are: </p>
+<ul>
+<li>To support highly modular cloud native microservices. </li>
+<li>To adopt event coupled microservices - facilitating independent modification and evolution of each microservice separately.</li>
+<li>To allow applying event-driven patterns such as event sourcing, CQRS and SAGA. </li>
+</ul>
+<h2 id="starting-materials-generated-during-event-storming-and-analysis">Starting materials generated during Event Storming and Analysis</h2>
+<p>We make use of the following materials generated during Event Storming and analysis of the Container Shipment example problem: </p>
+<ul>
+<li>Event Sequence flow.</li>
+<li>Events – business description.</li>
+<li>Critical events. </li>
+<li>Aggregates and services:   <ul>
+<li>Users – role based user stories.   </li>
+<li>Commands.</li>
+<li>Event linkages.</li>
+<li>Policies. </li>
+<li>Event prediction and probability flows. </li>
+</ul>
+</li>
+</ul>
+<p>The derivation of these material was described in: <a href="../analysis/readme.md">Analysis</a>.</p>
+<p>Here is an example of starting material illustrating the beginning of the process:</p>
+<p><img alt="" src="../images/event-storming-order.png" /></p>
+<h2 id="steps-in-the-design-process">Steps in the design process</h2>
+<p>Here we describe in generic terms, each step in the process of deriving event-linked microservice specifications.</p>
+<h3 id="step-1-assess-domain-and-subdomains">Step 1: Assess domain and subdomains</h3>
+<p>Domain is what an organization does, and it includes the how to perform its operations. It is composed of sub domains. A Core Domain is a part of the business Domain that is of primary importance to the success of the organization, the organization needs to excel at it.</p>
+<p>During the event storming analysis, you define the domain and groups a set of subdomains like orders, invoice, customer, ... and external systems. Here is an example of such domain and subdomains:</p>
+<p><img alt="" src="../images/domain-subdomains.png" /></p>
+<p>We have three core subdomains and the rest as support.</p>
+<h3 id="step-2-defined-the-potential-applications">Step 2: Defined the potential applications</h3>
+<p>At the high level, when doing the analysis, you should have some insight decision of the top level application to develop, but it is also important to see list other systems to interact to. A classic system context diagram is a nice tool to represent that.</p>
+<h3 id="step-3-define-the-ubiquitous-language">Step 3: Define the ubiquitous language</h3>
+<p>This is where the work from the event storming and the relation with the business experts should help. Domain experts use their jargon while technical team members have their own language tuned for discussing the domain in terms of design. The terminology of day-to-day discussions is disconnected from the terminology embedded in the code, so the ubiquitous language helps to allign knowledge with design elements, code and tests.</p>
+<p>The vocabulary of that ubiquitous language includes the names of classes and prominent operations. The language includes terms to discuss rules that have been made explicit in the model. Be sure to commit the team to exercising that language relentlessly in all communication within the team and in the code. Use the same language in diagrams, writing, and especially speech</p>
+<p>Play with the model as you talk about the system. Describe scenarios out loud using the elements and interactions of the model, combining concepts in ways allowed by the model. Find easier ways to say what you need to say, and then take those new ideas back down to the diagrams and code.</p>
+<h4 id="entities-and-value-objects">Entities and Value Objects</h4>
+<p>Entities are part of the ubiquitous language, represent business concepts that can be uniquely identified by some atributes. They have a life cycle that is important to model.</p>
+<p>Value Object also represent things in the domain but no identity, and they are frequently transient, created for an operation and then discarded.</p>
+<p>Some time in a certain context a value object could become an entity. As an example, an Address will be most of the time a value object, excepts in a map app.</p>
+<p>Below is an example of entities (Customer and Shipping Order) and value objects (delivery history and delivery specification):</p>
+<p><img alt="" src="../images/ent-vo.png" /></p>
+<h4 id="aggregate-boundaries">Aggregate boundaries</h4>
+<p>An aggregate is a cluster of associated objects that we treat as a unit for the purpose of data changes. An entity is most likely and aggregate and every things related to it define its boundaries. </p>
+<h4 id="bounded-contexts">Bounded Contexts</h4>
+<p>Within a business context every use of a given domain term, phrase, or sentence, <strong>the Ubiquitous Language</strong> inside the boundary has a specific contextual meaning. So order context is a boundary context and groups order, ordered product type, pickup and shipping addresses, delivery specifications, delivery history. </p>
+<h4 id="repositories">Repositories</h4>
+<p>Repository represents the infrastructure service to persist the root aggregate during its full life cycle.
+Client applications request objects from the repository using query methods that select objects based on criteria specified by the client, typically the value of certain attributes.</p>
+<h4 id="event-linked-microservices-design-structure">Event linked microservices design - structure</h4>
+<p>A complete event driven microservices specification (the target of this design step) includes specifications of the following: </p>
+<ul>
+<li>Event Topics <ul>
+<li>Used to configure the Event Backbone </li>
+</ul>
+</li>
+<li>Event types within each event topic </li>
+<li>Microservices: <ul>
+<li>They may be finer grained than aggregates or mapped to aggregate boundaries</li>
+<li>May separate query and command; possibly multiple queries  </li>
+<li>Demonstration Control – main User Interface </li>
+<li>Entitiies, value ovjects within each microservice</li>
+<li>APIs  ( Synchronous ) </li>
+<li>Topics and events Subscribed to</li>
+<li>Events published / emitted   </li>
+</ul>
+</li>
+<li>List of end to end interactions <ul>
+<li>List of logic segments per microservice </li>
+</ul>
+</li>
+<li>Recovery processing, scaling <ul>
+<li>We expect this to be highly patterned and template driven not requiring example-specific design </li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="step-4-define-modules">Step 4: Define modules</h3>
+<ul>
+<li>Each aggregate will be implemented as some composition of: <br />
+    (1) a command microservice managing state changes to the entities in this aggregate<br />
+    (2) possibly one or more separate (CQRS) query services providing internal or external API query capabilities <br />
+    (3) additional simulation, predictive analytics or User Interface microservices   </li>
+<li>The command microservice will be built around and manage a collection of active entites for the aggregate, keyed by some primary key</li>
+<li>The separation of each aggregate into specific component microservices as outlined above, will be a complete list of microservices for the build / sprint. </li>
+<li>Identify the data collections, and collection organization (keying structure)  in each command and query microservice for this build.</li>
+</ul>
+<h3 id="step-5-limit-the-context-and-scope-for-this-particular-build-sprint">Step 5: Limit the context and scope for this particular build / sprint</h3>
+<p>We assume that we are developing a particular build for a sprint within some agile development approach, deferring additional functions and complexity to later sprints:</p>
+<ul>
+<li>Working from the initial list of aggregates, select which aggregates will be included in this build</li>
+<li>For each aggregate the possible choices are:   <ol>
+<li>to completely skip and workaround the aggregate in this build   </li>
+<li>to include a full lifecycle implementation of the aggregate   </li>
+<li>to provide a simplified lifecycle implementation - typically a table of entities is initialized at start up, and state changes to existing entities are tracked   </li>
+</ol>
+</li>
+<li>Determine whether there are simulation services or predictive analytics service to be included in the build </li>
+<li>Identify the external query APIs and command APIs which this build should support </li>
+<li>Create entity lifecycle diagrams for entites having a full lifecycle implementation in this build / sprint.</li>
+</ul>
+<h3 id="step-6-generate-microservice-interaction-diagrams-for-the-build">Step 6: Generate microservice interaction diagrams for the build</h3>
+<ul>
+<li>The diagram will show API calls initiating state change. They should map the commands discovered during the event storming.</li>
+<li>It shows for each interaction whether this is a synchronous API calls or an asynchronous event interaction via the event backbone.</li>
+<li>The diagram labels each specific event interaction between microservices trigerring a state change.</li>
+<li>Typically queries are synchronous API calls since the caller cannot usefully proceeed until a result is returned.</li>
+<li>
+<p>From these, we can extract:   </p>
+<ol>
+<li>a complete list of event types on each event backbone topic, with information passed on each event type.  </li>
+<li>the complete list of “logic segments” for each microservice processing action in response to an API call or initiating event. </li>
+</ol>
+</li>
+<li>
+<p>When, at the next level of detail, the individual fields in each event are specified and typed, the <a href="https://github.com/cloudevents/spec">CloudEvents standard</a> should be assumed as a starting point.</p>
+</li>
+</ul>
+<h3 id="step-7-specify-recovery-approach-in-case-a-microservice-fails">Step 7: Specify recovery approach in case a microservice fails</h3>
+<ul>
+<li>If a microservice fails it will need to recover its internal state by resubscribing to one or more topics on the event backbone.  </li>
+<li>In general, command and query microservices will have a standard pattern for doing this.</li>
+<li>Any custom event filtering and service specific logic should be specified.</li>
+</ul>
+<h3 id="concepts-and-rationale-underlying-the-design-approach">Concepts and rationale underlying the design approach</h3>
+<p><em>What is the difference between event information stored in the event backbone and state data stored in the microservices?</em> </p>
+<p>The event information stored persistently in the event backbone is organized by topic and, within each topic, entirely by event time-of-occurrence. While the state information in a microservice is a list (collection) of all <strong>currently active</strong> entities of the owning aggregate (e.g. all orders, all voyages etc) and the <strong>current</strong> state of each such entity. The entity records are keyed by primary key, like an OrderID.
+While implementing microservice using event sourcing, CQRS, the persisted entity records are complementary to the historically organized information in the event backbone. </p>
+<p><em>When is it acceptable to be using synchronous interactions between services instead of asynchronous event interacts through the event backbone?</em>   </p>
+<p>For non-state-changing queries, for which the response is always instantaneously available a synchronous query call may be acceptable and will provide a simpler more understandable interface. Any processing which can be though of as being triggered by some state change in another aggregate should be modelled with an asynchronous event, because as the solution evolves other new microservices may also need to be aware of such event. We do not want to have to go back and change logic existing service where this event originated to have that microservice actively report the event to all potential consumers. </p>
+<p><em>How do we save microservices from having to maintain data collections with complex secondary indexing for which eventual consistency will be hard to implement?</em></p>
+<ul>
+<li>Each command  microservice should do all its state changing updates using the primary key lookup only for its entities.</li>
+<li>Each asynchronous event interaction between microservices should carry primary entityIds ( orderID, VoyageID, shipID) for any entities associated with the interaction.</li>
+<li>Each query which might require speciaoized secondary indexing to respond to queries can be implemented in a separate CQRS query service which subscribes to events  to do all internal updating and receives events from the event backbone in a ( Consistent) eventually correct order. </li>
+<li>This allows for recovery of any failed service by rebuilding it in "eventually correct" order.</li>
+</ul>
                 
                   
                 
