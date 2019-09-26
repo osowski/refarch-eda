@@ -382,18 +382,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../methodology/lightweight.md" title="Lightweight" class="md-nav__link">
-      Lightweight
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../methodology/eventstorming/" title="Event Storming" class="md-nav__link">
       Event Storming
     </a>
@@ -1117,8 +1105,37 @@
 As soon as you want to get acknowledge of all replicates, it is obvious to set idempotence to true. It does not impact performance.</p>
 </p>
 </div>
-<p>To add to these, as topic may have multiple partitions, kafka supports atomic writes to all partitions, so that all records are saved or none of them are visible to consumers. This transaction control is done by using the producer transactional API, and a unique transaction identifier to keep integrated state. The consumer is also interested to configure the reading of the transactional messages by defining the isolation level. </p>
-<p>There is an interesting <a href="https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/">article</a> from Baeldung team about exactly once processing in kafka with code example.</p>
+<p>To add to these, as topic may have multiple partitions, kafka supports atomic writes to all partitions, so that all records are saved or none of them are visible to consumers. This transaction control is done by using the producer transactional API, and a unique transaction identifier to keep integrated state. Here is an example of such configuration that can be done in a producer contructor method:</p>
+<div class="codehilite"><pre><span></span><span class="n">producerProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;enable.idempotence&quot;</span><span class="o">,</span> <span class="s">&quot;true&quot;</span><span class="o">);</span>
+<span class="n">producerProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;transactional.id&quot;</span><span class="o">,</span> <span class="s">&quot;prod-1&quot;</span><span class="o">);</span>
+<span class="n">kafkaProducer</span><span class="o">.</span><span class="na">initTransactions</span><span class="o">()</span>
+</pre></div>
+
+<p><code>initTransactions()</code> registers the producer with the broker as one that can use transactions, identifying it by its transactional.id and a sequence number, or epoch.</p>
+<p>In case of multiple partitions, the broker will store a list of all updated partitions for a given transaction.</p>
+<p>See the <a href="">code in order command</a> microservice.</p>
+<p>The consumer is also interested to configure the reading of the transactional messages by defining the isolation level. Consumer waits to read transactional messages until the associated transaction has been committed. Here is an example of consumer code and configuration</p>
+<div class="codehilite"><pre><span></span><span class="n">consumerProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;enable.auto.commit&quot;</span><span class="o">,</span> <span class="s">&quot;false&quot;</span><span class="o">);</span>
+<span class="n">consumerProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;isolation.level&quot;</span><span class="o">,</span> <span class="s">&quot;read_committed&quot;</span><span class="o">);</span>
+</pre></div>
+
+<p>With <code>read_committed</code>, no messages that were written to the input topic in the same transaction will be read by this consumer until they are all written.</p>
+<p>The consumer commits its offset with code, and specify the last offset to read.
+<div class="codehilite"><pre><span></span><span class="n">offsetsToCommit</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">partition</span><span class="o">,</span> <span class="k">new</span> <span class="n">OffsetAndMetadata</span><span class="o">(</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="o">))</span>
+<span class="n">producer</span><span class="o">.</span><span class="na">sendOffsetsToTransaction</span><span class="o">(</span><span class="n">offsetsToCommit</span><span class="o">,</span> <span class="s">&quot;order-group-id&quot;</span><span class="o">);</span>
+</pre></div></p>
+<p>The producer then commit the transaction.
+<div class="codehilite"><pre><span></span>try {
+        kafkaProducer.beginTransaction();
+    ProducerRecord&lt;String, String&gt; record = new ProducerRecord&lt;&gt;(ApplicationConfig.ORDER_COMMAND_TOPIC, key, value);
+    Future&lt;RecordMetadata&gt; send = kafkaProducer.send(record);
+    send.get(ApplicationConfig.PRODUCER_TIMEOUT_SECS, TimeUnit.SECONDS);
+    kafkaProducer.commitTransaction();
+} catch (KafkaException e){
+        kafkaProducer.abortTransaction();
+}
+</pre></div></p>
+<p>There is an interesting <a href="https://www.baeldung.com/kafka-exactly-once">article</a> from Baeldung team about exactly once processing in kafka with code example.</p>
 <h2 id="code-examples">Code Examples</h2>
 <ul>
 <li><a href="https://github.com/ibm-cloud-architecture/refarch-asset-analytics/blob/master/asset-event-producer/src/main/java/ibm/cte/kafka/play/SimpleProducer.java">Simple text message</a></li>
@@ -1127,7 +1144,8 @@ As soon as you want to get acknowledge of all replicates, it is obvious to set i
 <li><a href="(https://github.com/ibm-cloud-architecture/refarch-kc-container-ms)">Springboot with kafka template</a></li>
 </ul>
 <h2 id="more-readings">More readings</h2>
-<p>*<a href="http://cloudurable.com/blog/kafka-tutorial-kafka-producer-advanced-java-examples/index.html">Creating advanced kafka producer in java - Cloudurable</a></p>
+<p><em><a href="http://cloudurable.com/blog/kafka-tutorial-kafka-producer-advanced-java-examples/index.html">Creating advanced kafka producer in java - Cloudurable</a>
+</em> <a href="https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/">Confluent blog: Exactly-once Semantics are Possible: Here’s How Kafka Does it</a>)</p>
                 
                   
                 
