@@ -542,6 +542,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#applied-ddd-for-the-reference-implementation" title="Applied DDD for the reference implementation" class="md-nav__link">
+    Applied DDD for the reference implementation
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1137,6 +1144,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#applied-ddd-for-the-reference-implementation" title="Applied DDD for the reference implementation" class="md-nav__link">
+    Applied DDD for the reference implementation
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1165,11 +1179,11 @@
                 
                 <p>This section describes how to apply domain driven design with event based application and describe the high level steps which uses output from the event storming session and derives a set of micro services design specifications.</p>
 <p><a href="../eventstorming/">Event storming</a> is part of the domain driven design methodology. And domain-driven design was deeply describe in <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=asc_df_0321125215/?tag=hyprod-20&amp;linkCode=df0&amp;hvadid=312118197030&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=3363692763187919455&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9032152&amp;hvtargid=pla-449269547899&amp;psc=1">Eric Evans's "Domain Driven Design: Tackling Complexity in the Heart of Software" book</a> from 2004. At IBM we also summarized the concepts needed for implementing microservice in <a href="https://www.ibm.com/cloud/garage/practices/code/domain-driven-design/overview">Kyle Brown's article</a>. </p>
-<p>The goals for the design step and the resulting specifications are: </p>
+<p>The goals for the design step are: </p>
 <ul>
 <li>To support highly modular cloud native microservices. </li>
 <li>To adopt event coupled microservices - facilitating independent modification and evolution of each microservice separately.</li>
-<li>To allow applying event-driven patterns such as event sourcing, CQRS and SAGA. </li>
+<li>To allow applying event-driven patterns such as event sourcing, CQRS and SAGA to address some of the challenges of microservice: data eventual consitency, transaction cross domain, and complex queries between aggregates managed by different services.</li>
 </ul>
 <h2 id="starting-materials-generated-during-event-storming-and-analysis">Starting materials generated during Event Storming and Analysis</h2>
 <p>We make use of the following materials generated during Event Storming and analysis of the Container Shipment example problem: </p>
@@ -1191,21 +1205,24 @@
 <p><img alt="" src="../images/event-storming-order.png" /></p>
 <h2 id="steps-in-the-design-process">Steps in the design process</h2>
 <p>Here we describe in generic terms, each step in the process of deriving event-linked microservice specifications.</p>
+<hr />
 <h3 id="step-1-assess-domain-and-subdomains">Step 1: Assess domain and subdomains</h3>
 <p>Domain is what an organization does, and it includes the how to perform its operations. It is composed of sub domains. A Core Domain is a part of the business Domain that is of primary importance to the success of the organization, the organization needs to excel at it.</p>
 <p>During the event storming analysis, you define the domain and groups a set of subdomains like orders, invoice, customer, ... and external systems. Here is an example of such domain and subdomains:</p>
 <p><img alt="" src="../images/domain-subdomains.png" /></p>
 <p>We have three core subdomains and the rest as support.</p>
+<hr />
 <h3 id="step-2-defined-the-potential-applications">Step 2: Defined the potential applications</h3>
-<p>At the high level, when doing the analysis, you should have some insight decision of the top level application to develop, but it is also important to see list other systems to interact to. A classic system context diagram is a nice tool to represent that.</p>
+<p>At the high level, when doing the analysis, you should have some insight decision of the top level application to develop, but it is also important to see list other systems to interact to. A classic system context diagram is a nice tool to represent that. The EDA reference implementation solution includes such <a href="https://ibm-cloud-architecture.github.io/refarch-kc/design/architecture/#system-context">system context diagram</a>.</p>
+<hr />
 <h3 id="step-3-define-the-ubiquitous-language">Step 3: Define the ubiquitous language</h3>
-<p>This is where the work from the event storming and the relation with the business experts should help. Domain experts use their jargon while technical team members have their own language tuned for discussing the domain in terms of design. The terminology of day-to-day discussions is disconnected from the terminology embedded in the code, so the ubiquitous language helps to allign knowledge with design elements, code and tests.</p>
-<p>The vocabulary of that ubiquitous language includes the names of classes and prominent operations. The language includes terms to discuss rules that have been made explicit in the model. Be sure to commit the team to exercising that language relentlessly in all communication within the team and in the code. Use the same language in diagrams, writing, and especially speech</p>
+<p>This is where the work from the event storming and the relation with the business experts should help. Domain experts use their jargon while technical team members have their own language tuned for discussing the domain in terms of design. The terminology of day-to-day discussions is disconnected from the terminology embedded in the code, so the ubiquitous language helps to allign knowledge with design elements, code and tests. (Think about EJB, JPA entity, all the JEE design jargon versus ShippingOrder, order provisioning, fullfillment... )</p>
+<p>The vocabulary of that ubiquitous language includes the class names and prominent operation names. The language includes terms to discuss rules that have been made explicit in the model. Be sure to commit the team to exercising that language relentlessly in all communication within the business and in the code. Use the same language in diagrams, writing, and especially speech.</p>
 <p>Play with the model as you talk about the system. Describe scenarios out loud using the elements and interactions of the model, combining concepts in ways allowed by the model. Find easier ways to say what you need to say, and then take those new ideas back down to the diagrams and code.</p>
 <h4 id="entities-and-value-objects">Entities and Value Objects</h4>
-<p>Entities are part of the ubiquitous language, represent business concepts that can be uniquely identified by some atributes. They have a life cycle that is important to model.</p>
-<p>Value Object also represent things in the domain but no identity, and they are frequently transient, created for an operation and then discarded.</p>
-<p>Some time in a certain context a value object could become an entity. As an example, an Address will be most of the time a value object, excepts in a map app.</p>
+<p>Entities are part of the ubiquitous language, and represent business concepts that can be uniquely identified by some atributes. They have a life cycle that is important to model.</p>
+<p>Value Object also represent things in the domain but without identity, and they are frequently transient, created for an operation and then discarded.</p>
+<p>Some time in a certain context a value object could become an entity. As an example, an Address will be most of the time a value object, excepts in a mapping app or in an agenda app.</p>
 <p>Below is an example of entities (Customer and Shipping Order) and value objects (delivery history and delivery specification):</p>
 <p><img alt="" src="../images/ent-vo.png" /></p>
 <h4 id="aggregate-boundaries">Aggregate boundaries</h4>
@@ -1224,21 +1241,21 @@ Client applications request objects from the repository using query methods that
 </li>
 <li>Event types within each event topic </li>
 <li>Microservices: <ul>
-<li>They may be finer grained than aggregates or mapped to aggregate boundaries</li>
-<li>May separate query and command; possibly multiple queries  </li>
-<li>Demonstration Control – main User Interface </li>
-<li>Entitiies, value ovjects within each microservice</li>
-<li>APIs  ( Synchronous ) </li>
-<li>Topics and events Subscribed to</li>
-<li>Events published / emitted   </li>
+<li>They may be finer grained than aggregates or mapped to aggregate boundaries.</li>
+<li>They may separate query and command; possibly multiple queries. </li>
+<li>They could define demonstration control and serve main User Interface.</li>
+<li>Reference the related Entities and value objects within each microservice.</li>
+<li>Define APIs  ( Synchronous or asynchronous) using standards like openAPI. Could be done bottom up from the code, as most of TDD implementation will lead to. </li>
+<li>Topics and events Subscribed to.</li>
+<li>Events published / emitted.  </li>
 </ul>
 </li>
-<li>List of end to end interactions <ul>
+<li>List of end to end interactions:<ul>
 <li>List of logic segments per microservice </li>
 </ul>
 </li>
-<li>Recovery processing, scaling <ul>
-<li>We expect this to be highly patterned and template driven not requiring example-specific design </li>
+<li>Recovery processing, scaling:<ul>
+<li>We expect this to be highly patterned and template driven not requiring example-specific design. </li>
 </ul>
 </li>
 </ul>
@@ -1249,16 +1266,17 @@ Client applications request objects from the repository using query methods that
     (1) a command microservice managing state changes to the entities in this aggregate<br />
     (2) possibly one or more separate (CQRS) query services providing internal or external API query capabilities <br />
     (3) additional simulation, predictive analytics or User Interface microservices   </li>
-<li>The command microservice will be built around and manage a collection of active entites for the aggregate, keyed by some primary key</li>
+<li>The command microservice will be built around a collection of active entites for the aggregate, keyed by some primary key.</li>
 <li>The separation of each aggregate into specific component microservices as outlined above, will be a complete list of microservices for the build / sprint. </li>
-<li>Identify the data collections, and collection organization (keying structure)  in each command and query microservice for this build.</li>
+<li>Identify the data collections, and collection organization (keying structure) in each command and query microservice for this build.</li>
 </ul>
+<hr />
 <h3 id="step-5-limit-the-context-and-scope-for-this-particular-build-sprint">Step 5: Limit the context and scope for this particular build / sprint</h3>
 <p>We assume that we are developing a particular build for a sprint within some agile development approach, deferring additional functions and complexity to later sprints:</p>
 <ul>
 <li>Working from the initial list of aggregates, select which aggregates will be included in this build</li>
-<li>For each aggregate the possible choices are:   <ol>
-<li>to completely skip and workaround the aggregate in this build   </li>
+<li>For each aggregate the possible choices are:<ol>
+<li>to completely skip and workaround the aggregate in this build.</li>
 <li>to include a full lifecycle implementation of the aggregate   </li>
 <li>to provide a simplified lifecycle implementation - typically a table of entities is initialized at start up, and state changes to existing entities are tracked   </li>
 </ol>
@@ -1267,6 +1285,7 @@ Client applications request objects from the repository using query methods that
 <li>Identify the external query APIs and command APIs which this build should support </li>
 <li>Create entity lifecycle diagrams for entites having a full lifecycle implementation in this build / sprint.</li>
 </ul>
+<hr />
 <h3 id="step-6-generate-microservice-interaction-diagrams-for-the-build">Step 6: Generate microservice interaction diagrams for the build</h3>
 <ul>
 <li>The diagram will show API calls initiating state change. They should map the commands discovered during the event storming.</li>
@@ -1281,12 +1300,13 @@ Client applications request objects from the repository using query methods that
 </ol>
 </li>
 <li>
-<p>When, at the next level of detail, the individual fields in each event are specified and typed, the <a href="https://github.com/cloudevents/spec">CloudEvents standard</a> should be assumed as a starting point.</p>
+<p>When, at the next level of detail, the individual fields in each event are specified and typed, the <a href="https://github.com/cloudevents/spec">CloudEvents standard</a> may be used as a starting point.</p>
 </li>
 </ul>
+<hr />
 <h3 id="step-7-specify-recovery-approach-in-case-a-microservice-fails">Step 7: Specify recovery approach in case a microservice fails</h3>
 <ul>
-<li>If a microservice fails it will need to recover its internal state by resubscribing to one or more topics on the event backbone.  </li>
+<li>If a microservice fails it will need to recover its internal state by reloading data from one or more topics, from the latest committed read.  </li>
 <li>In general, command and query microservices will have a standard pattern for doing this.</li>
 <li>Any custom event filtering and service specific logic should be specified.</li>
 </ul>
@@ -1303,6 +1323,8 @@ While implementing microservice using event sourcing, CQRS, the persisted entity
 <li>Each query which might require speciaoized secondary indexing to respond to queries can be implemented in a separate CQRS query service which subscribes to events  to do all internal updating and receives events from the event backbone in a ( Consistent) eventually correct order. </li>
 <li>This allows for recovery of any failed service by rebuilding it in "eventually correct" order.</li>
 </ul>
+<h3 id="applied-ddd-for-the-reference-implementation">Applied DDD for the reference implementation</h3>
+<p>See <a href="https://ibm-cloud-architecture.github.io/refarch-kc-order-ms/ddd-applied/">this note for details.</a></p>
                 
                   
                 

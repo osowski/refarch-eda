@@ -1352,9 +1352,12 @@
 <p>Be sure to have administration privilege, within your account, to be able to create cluster. It will take less than 30 minutes to get the cluster provisioned. </p>
 <p>You can follow the steps to create the cluster with the console or use the IBM Cloud CLI.</p>
 <ol>
-<li>Be sure to be logged to your IBM Cloud account:
-    <div class="codehilite"><pre><span></span>ibmcloud login -a https://cloud.ibm.com  -u &lt;userid&gt; -p &lt;password&gt; -c &lt;accoundID&gt;
-</pre></div></li>
+<li>
+<p>Be sure to be logged to your IBM Cloud account:</p>
+<div class="codehilite"><pre><span></span>ibmcloud login -a https://cloud.ibm.com  -u &lt;userid&gt; -p &lt;password&gt; -c &lt;accoundID&gt;
+</pre></div>
+
+</li>
 <li>
 <p>Get the private and public vlan IP address for your zone:</p>
 <div class="codehilite"><pre><span></span>ibmcloud ks vlans --zone wdc06
@@ -1472,7 +1475,6 @@ Now any <code>oc</code> command will work against your remote cluster.</p>
 </div>
 <ul>
 <li><a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/local/">Build and deploy the solution locally using docker compose</a></li>
-<li><a href="https://ibm-cloud-architecture.github.io/refarch-kc/deployments/minikube/">Or build and deploy the solution locally using Minikube</a></li>
 </ul>
 <h3 id="9-hands-on-perform-tests">9 - Hands on: Perform tests</h3>
 <h4 id="perform-the-smoke-tests-locally">Perform the smoke tests locally</h4>
