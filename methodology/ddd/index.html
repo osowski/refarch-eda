@@ -459,19 +459,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#each-interface-needs-to-be-documented-using-an-efficient-tools-of-interface-characteristics" title="Each interface needs to be documented using an efficient tools of interface characteristics." class="md-nav__link">
-    Each interface needs to be documented using an efficient tools of interface characteristics.
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#step-3-define-the-ubiquitous-language" title="Step 3: Define the ubiquitous language" class="md-nav__link">
     Step 3: Define the ubiquitous language
@@ -1074,19 +1061,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#each-interface-needs-to-be-documented-using-an-efficient-tools-of-interface-characteristics" title="Each interface needs to be documented using an efficient tools of interface characteristics." class="md-nav__link">
-    Each interface needs to be documented using an efficient tools of interface characteristics.
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#step-3-define-the-ubiquitous-language" title="Step 3: Define the ubiquitous language" class="md-nav__link">
     Step 3: Define the ubiquitous language
@@ -1239,7 +1213,80 @@
 <hr />
 <h3 id="step-2-defined-the-potential-application">Step 2: Defined the potential application</h3>
 <p>At the high level, when doing the analysis, you should have some insight decision of the top level application to develop, but it is also important to also list other systems to interact with. A classic system context diagram is a nice tool to represent that. The EDA reference implementation solution includes such <a href="https://ibm-cloud-architecture.github.io/refarch-kc/design/architecture/#system-context">system context diagram</a>.</p>
-<h2 id="each-interface-needs-to-be-documented-using-an-efficient-tools-of-interface-characteristics">Each interface needs to be documented using an efficient tools of interface characteristics.</h2>
+<p>Each interface needs to be documented using an efficient tools of <a href="https://www.ibm.com/developerworks/websphere/techjournal/1201_clark/1201_clark.html">interface characteristics</a>. </p>
+<p>full set of interface characteristics is shown below:</p>
+<ul>
+<li>
+<p>FUNCTIONAL DEFINITION</p>
+<ul>
+<li>Principal data objects</li>
+<li>Operation/function</li>
+<li>Read or change</li>
+<li>Request/response objects</li>
+</ul>
+</li>
+<li>
+<p>TECHNICAL INTERFACE</p>
+<ul>
+<li>Transport</li>
+<li>Protocol</li>
+<li>Data format</li>
+</ul>
+</li>
+<li>
+<p>INTERACTION TYPE</p>
+<ul>
+<li>Request-response or fire-forget</li>
+<li>Thread-blocking or asynchronous</li>
+<li>Batch or individual</li>
+<li>Message size</li>
+</ul>
+</li>
+<li>
+<p>PERFORMANCE</p>
+<ul>
+<li>Response times</li>
+<li>Throughput</li>
+<li>Volumes</li>
+<li>Concurrency</li>
+</ul>
+</li>
+<li>
+<p>INTEGRITY</p>
+<ul>
+<li>Validation</li>
+<li>Transactionality</li>
+<li>Statefulness</li>
+<li>Event sequence</li>
+<li>Idempotence</li>
+</ul>
+</li>
+<li>
+<p>SECURITY</p>
+<ul>
+<li>Identity/authentication</li>
+<li>Authorization</li>
+<li>Data ownership</li>
+<li>Privacy</li>
+</ul>
+</li>
+<li>
+<p>RELIABILITY</p>
+<ul>
+<li>Availability</li>
+<li>Delivery assurance</li>
+</ul>
+</li>
+<li>
+<p>ERROR HANDLING</p>
+<ul>
+<li>Error management capabilities</li>
+<li>Known exception conditions</li>
+<li>Unexpected error presentation</li>
+</ul>
+</li>
+</ul>
+<hr />
 <h3 id="step-3-define-the-ubiquitous-language">Step 3: Define the ubiquitous language</h3>
 <p>This is where the work from the event storming and the relation with the business experts should help. Domain experts use their jargon while technical team members have their own language tuned for discussing the domain in terms of design. The terminology of day-to-day discussions is disconnected from the terminology embedded in the code, so the ubiquitous language helps to allign knowledge with design elements, code and tests. (Think about EJB, JPA entity, all the JEE design jargon versus ShippingOrder, order provisioning, fullfillment... )</p>
 <p>The vocabulary of that ubiquitous language includes the class names and prominent operation names. The language includes terms to discuss rules that have been made explicit in the model. Be sure to commit the team to exercising that language relentlessly in all communication within the business and in the code. Use the same language in diagrams, writing, and especially speech.</p>
@@ -1253,6 +1300,7 @@
 <h4 id="aggregate-boundaries">Aggregate boundaries</h4>
 <p>An aggregate is a cluster of associated objects that we treat as a unit for the purpose of data changes. An entity is most likely and aggregate and every things related to it define its boundaries. </p>
 <h4 id="bounded-contexts">Bounded Contexts</h4>
+<p>Bounded Context explicitly defines the boundaries of your model. This concept is critical in large software projects. A Bounded Context sets the limits around what a specific team works on and helps them to define their own vocabulary within that particular context. When you define a bounded context, you define who uses it, how they use it, where it applies within a larger application context, and what it consists of in terms of things like Swagger documentation and code repositories.</p>
 <p>Within a business context every use of a given domain term, phrase, or sentence, <strong>the Ubiquitous Language</strong> inside the boundary has a specific contextual meaning. So order context is a boundary context and groups order, ordered product type, pickup and shipping addresses, delivery specifications, delivery history. </p>
 <h4 id="repositories">Repositories</h4>
 <p>Repository represents the infrastructure service to persist the root aggregate during its full life cycle.
@@ -1262,6 +1310,9 @@ Client applications request objects from the repository using query methods that
 <ul>
 <li>Event Topics <ul>
 <li>Used to configure the Event Backbone </li>
+<li>Mapped to the life cycle of the root entity</li>
+<li>Topics can be chained to address different consumer semantic</li>
+<li>Single partition for keeping order and support exactly once delivery</li>
 </ul>
 </li>
 <li>Event types within each event topic </li>
