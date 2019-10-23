@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#starting-materials-generated-during-event-storming-and-analysis" tabindex="1" class="md-skip">
+      <a href="#starting-materials-generated-during-the-event-storming-workshop" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -431,8 +431,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#starting-materials-generated-during-event-storming-and-analysis" title="Starting materials generated during Event Storming and Analysis" class="md-nav__link">
-    Starting materials generated during Event Storming and Analysis
+  <a href="#starting-materials-generated-during-the-event-storming-workshop" title="Starting materials generated during the Event Storming workshop" class="md-nav__link">
+    Starting materials generated during the Event Storming workshop
   </a>
   
 </li>
@@ -453,11 +453,24 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-defined-the-potential-applications" title="Step 2: Defined the potential applications" class="md-nav__link">
-    Step 2: Defined the potential applications
+  <a href="#step-2-defined-the-potential-application" title="Step 2: Defined the potential application" class="md-nav__link">
+    Step 2: Defined the potential application
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#each-interface-needs-to-be-documented-using-an-efficient-tools-of-interface-characteristics" title="Each interface needs to be documented using an efficient tools of interface characteristics." class="md-nav__link">
+    Each interface needs to be documented using an efficient tools of interface characteristics.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#step-3-define-the-ubiquitous-language" title="Step 3: Define the ubiquitous language" class="md-nav__link">
@@ -1033,8 +1046,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#starting-materials-generated-during-event-storming-and-analysis" title="Starting materials generated during Event Storming and Analysis" class="md-nav__link">
-    Starting materials generated during Event Storming and Analysis
+  <a href="#starting-materials-generated-during-the-event-storming-workshop" title="Starting materials generated during the Event Storming workshop" class="md-nav__link">
+    Starting materials generated during the Event Storming workshop
   </a>
   
 </li>
@@ -1055,11 +1068,24 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-defined-the-potential-applications" title="Step 2: Defined the potential applications" class="md-nav__link">
-    Step 2: Defined the potential applications
+  <a href="#step-2-defined-the-potential-application" title="Step 2: Defined the potential application" class="md-nav__link">
+    Step 2: Defined the potential application
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#each-interface-needs-to-be-documented-using-an-efficient-tools-of-interface-characteristics" title="Each interface needs to be documented using an efficient tools of interface characteristics." class="md-nav__link">
+    Each interface needs to be documented using an efficient tools of interface characteristics.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#step-3-define-the-ubiquitous-language" title="Step 3: Define the ubiquitous language" class="md-nav__link">
@@ -1183,10 +1209,10 @@
 <ul>
 <li>To support highly modular cloud native microservices. </li>
 <li>To adopt event coupled microservices - facilitating independent modification and evolution of each microservice separately.</li>
-<li>To allow applying event-driven patterns such as event sourcing, CQRS and SAGA to address some of the challenges of microservice: data eventual consitency, transaction cross domain, and complex queries between aggregates managed by different services.</li>
+<li>To allow applying event-driven patterns such as event sourcing, CQRS and SAGA to address some of the challenges of microservice implementation: data consitency, transaction cross domain, and complex queries between aggregates managed by different services.</li>
 </ul>
-<h2 id="starting-materials-generated-during-event-storming-and-analysis">Starting materials generated during Event Storming and Analysis</h2>
-<p>We make use of the following materials generated during Event Storming and analysis of the Container Shipment example problem: </p>
+<h2 id="starting-materials-generated-during-the-event-storming-workshop">Starting materials generated during the Event Storming workshop</h2>
+<p>We make use of the following materials generated during Event Storming and analysis workshop: </p>
 <ul>
 <li>Event Sequence flow.</li>
 <li>Events – business description.</li>
@@ -1201,20 +1227,19 @@
 </li>
 </ul>
 <p>The derivation of these material was described in: <a href="../eventstorming/">the event storming introduction</a>.</p>
-<p>Here is an example of starting material illustrating the beginning of the process:</p>
+<p>Here is an example of starting material illustrating the beginning of the process for the Reefer shipping business process:</p>
 <p><img alt="" src="../images/event-storming-order.png" /></p>
+<p>From there we complement the analysis and start the domain design.</p>
 <h2 id="steps-in-the-design-process">Steps in the design process</h2>
-<p>Here we describe in generic terms, each step in the process of deriving event-linked microservice specifications.</p>
-<hr />
 <h3 id="step-1-assess-domain-and-subdomains">Step 1: Assess domain and subdomains</h3>
-<p>Domain is what an organization does, and it includes the how to perform its operations. It is composed of sub domains. A Core Domain is a part of the business Domain that is of primary importance to the success of the organization, the organization needs to excel at it.</p>
+<p>Domain is what an organization does, and it includes the how to perform its operations.  It is composed of sub domains. A Core Domain is a part of the business Domain that is of primary importance to the success of the organization, the organization needs to excel at it.</p>
 <p>During the event storming analysis, you define the domain and groups a set of subdomains like orders, invoice, customer, ... and external systems. Here is an example of such domain and subdomains:</p>
 <p><img alt="" src="../images/domain-subdomains.png" /></p>
-<p>We have three core subdomains and the rest as support.</p>
+<p>We have three core subdomains and the rest are supports.</p>
 <hr />
-<h3 id="step-2-defined-the-potential-applications">Step 2: Defined the potential applications</h3>
-<p>At the high level, when doing the analysis, you should have some insight decision of the top level application to develop, but it is also important to see list other systems to interact to. A classic system context diagram is a nice tool to represent that. The EDA reference implementation solution includes such <a href="https://ibm-cloud-architecture.github.io/refarch-kc/design/architecture/#system-context">system context diagram</a>.</p>
-<hr />
+<h3 id="step-2-defined-the-potential-application">Step 2: Defined the potential application</h3>
+<p>At the high level, when doing the analysis, you should have some insight decision of the top level application to develop, but it is also important to also list other systems to interact with. A classic system context diagram is a nice tool to represent that. The EDA reference implementation solution includes such <a href="https://ibm-cloud-architecture.github.io/refarch-kc/design/architecture/#system-context">system context diagram</a>.</p>
+<h2 id="each-interface-needs-to-be-documented-using-an-efficient-tools-of-interface-characteristics">Each interface needs to be documented using an efficient tools of interface characteristics.</h2>
 <h3 id="step-3-define-the-ubiquitous-language">Step 3: Define the ubiquitous language</h3>
 <p>This is where the work from the event storming and the relation with the business experts should help. Domain experts use their jargon while technical team members have their own language tuned for discussing the domain in terms of design. The terminology of day-to-day discussions is disconnected from the terminology embedded in the code, so the ubiquitous language helps to allign knowledge with design elements, code and tests. (Think about EJB, JPA entity, all the JEE design jargon versus ShippingOrder, order provisioning, fullfillment... )</p>
 <p>The vocabulary of that ubiquitous language includes the class names and prominent operation names. The language includes terms to discuss rules that have been made explicit in the model. Be sure to commit the team to exercising that language relentlessly in all communication within the business and in the code. Use the same language in diagrams, writing, and especially speech.</p>
