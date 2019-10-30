@@ -657,6 +657,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#payload-size" title="Payload size" class="md-nav__link">
+    Payload size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-considerations" title="Parameter considerations" class="md-nav__link">
+    Parameter considerations
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1019,6 +1033,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#payload-size" title="Payload size" class="md-nav__link">
+    Payload size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-considerations" title="Parameter considerations" class="md-nav__link">
+    Parameter considerations
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1145,13 +1173,26 @@ numerous factors including message throughput, message size, hardware, configura
 <ul>
 <li>Resilience: ensuring replication and not loosing data</li>
 <li>Throughput: ensuring message processing performance</li>
-<li>Size: support larger message</li>
+<li>Payload size: support larger message</li>
 </ul>
 <h3 id="resilience">Resilience</h3>
 <p>When defining a topic, we need to specify the replicas factor to match the be at least 3 and then set the minimum number of in-sync replicas that specifies how may replicas must acknowledge a write to satisfy a producer that requests acknowledgments from all replicas. (<code>min.insync.replicas</code>).</p>
 <p>The replication of message data between brokers can consume a lot of network bandwidth so isolating replication traffic from application traffic can benefit performance. To achieve this, all replication traffic is configured to flow on a dedicated internal network.</p>
 <h3 id="throughput">Throughput</h3>
-<p>To achieve higher throughput the messages could not be replicated across brokers and the acknowledgement can be set to only one broker. The number of producers and consumers are aligned, and the number of partition match the number of consumers. All consumers are in the same consumer group.   </p>
+<p>To achieve higher throughput the messages are not replicated across brokers and the acknowledgement can be set to only one broker. Expose resilienc to failures.</p>
+<p>The number of producers and consumers are aligned, and the number of partition match the number of consumers. All consumers are in the same consumer group. Measurement has to be done from the producer code.
+With 12 producers on a 3 brokers cluster and small payload (128 bytes), with 24 consumers the measured throughput is around 2.3 M messages / second.</p>
+<h3 id="payload-size">Payload size</h3>
+<p>From measurement tests done using Kafka producer performance tool, there is a 1/log(s) curve, where below 10k bytes the performances are correct and then slowly degrade from 3000 msg /s (10k bytes msg) to 65 msg/s (515kb msg).</p>
+<p>To do performance test the <a href="https://github.com/IBM/event-streams-sample-producer">event-streams-sample-producer</a> github provides producer tool in Java, using a group of threads to run in multi cores machine. This project can be dockerized, and deployed in k8s. It uses the kafka tool named: <code>ProducerPerformance.java</code> in the jar: </p>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.apache.kafka<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>kafka-tools<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+
+<h3 id="parameter-considerations">Parameter considerations</h3>
+<p>There are a lot of factors and parameters that needs to be tuned to improve performance at the brokers threading level (<code>num.replica.fetchers, num.io.threads, num.network.threads, log.cleaner.threads</code> ) and the pod resources constraints. See <a href="https://kafka.apache.org/documentation/#configuration">configuration documentation</a>.</p>
 <h2 id="multi-regions-for-disaster-recovery">Multi regions for disaster recovery</h2>
 <p>With the current implementation it is recommended to have one cluster per data center / availability zone. Consumers and producers are co-located to the brokers cluster. When there are needs to keep some part of the data replicated in both data center, you need to assess what kind of data can be aggregated, and if Kafka mirroring tool can be used. The tool consumes from a source cluster, from a given topic, and produces to a destination cluster with the same named topic. It keeps the message key for partitioning, so order is preserved. </p>
 <p><img alt="" src="../images/ha-dc1.png" /></p>

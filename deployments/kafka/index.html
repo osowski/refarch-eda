@@ -747,19 +747,12 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#development" title="Development" class="md-nav__link">
-    Development
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#verifying-kafka-is-connected-to-zookeeper" title="Verifying Kafka is connected to zookeeper" class="md-nav__link">
     Verifying Kafka is connected to zookeeper
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#verifying-pubsub-works-with-text-messages" title="Verifying pub/sub works with text messages" class="md-nav__link">
@@ -996,19 +989,12 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#development" title="Development" class="md-nav__link">
-    Development
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#verifying-kafka-is-connected-to-zookeeper" title="Verifying Kafka is connected to zookeeper" class="md-nav__link">
     Verifying Kafka is connected to zookeeper
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#verifying-pubsub-works-with-text-messages" title="Verifying pub/sub works with text messages" class="md-nav__link">
@@ -1096,27 +1082,43 @@
                 
                 
                 <h1 id="kafka-deployment">Kafka Deployment</h1>
-<p>We are proposing different deployment approaches:</p>
+<p>A frequently asked question related to deployment is whether Kafka should be deployed on its own servers or within kubernetes. While a lot of kakfa based product providers have selected to deploy to kubernetes via operators, like Strimzi, or helm chart, it may make sense to separate the Kafka broker servers on their own VM or even bare-metal. We want to highlight the following criterias to assess before going to non kubernetes deployment:</p>
+<ul>
+<li>Fast persistence storage capacity and technology used to support persistence volumes. You need high level throughput storage. </li>
+<li>Skill set around kubernetes deployment and operations</li>
+<li>
+<p>Maintenance of operating system, software version for standalone servers</p>
+</li>
+<li>
+<p>Advantages of deploying Kafka on Kubernetes:</p>
+<ul>
+<li>Simplified and fast deployment of the solution. Event better with Helm or Operators.</li>
+<li>Consistent management plane with the consumer &amp; producer applications.</li>
+<li>Kafka version upgrades are provided through new container images, reducing configuration drift over updating VM’s in place.</li>
+<li>Kubernetes can manage automatic rebooting brokers in the event of failure, which simplifies management. The brokers are constantly monitored for liveness.</li>
+<li>Consumer application can use cluster internal hostnames, potentially reducing the number of network hops to/from producer/consumer applications.</li>
+<li>Can leverage logging and monitoring tools that are part of the Kubernetes platform.</li>
+<li>Easy to scale by adding new broker </li>
+<li>Automatic version rolling upgrade without impacting Kafka brokers availability.</li>
+<li>Cloud Platform agnostic.</li>
+</ul>
+</li>
+<li>
+<p>Disadvantages of deploying Kafka on Kubernetes:</p>
+<ul>
+<li>Kafka (and ZooKeeper) must have very fast highly-available persistent storage available. This limits the storage options for Kafka/ZooKeeper data to those storage options supported by Kubernetes.</li>
+<li>Teams used to managing Kafka on VM’s or bare metal will have to learn the complexities of Kubernetes to effectively manage Kafka on Kubernetes.</li>
+</ul>
+</li>
+</ul>
+<p>In our implementation solution are proposing different deployment approaches:</p>
 <ul>
 <li>Using IBM Event Streams on kubernetes or Openshift (See <a href="../eventstreams/">separate note</a>)</li>
-<li>Using Kafka on development environment, mostly developer workstation</li>
-<li>Using IBM Event Streams as service in IBM Cloud. (See <a href="../eventstreams/es-ibm-cloud/">this note</a>)</li>
+<li>Using Kafka on development environment, mostly developer workstation using docker and docker-compose. (See <a href="https://github.com/ibm-cloud-architecture/refarch-kc/blob/master/docs/deployments/docker.md#setting-up-kafka-and-zookeeper">this note for reference</a>)</li>
+<li>Using IBM Event Streams as service on IBM Cloud platform. (See <a href="../eventstreams/es-ibm-cloud/">this note</a>)</li>
 </ul>
 <p>We are defining two types of manifests, one set for development environment and one for production. The manifests and scripts are under each deployment folders.</p>
-<h2 id="development">Development</h2>
-<p>For kafka the manifests are in this project under the <code>deployments/kafka/dev</code> folder. We are using the google image: <code>bitnami/kafka</code>.</p>
-<p>We tested on MacOS with Docker Edge and Kubernetes.</p>
-<p>We are also providing scripts to deploy Kafka to a kubernetes cluster:</p>
-<div class="codehilite"><pre><span></span>$ <span class="nb">pwd</span>
-&gt; deployments/kafka
-$ ./deployKafka.sh
-$ kubectl get pods -n greencompute
-NAME                            READY     STATUS    RESTARTS   AGE
-gc-kafka-0                      <span class="m">1</span>/1       Running   <span class="m">0</span>          2m
-gc-zookeeper-57dc5679bb-bh29q   <span class="m">1</span>/1       Running   <span class="m">0</span>          10m
-</pre></div>
-
-<h3 id="verifying-kafka-is-connected-to-zookeeper">Verifying Kafka is connected to zookeeper</h3>
+<h2 id="verifying-kafka-is-connected-to-zookeeper">Verifying Kafka is connected to zookeeper</h2>
 <p>The goal is to connect to the kafka running container and use the scripts inside kafka bin folder:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># connect to the running container:</span>
 $ kubectl <span class="nb">exec</span>  -ti gc-kafka-0 /bin/bash -n greencompute
