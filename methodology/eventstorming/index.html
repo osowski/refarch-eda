@@ -515,13 +515,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#apply-domain-driven-design" title="Apply Domain-Driven Design" class="md-nav__link">
-    Apply Domain-Driven Design
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#event-storming-to-user-stories-and-epics" title="Event storming to user stories and epics" class="md-nav__link">
     Event storming to user stories and epics
   </a>
@@ -536,6 +529,13 @@
         <li class="md-nav__item">
   <a href="#applying-to-the-container-shipment-use-case" title="Applying to the container shipment use case" class="md-nav__link">
     Applying to the container shipment use case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-practice-notes" title="Some practice notes" class="md-nav__link">
+    Some practice notes
   </a>
   
 </li>
@@ -1156,13 +1156,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#apply-domain-driven-design" title="Apply Domain-Driven Design" class="md-nav__link">
-    Apply Domain-Driven Design
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#event-storming-to-user-stories-and-epics" title="Event storming to user stories and epics" class="md-nav__link">
     Event storming to user stories and epics
   </a>
@@ -1177,6 +1170,13 @@
         <li class="md-nav__item">
   <a href="#applying-to-the-container-shipment-use-case" title="Applying to the container shipment use case" class="md-nav__link">
     Applying to the container shipment use case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-practice-notes" title="Some practice notes" class="md-nav__link">
+    Some practice notes
   </a>
   
 </li>
@@ -1332,8 +1332,6 @@ You can think of insight storming as extending the analysis to <strong>Derived E
 <h2 id="design-iteration">Design iteration</h2>
 <p>Attention we are not proposing to apply a waterfall approach, but before starting the deeper implementation with iterations, we want to spend sometime to define in more details what we want to build, how to organize the CI/CD projects and pipeline, select the development, test and product plaform, and define epics, user stories, components, microservices... This iteration can take from few hours to a week, depending on the expected MVP goals. </p>
 <p>For an event-driven solution a MVP for a single application should not take more than 3 to 4 iterations. </p>
-<h3 id="apply-domain-driven-design">Apply Domain-Driven Design</h3>
-<p>See our separate note on <a href="../ddd/">applying DDD and event storming for event-driven microservice implementation</a></p>
 <h3 id="event-storming-to-user-stories-and-epics">Event storming to user stories and epics</h3>
 <p>In agile methodology, creating user stories or epics is one of the most important elements in project management. The commands and policies related to events can be easily described as user stories, because commands and decisions are done by actors. The actor could be a system as well.
 For the data you must model the "Create, Read, Update, Delete" operations as user stories, mostly supported by a system actor.</p>
@@ -1341,6 +1339,10 @@ For the data you must model the "Create, Read, Update, Delete" operations as use
 <p>An event is the result or outcome of a user story. Events can be added as part of the acceptance criteria of the user stories to verify that the event really occurs.</p>
 <h2 id="applying-to-the-container-shipment-use-case">Applying to the container shipment use case</h2>
 <p>The K Container Shipment use case demonstrates an implementation solution to validate the event-driven architecture. The <a href="https://ibm-cloud-architecture.github.io/refarch-kc/analysis/readme/">container shipment analysis example</a>, shows event storming and design thinking main artifacts, including artifacts for the monitoring of refrigerated containers.</p>
+<h2 id="some-practice-notes">Some practice notes</h2>
+<ul>
+<li>you can apply event storming at different level: for example at the beginning of a project to understand the high level process at stake. with a big group of people, you will stay at the high level. But it can be used to model a lower level microservice, to assess event consumed and produced.</li>
+</ul>
 <h2 id="further-readings">Further Readings</h2>
 <ul>
 <li><a href="http://ziobrando.blogspot.com/2013/11/introducing-event-storming.html#.VbhQTn-9KK1">Introduction to event storming from Alberto Brandolini </a></li>
@@ -1350,7 +1352,7 @@ For the data you must model the "Create, Read, Update, Delete" operations as use
 <li><a href="https://learning.oreilly.com/videos/domain-driven-design-distilled/9780134593449/9780134593449-DDDD_07_01?autoplay=false">Domain drive design with event storming introduction video</a></li>
 <li><a href="https://martinfowler.com/tags/domain%20driven%20design.html">Patterns related to Domain Driven Design</a> by Martin Fowler</li>
 <li><a href="https://www.ibm.com/cloud/garage/practices/code/domain-driven-design/overview">Kyle Brown - IBM - Apply Domain-Driven Design to microservices architecture</a></li>
-<li><a href="../ddd/">Applying DDD and event storming for event-driven microservice implementation</a></li>
+<li><a href="../ddd/">Applying DDD and event storming for event-driven microservice implementation from our own work</a></li>
 </ul>
                 
                   
