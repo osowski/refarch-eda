@@ -576,8 +576,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../arch/" title="Kafka architecture" class="md-nav__link">
-      Kafka architecture
+    <a href="../arch/" title="Architecture considerations" class="md-nav__link">
+      Architecture considerations
     </a>
   </li>
 
@@ -660,6 +660,13 @@
         <li class="md-nav__item">
   <a href="#some-design-considerations" title="Some design considerations" class="md-nav__link">
     Some design considerations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faust-a-python-library-to-do-kafka-streaming" title="Faust: a python library to do kafka streaming" class="md-nav__link">
+    Faust: a python library to do kafka streaming
   </a>
   
 </li>
@@ -969,6 +976,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#faust-a-python-library-to-do-kafka-streaming" title="Faust: a python library to do kafka streaming" class="md-nav__link">
+    Faust: a python library to do kafka streaming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#other-examples" title="Other examples" class="md-nav__link">
     Other examples
   </a>
@@ -1094,6 +1108,14 @@ root&gt; /opt/Kafka_2.11-0.10.1.0/bin/Kafka-console-consumer.sh --bootstrap-serv
 <ul>
 <li>Avoid external database lookup as part of the stream: As kafka can handle million of records per second, so a lookup to an external database to do a join between a primary key that is in the event and a table in the database to do a data enrichment, for example is a bad practice. The approach will be to use Ktable, with state store and perform a join in memory.</li>
 </ul>
+<h2 id="faust-a-python-library-to-do-kafka-streaming">Faust: a python library to do kafka streaming</h2>
+<p><a href="https://faust.readthedocs.io/en/latest/index.html">Faust</a> is a python library to support stream processing. It does not have its own DSL as Kafka streams in Java has, but just python functions.</p>
+<p>It uses rocksdb to support tables.</p>
+<p>For the installation, in your python environment do a <code>pipenv run pip install faust</code>, or <code>pip install faust</code>. Then use faust as a CLI. So to start an agent as worker use:</p>
+<div class="codehilite"><pre><span></span>faust -A nameofthepythoncode -l info
+</pre></div>
+
+<p>Multiple instances of a Faust worker can be started independently to distribute stream processing across machines and CPU cores.</p>
 <h2 id="other-examples">Other examples</h2>
 <p>We have implemented the container microservice of the Container Shipment solution using kstreams processing. See the presentation <a href="https://ibm-cloud-architecture.github.io/refarch-kc-container-ms/kstreams">here</a>, and go to the following code to see tests for the different process flow.</p>
 <ul>

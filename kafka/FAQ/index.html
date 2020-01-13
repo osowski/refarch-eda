@@ -576,8 +576,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../arch/" title="Kafka architecture" class="md-nav__link">
-      Kafka architecture
+    <a href="../arch/" title="Architecture considerations" class="md-nav__link">
+      Architecture considerations
     </a>
   </li>
 
@@ -700,6 +700,13 @@
         <li class="md-nav__item">
   <a href="#differences-between-akka-and-kafka" title="Differences between Akka and Kafka?" class="md-nav__link">
     Differences between Akka and Kafka?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-streams-resource-requirements" title="Event streams resource requirements" class="md-nav__link">
+    Event streams resource requirements
   </a>
   
 </li>
@@ -1018,6 +1025,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#event-streams-resource-requirements" title="Event streams resource requirements" class="md-nav__link">
+    Event streams resource requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#other-faqs" title="Other FAQs" class="md-nav__link">
     Other FAQs
   </a>
@@ -1055,17 +1069,18 @@
 <p>The message sent to a cluster is kept for a max period of time or until a max size is reached. Those topic properties are: <code>retention.ms</code> and <code>retention.bytes</code>. Messages stay in the log even if they are consumed. The oldest messages are marked for deletion or compaction depending of the cleanup policy (delete or compact) set to <code>cleanup.policy</code> parameter.</p>
 <p>See the kafka documentation on <a href="https://kafka.apache.org/documentation/#topicconfigs">topic configuration parameters</a>. </p>
 <p>Here is a command to create a topic with specific retention properties:</p>
-<div class="codehilite"><pre><span></span>bin/kafka-configs --zookeeper XX.XX.XX.XX:2181 --entity-type topics --entity-name orders --alter --add-config  retention.ms=55000 --add-config  retention.ms=55000
+<div class="codehilite"><pre><span></span>bin/kafka-configs --zookeeper XX.XX.XX.XX:2181 --entity-type topics --entity-name orders --alter --add-config  retention.ms=55000 --add-config  retention.byte=100000
 </pre></div>
 
-<p>But there is also the <code>offsets.retention.minutes</code> property, set at the cluster level to control when the offset information will be deleted. It is defaulted to 1 day, but the max possible value is 7 days. This is to avoid keeping too much information in the broker memory and avoid to miss data when consumers run not continuously. So consumers need to commit their offset. If the consumer properties <code>auto.offset.reset=earliest</code> it will reprocess all the events, or skips to the latest if set to latest. In this last case if the consumers are offline for more than this time window, they will lose events.</p>
+<p>But there is also the <code>offsets.retention.minutes</code> property, set at the cluster level to control when the offset information will be deleted. It is defaulted to 1 day, but the max possible value is 7 days. This is to avoid keeping too much information in the broker memory and avoid to miss data when consumers run not continuously. So consumers need to commit their offset. If the consumer settings define: <code>auto.offset.reset=earliest</code>, the consumer will reprocess all the events each time it restarts, (or skips to the latest if set to <code>latest</code>). When using <code>latest</code>, if the consumers are offline for more than the offsets retention time window, they will lose events.</p>
 <h2 id="what-are-the-topic-characteristics-i-need-to-define-during-requirements">What are the topic characteristics I need to define during requirements?</h2>
 <p>This is a requirement gathering related question, to understand what need to be done for configuration topic configuration but also consumer and producer configuration, as well as retention strategy.</p>
 <ul>
 <li>Number of brokers in the cluster</li>
 <li>fire or forget or persist data for which amount of time</li>
 <li>Need for HA, set replicas to number of broker or at least the value of 3</li>
-<li>Type of data to transport </li>
+<li>Type of data to transport</li>
+<li>Schema management to control change to the payload definition</li>
 <li>volume per day</li>
 <li>Accept snapshot</li>
 <li>Need to do ge replication to other kafka cluster</li>
@@ -1075,9 +1090,11 @@
 <p><a href="https://akka.io/">Akka</a> is a open source toolkit for Scala or Java to simplify multithreading programming and makes application more reactive by adopting an asynchronous mechanism to access to io: database or HTTP request. To support asynchronous communication between 'actors', it uses messaging, internal to the JVM. 
 Kafka is part of the architecture, while Akka is an implementation choice for one of the component of the business application deployed inside the architecture. </p>
 <p><a href="https://vertx.io/">vert.x</a> is another open source implementation of such internal messaging mechanism but supporting more language:  Java, Groovy, Ruby, JavaScript, Ceylon, Scala, and Kotlin.</p>
+<h2 id="event-streams-resource-requirements">Event streams resource requirements</h2>
+<p>See the <a href="https://ibm.github.io/event-streams/installing/prerequisites/#helm-resource-requirements">detailed tables</a> in the product documentation.</p>
 <h2 id="other-faqs">Other FAQs</h2>
 <p><a href="https://cloud.ibm.com/docs/services/EventStreams?topic=eventstreams-faqs">IBM Event streams on Cloud FAQ</a> </p>
-<p><a href="https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowareKafkabrokersdependonZookeeper?">FAQ from Confluence</a></p>
+<p><a href="https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowareKafkabrokersdependonZookeeper?">FAQ from Confluent</a></p>
                 
                   
                 
