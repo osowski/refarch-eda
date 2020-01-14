@@ -36,7 +36,7 @@
     
     
       
-        <title>Kafka consumer development practices - Event Driven Architecture</title>
+        <title>Kafka Connect - Event Driven Architecture</title>
       
     
     
@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#consumers-design-and-implementation-considerations" tabindex="1" class="md-skip">
+      <a href="#kafka-connect" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -121,7 +121,7 @@
               Event Driven Architecture
             </span>
             <span class="md-header-nav__topic">
-              Kafka consumer development practices
+              Kafka Connect
             </span>
           
         </div>
@@ -610,84 +610,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Kafka consumer development practices
-      </label>
-    
-    <a href="./" title="Kafka consumer development practices" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../consumers/" title="Kafka consumer development practices" class="md-nav__link">
       Kafka consumer development practices
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#important-concepts" title="Important concepts" class="md-nav__link">
-    Important concepts
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#assess-number-of-consumers-needed" title="Assess number of consumers needed" class="md-nav__link">
-    Assess number of consumers needed
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#offset-management" title="Offset management" class="md-nav__link">
-    Offset management
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repositories-with-consumer-code" title="Repositories with consumer code" class="md-nav__link">
-    Repositories with consumer code
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kafka-useful-consumer-apis" title="Kafka useful Consumer APIs" class="md-nav__link">
-    Kafka useful Consumer APIs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" title="References" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -707,11 +634,63 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../connect/" title="Kafka Connect" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Kafka Connect
+      </label>
+    
+    <a href="./" title="Kafka Connect" class="md-nav__link md-nav__link--active">
       Kafka Connect
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#characteristics" title="Characteristics" class="md-nav__link">
+    Characteristics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-readings" title="Further Readings" class="md-nav__link">
+    Further Readings
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -981,43 +960,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#important-concepts" title="Important concepts" class="md-nav__link">
-    Important concepts
+  <a href="#characteristics" title="Characteristics" class="md-nav__link">
+    Characteristics
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#assess-number-of-consumers-needed" title="Assess number of consumers needed" class="md-nav__link">
-    Assess number of consumers needed
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#offset-management" title="Offset management" class="md-nav__link">
-    Offset management
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repositories-with-consumer-code" title="Repositories with consumer code" class="md-nav__link">
-    Repositories with consumer code
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kafka-useful-consumer-apis" title="Kafka useful Consumer APIs" class="md-nav__link">
-    Kafka useful Consumer APIs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" title="References" class="md-nav__link">
-    References
+  <a href="#further-readings" title="Further Readings" class="md-nav__link">
+    Further Readings
   </a>
   
 </li>
@@ -1038,66 +996,43 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/kafka/consumers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ibm-cloud-architecture/refarch-eda/edit/master/docs/kafka/connect.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="consumers-design-and-implementation-considerations">Consumers design and implementation considerations</h1>
-<h2 id="important-concepts">Important concepts</h2>
-<p>Consumers belong to <strong>consumer groups</strong>. You specify the group name as part of the connection parameters.</p>
-<div class="codehilite"><pre><span></span>  <span class="n">properties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">ConsumerConfig</span><span class="o">.</span><span class="na">GROUP_ID_CONFIG</span><span class="o">,</span>  <span class="n">groupid</span><span class="o">);</span>
-</pre></div>
-
-<p>Consumer groups are grouping consumers to cooperate to consume messages from one or more topics. Consumers can run in separate hosts and separate processes.</p>
-<p><img alt="consumer group" src="../images/consumer-group.png" /></p>
-<p>Organized in cluster the coordinator servers are responsible for assigning partitions to the consumers in the group. The rebalancing of partition to consumer is done when a new consumer joins or leaves the group or when a new partition is added to an existing topic. There is always at least one consumer per partition.</p>
-<p>Implementing a Topic consumer is using the kafka <a href="https://kafka.apache.org/10/javadoc/?org/apache/kafka/clients/consumer/KafkaConsumer.html">KafkaConsumer class</a> which the API documentation is a must read.</p>
-<p>The implementation is simple for a single thread consumer, and the code structure looks like:</p>
+                <h1 id="kafka-connect">Kafka Connect</h1>
+<p><a href="https://docs.confluent.io/current/connect/index.html">Kafka connect</a> is an open source component for easily integrate external systems with Kafka. It works with IBM Event Streams and Red Hat AMQ Streams.<br />
+It uses the concepts of source and sink connectors to ingest or deliver data to topics.</p>
+<p><img alt="" src="../images/kafka-components.png" /></p>
+<p>The concepts are detailed in <a href="https://docs.confluent.io/current/connect/concepts.html">this note</a> or <a href="https://ibm.github.io/event-streams/connecting/connectors/">IBM Event streams</a> and below is a quick summary:</p>
 <ul>
-<li>prepare the properties</li>
-<li>create an instance of KafkaConsumer to connect to a topic and a partition</li>
-<li>loop on polling events</li>
-<li>process the ConsumerRecords and commit the offset by code or use the autocommit attibute of the consumer</li>
+<li><strong>connector</strong> represents a logical job to move data from / to kafka  to / from external systems. A lot of <a href="https://ibm.github.io/event-streams/connectors/">existing connectors</a> can be reused, or you can implement your own plugin. </li>
+<li><strong>workers</strong> are JVM running the connector. For production deployment workers run in cluster. </li>
+<li><strong>tasks</strong>: each worker coordinates a set of tasks to copy data. Task states are saved in kafka topics. They can be started, stopped at any time to support resilience, and scalable data pipeline.</li>
 </ul>
-<p>Examples of Java consumers can be found in <a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms/blob/master/order-command-ms/src/main/java/ibm/gse/orderms/infrastructure/kafka/OrderEventAgent.java">the order management microservice project</a> under the order-command-ms folder.
-Example of Javascript implementation is in <a href="https://github.com/ibm-cloud-architecture/refarch-kc-ms/blob/master/voyages-ms/server/utils/kafka.js">this repository/folder</a></p>
-<p>But the complexity comes from the offset management and multithreading needs. So the following important considerations need to be addressed while implementing a consumer.</p>
-<h2 id="assess-number-of-consumers-needed">Assess number of consumers needed</h2>
-<p>The KafkaConsumer is not thread safe so it is recommended to run in a unique thread. But if needed you can implement a multi-threads solution, but as each thread will open a TCP connection to the Kafka broker, be sure to close the connection to avoid memory leak. The alternate is to start n processus (JVM process).</p>
-<p>If you need multiple consumers running in parallel to scale horizontally, you have to define multiple partitions while configuring the topic and use fine-grained control over offset persistence. You’ll use one consumer per partition of a topic.
-This consumer-per-partition pattern maximizes throughput. When consumers run in parallel and you use multiple threads per consumer you need to be sure the total number of threads across all instances do not exceed the total number of partitions in the topic.</p>
-<p>Also, a consumer can subscribe to multiple topics. The brokers are doing rebalancing of the assignment of topic-partition to a consumer that belong to a group. When creating a new consumer you can specify the group id in the options.</p>
-<h2 id="offset-management">Offset management</h2>
-<p>Recall that offset is just a numeric identifier of a consumer position of the last record read within a partition. Consumers periodically need to commit the offsets of messages they have received to show they have processed the message and in case of failure from where they should reconnect. It is possible to commit by calling API or by setting some properties at the consumer creation level to enable autocommit offset. When doing manual offet, there are two types of manually committed:</p>
+<p><img alt="" src="../images/connector-tasks.png" /></p>
+<p>When a connector is submitted to the cluster, the workers rebalance the full set of connectors in the cluster and their tasks so that each worker has approximately the same amount of work. </p>
+<h2 id="characteristics">Characteristics</h2>
 <ul>
-<li>offsets—synchronous</li>
-<li>asynchronous</li>
+<li>Copy vast quantities of data: work at the database level</li>
+<li>Support streaming and batch</li>
+<li>Scale at the organization level, even if it can support a standalone, mono connector appraoch to start small</li>
+<li>Copy data, externalize transformation in other framework</li>
+<li>Run in parallel and distributed servers</li>
+<li>Kafka Connect defines three models: data model, worker model and connector model</li>
+<li>Provide a REST interface to manage and monitor jobs</li>
 </ul>
-<p>When dealing with heavy load storing offset in zookeeper is non advisable. It is even now recognize as a bad practice. To manage offset use the new consumer API, and for example commits offset synchronously when a specified number of events are read from the topic and the persistence to the back end succeed.</p>
-<p>Assess if it is possible to loose messages from topic.  If so, when a consumer restarts it will start consuming the topic from the end of the queue.</p>
-<p>Does this solution acceptable? As the operation to store a message and the storage of offsets are two separate operations, and in case of failure between them, it is possible to have stale offsets, which will introduce duplicate messages when consumers restart to process from last known committed offset. "exactly-once" means grouping record and offset persistence in an atomic operation.</p>
-<h2 id="repositories-with-consumer-code">Repositories with consumer code</h2>
+<h2 id="installation">Installation</h2>
+<p>To deploy Kafka connectors on kubernetes, we recommend reading the <a href="https://ibm.github.io/event-streams/connecting/setting-up-connectors/">IBM  event streams documentation</a> or may be condidering the <a href="https://strimzi.io/docs/0.9.0/#kafka-connect-str">Strimzi Kafka connect operator</a>.
+With Event streams on premise deployment the connectors setup can be done via the user interface:</p>
+<p><img alt="" src="../images/es-connectors.png" /></p>
+<p><em>Deploying connectors against an IBM Event Streams cluster, you need to have API key with permissions to produce and consume messages for all topics.</em></p>
+<p>When running in distributed mode, the Connectors need three topics as presented in the <code>create topics</code> table <a href="https://ibm.github.io/event-streams/connecting/setting-up-connectors/">here</a>.</p>
+<p>As an extendable framework, kafka connect, can have new plugins. To deploy new connector, the docker images needs to be updated and redeployed.</p>
+<p>For getting started, a simple docker image can be used to run the connector in standalone.  </p>
+<h2 id="further-readings">Further Readings</h2>
 <ul>
-<li>Within the Reefer ontainer shipment solution we have a order events consumer: <a href="https://github.com/ibm-cloud-architecture/refarch-kc-order-ms/blob/master/order-command-ms/src/main/java/ibm/gse/orderms/infrastructure/kafka/OrderEventAgent.java">order event agent</a></li>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-kc-ms/blob/master/voyages-ms/server/utils/kafka.js">Nodejs kafka consumers and producers</a></li>
-<li><a href="https://github.com/ibm-cloud-architecture/refarch-kc/tree/master/itg-tests/kafka">A lot of python consumer in the integration tests, with or without Avro schema</a></li>
-</ul>
-<h2 id="kafka-useful-consumer-apis">Kafka useful Consumer APIs</h2>
-<ul>
-<li><a href="https://kafka.apache.org/11/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html">KafkaConsumer</a> a topic consumer which support:</li>
-<li>transparently handles brokers failure</li>
-<li>transparently adapt to partition migration within the cluster</li>
-<li>support grouping for load balancing among consumers</li>
-<li>maintains TCP connections to the necessary brokers to fetch data</li>
-<li>subscribe to multiple topics and being part of consumer groups</li>
-<li>each partition is assigned to exactly one consumer in the group</li>
-<li>if a process fails, the partitions assigned to it will be reassigned to other consumers in the same group</li>
-<li><a href="https://kafka.apache.org/11/javadoc/org/apache/kafka/clients/consumer/ConsumerRecords.html">ConsumerRecords</a> holds the list ConsumerRecord per partition for a particular topic.</li>
-<li><a href="https://kafka.apache.org/11/javadoc/org/apache/kafka/clients/consumer/ConsumerRecord.html">ConsumerRecord</a> A key/value pair to be received from Kafka. This also consists of a topic name and a partition number from which the record is being received, an offset that points to the record in a Kafka partition, and a timestamp</li>
-</ul>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://ibm.github.io/event-streams/about/consuming-messages/">IBM Event Streams - Consuming messages</a></li>
-<li><a href="https://kafka.apache.org/10/javadoc/?org/apache/kafka/clients/consumer/KafkaConsumer.html">KafkaConsumer class</a></li>
+<li><a href="https://docs.confluent.io/current/connect/index.html">Confluent Connector Documentation</a></li>
+<li><a href="https://ibm.github.io/event-streams/connecting/connectors/">IBM Event Streams Connectors</a></li>
 </ul>
                 
                   
@@ -1119,7 +1054,7 @@ This consumer-per-partition pattern maximizes throughput. When consumers run in 
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../producers/" title="Kafka producer development practices" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../kafka-stream/" title="Kafka streaming processing" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1128,19 +1063,19 @@ This consumer-per-partition pattern maximizes throughput. When consumers run in 
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Kafka producer development practices
+                Kafka streaming processing
               </span>
             </div>
           </a>
         
         
-          <a href="../kafka-stream/" title="Kafka streaming processing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../FAQ/" title="Kafka FAQ" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Kafka streaming processing
+                Kafka FAQ
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
