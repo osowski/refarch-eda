@@ -1238,7 +1238,7 @@ With 12 producers on a 3 brokers cluster and small payload (128 bytes), with 24 
 <p>IBM has created a pair of connectors, available as source code or as part of IBM Event Streams product. The Source Connector responsible to support the integration from MQ queue to Kafka topic is available in the github repository named <a href="https://github.com/ibm-messaging/kafka-connect-mq-source">ibm-messaging/kafka-connect-mq-source</a></p>
 <p>while the sink connector, from Kafka topic to MQ queue is at <a href="https://github.com/ibm-messaging/kafka-connect-mq-sink">ibm-messaging/kafka-connect-mq-sink</a></p>
 <p>The following figure illustrates the high level components.</p>
-<p><img alt="MQ kafka connector" src="../mq-kafka-connectors.png" /></p>
+<p><img alt="MQ kafka connector" src="../images/mq-kafka-connectors.png" /></p>
 <p>It is important to note that the Kafka connectors is a cluster deployment for local high availability and scalability.</p>
 <p>We are proposing an MQ to Kafka implementation sample in <a href="https://ibm-cloud-architecture.github.io/refarch-container-inventory/">the container inventory repository</a> where we mockup the integration of a legacy DB managing shipment container inventory, it runs as a java appm jms producer and consumer on MQ queues. This solution is integrated in the global EDA reference solution implementation and specially the <a href="https://ibm-cloud-architecture.github.io/refarch-kc-container-ms">Reefer container management</a> microservice.</p>
                 
