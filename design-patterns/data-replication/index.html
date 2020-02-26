@@ -538,6 +538,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mirror-maker-20" title="Mirror Maker 2.0" class="md-nav__link">
+    Mirror Maker 2.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#active-passive" title="Active - Passive" class="md-nav__link">
     Active - Passive
   </a>
@@ -547,13 +554,6 @@
         <li class="md-nav__item">
   <a href="#active-active" title="Active - Active" class="md-nav__link">
     Active - Active
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mirror-maker-2" title="Mirror Maker 2" class="md-nav__link">
-    Mirror Maker 2
   </a>
   
 </li>
@@ -974,6 +974,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mirror-maker-20" title="Mirror Maker 2.0" class="md-nav__link">
+    Mirror Maker 2.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#active-passive" title="Active - Passive" class="md-nav__link">
     Active - Passive
   </a>
@@ -983,13 +990,6 @@
         <li class="md-nav__item">
   <a href="#active-active" title="Active - Active" class="md-nav__link">
     Active - Active
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mirror-maker-2" title="Mirror Maker 2" class="md-nav__link">
-    Mirror Maker 2
   </a>
   
 </li>
@@ -1014,35 +1014,35 @@
                 
                 
                 <h1 id="data-replication-in-context-of-eda">Data replication in context of EDA</h1>
-<p>As an introduction to the scope of the data replication in the context of distributed system, we encourage to read our summary in <a href="https://ibm-cloud-architecture.github.io/refarch-data-ai-analytics/data/data-replication/">this note</a>.</p>
-<p>In this section we are going to address the data replication in the context of Kafka using IBM Geo Replication and Kafka Mirror Maker 2.</p>
+<p>As an introduction to the scope of the data replication in the context of distributed system, we encourage to read our summary in <a href="https://ibm-cloud-architecture.github.io/refarch-data-ai-analytics/data/data-replication/">this article</a>.</p>
+<p>In this section we are going to address the data replication in the context of Kafka using IBM Geo Replication and Kafka Mirror Maker 2 and change data capture.</p>
 <h2 id="problem-statement">Problem statement</h2>
-<p>We suppose we need to replicate data in Kafka topics between different clusters running in different environments. There are multiple motivations for such replication. We can list at least the followings:</p>
+<p>We suppose we need to replicate data in Kafka topics between different clusters running in different availability zones or data centers. There are multiple motivations for such replication. We can list at least the followings:</p>
 <ul>
-<li>high availability cross data centers for microservice generated data, for failover purpose.</li>
-<li>Move data closer to end user to improve performance and latency</li>
-<li>the need to build on-premise data aggregation or data lake layer to perform batch analytics jobs.</li>
-<li>isolate secure data to on-premise cluster, with data encryption or transformed to remove personal identifiable information.</li>
+<li>Support disaster recovery, using different data centers to replicate microservice generated data in an active - passive mode.</li>
+<li>Move data closer to end user to improve performance and latency, this is more an active - active model, where the same microservices are deployed on the different data centers.</li>
+<li>The need to build on-premise data aggregation or data lake layer to perform batch analytics jobs from data gathered from different remote environments.</li>
+<li>Isolate secure data from on-premise cluster, with data encryption and data transformation to remove personal identifiable information, but still exchange such data between environments.</li>
 </ul>
-<p>We are proposing two type of environments:</p>
+<p>We are proposing two environments:</p>
 <ul>
-<li>one running a local, on-premise cluster using Kafka 2.4 open source packaging, like Bitnami or Red Hat AMQ Streams, and IBM Event Streams on IBM cloud.</li>
+<li>one running a local, on-premise cluster using Kafka 2.4 open source packaging, like Strimzi vanilla Kafka or Red Hat AMQ Streams, and IBM Event Streams on Cloud.</li>
+</ul>
+<p><img alt="Replication 1" src="../images/replication-1.png" /></p>
+<ul>
 <li>one running Event streams on Openshift on-premise, and using Geo-replication to Event Streams on IBM cloud.</li>
 </ul>
-<p>Then we want to address to main scenario: </p>
+<p><img alt="Replication 2" src="../images/replication-2.png" /></p>
+<p>Then we want to address two main scenarios:</p>
 <ul>
-<li>active - passive, which addresses more a disaster recovery approach where consumers reconnect to a new cluster after the first one fails.</li>
-<li>and active - active deployments where participant clusters have producers and consumers and some topics are replicated so the messages are processed by different consumers</li>
+<li><a href="#active-passive">Active - passive</a>, which addresses more a disaster recovery approach where consumers reconnect to a new cluster after the first one fails.</li>
+<li><a href="#active-active">Active - active</a> deployments where participant clusters have producers and consumers and some topics are replicated so the messages are processed by different consumers</li>
 </ul>
-<h2 id="active-passive">Active - Passive</h2>
-<h2 id="active-active">Active - Active</h2>
-<ul>
-<li>producers, deployed on IBM cloud within Openshift, send messages to Event streams on cloud, on the 'reeferTelemetries` topic. The explanation of the telemetry simulator producer deployment is done <a href="https://ibm-cloud-architecture.github.io/refarch-reefer-ml/infuse/simul-app/#prepare-for-kubernetes-deployment">here.</a></li>
-</ul>
-<h2 id="mirror-maker-2">Mirror Maker 2</h2>
-<p>Mirror maker 2.0 is the new feature as part of Kafka 2.4 to support data replication between cluster. It is based on Kafka connect framework, and it supports data and metadata replication, like the topic configuration, the offset and the consumer checkpoints are synchronously replicated to the target cluster.</p>
+<p>But first we need to review the new replication capability introduced with Kafka 2.4: Mirror maker 2.0.</p>
+<h2 id="mirror-maker-20">Mirror Maker 2.0</h2>
+<p>Mirror maker 2.0 is the new feature as part of Kafka 2.4 to support data replication between clusters. It is based on Kafka Connect framework, and it supports data and metadata replication, like the topic configuration, the offset and the consumer checkpoints are synchronously replicated to the target cluster.</p>
 <p>Mirror maker uses the cluster name or identifier as prefix for topic, and uses the concept of source topic and target topic. The specification is described in detail in <a href="https://cwiki.apache.org/confluence/display/KAFKA/KIP-382%3A+MirrorMaker+2.0#KIP-382:MirrorMaker2.0-RemoteTopics,Partitions">this issue</a>.</p>
-<p>To test the tool, we can use the bitnami kafka latest docker image. The target cluster runs on-premise and it is started using <a href="">docker-compose file</a>.</p>
+<p>To test the tool, we can use the Strimzi Kafka latest docker image deployed on Openshift cluster (We address Strimzi deployment in <a href="../../deployments/strimzi/deploy/">this note</a>). For mirror maker, the deployment descriptor are in the <a href="https://strimzi.io/downloads/">Strimzi project</a> under the <code>examples/kafka-mirror-maker-2</code> folder.</p>
 <p>To define the clusters and topic configuration we use a properties file. One simple example to replicate from IBM Cloud Event streams to Kafka on premise is in the folder <a href=""></a>
 Using the same kafka image we can start a mirror maker container with:</p>
 <div class="codehilite"><pre><span></span>
@@ -1050,6 +1050,12 @@ Using the same kafka image we can start a mirror maker container with:</p>
 
 <div class="codehilite"><pre><span></span>docker run -ti bitnami/kafka:2 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/mirror-maker:/home --network docker_default bash
 </pre></div>
+
+<h2 id="active-passive">Active - Passive</h2>
+<h2 id="active-active">Active - Active</h2>
+<ul>
+<li>producers, deployed on IBM cloud within Openshift, send messages to Event streams on cloud, on the 'reeferTelemetries` topic. The explanation of the telemetry simulator producer deployment is done <a href="https://ibm-cloud-architecture.github.io/refarch-reefer-ml/infuse/simul-app/#prepare-for-kubernetes-deployment">here.</a></li>
+</ul>
                 
                   
                 
