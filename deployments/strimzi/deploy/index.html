@@ -1107,7 +1107,7 @@
                 
                 
                 <h1 id="strimzi-kafka-deployment-on-openshift-or-kubernetes">Strimzi Kafka deployment on Openshift or Kubernetes</h1>
-<p>Strimzi uses the Cluster Operator to deploy and manage Kafka (including Zookeeper) and Kafka Connect clusters. When the Cluster Operator is up, it starts to watch for certain OpenShift or Kubernetes resources containing the desired Kafka or Kafka Connect cluster configuration.</p>
+<p><a href="https://strimzi.io/">Strimzi</a> uses the Cluster Operator to deploy and manage Kafka (including Zookeeper) and Kafka Connect clusters. When the Cluster Operator is up, it starts to watch for certain OpenShift or Kubernetes resources containing the desired Kafka or Kafka Connect cluster configuration.</p>
 <h2 id="create-a-namespace-or-openshift-project">Create a namespace or openshift project</h2>
 <div class="codehilite"><pre><span></span>kubectl create namespace kafka-strimzi
 
@@ -1232,13 +1232,58 @@ oc get kafkatopics
 
 <p>This creates a topic <code>test</code> in your kafka cluster.</p>
 <h2 id="test-with-producer-and-consumer-pods">Test with producer and consumer pods</h2>
-<p>Verify Docker hub strimzi account to get the lastest image tag.</p>
+<p>Use kafka-consumer and producer tools from Kafka distribution. Verify within Dockerhub under the Strimzi account to get the lastest image tag (below we use -2.4.0 tag).</p>
 <div class="codehilite"><pre><span></span><span class="c1"># Start a consumer on test topic</span>
 
 oc run kafka-consumer -ti --image<span class="o">=</span>strimzi/kafka:latest-kafka-2.4.0 --rm<span class="o">=</span><span class="nb">true</span> --restart<span class="o">=</span>Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic <span class="nb">test</span> --from-beginning
 <span class="c1"># Start a text producer</span>
-oc run kafka-producer -ti --image<span class="o">=</span>strimzi/kafka:latest-kafka-2.4.0 --rm<span class="o">=</span><span class="nb">true</span> --restart<span class="o">=</span>Never -- bin/kafka-console-producer.sh --broker-list my-cluster-kafka-bootstrap:9092 --topic <span class="nb">test</span>
+oc run kafka-producer -ti --image<span class="o">=</span>strimzi/kafka:latest-kafka-2.4.0  --rm<span class="o">=</span><span class="nb">true</span> --restart<span class="o">=</span>Never -- bin/kafka-console-producer.sh --broker-list my-cluster-kafka-bootstrap:9092 --topic <span class="nb">test</span>
 <span class="c1"># enter text</span>
+</pre></div>
+
+<p>If you want to use the strimzi kafka docker image to run the above scripts locally but remotely connect to a kafka cluster you need multiple things to happen:</p>
+<ul>
+<li>Be sure the kafka yaml file include the external route stamza:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">kafka</span><span class="p">:</span>
+    <span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.4.0</span>
+    <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+    <span class="nt">listeners</span><span class="p">:</span>
+      <span class="nt">plain</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+      <span class="nt">tls</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+      <span class="nt">external</span><span class="p">:</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">route</span>
+</pre></div>
+
+<ul>
+<li>Get the host ip address from the Route resource</li>
+</ul>
+<div class="codehilite"><pre><span></span>oc get routes my-cluster-kafka-bootstrap -o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.ingress[0].host}{&quot;\n&quot;}&#39;</span>
+</pre></div>
+
+<ul>
+<li>Get the TLS certificate from the broker</li>
+</ul>
+<div class="codehilite"><pre><span></span>oc get secrets
+oc extract secret/my-cluster-cluster-ca-cert --keys<span class="o">=</span>ca.crt --to<span class="o">=</span>- &gt; ca.crt
+<span class="c1"># transform it fo java truststore</span>
+keytool -import -trustcacerts -alias root -file ca.crt -keystore truststore.jks -storepass password -noprompt
+</pre></div>
+
+<ul>
+<li>Start the docker container by mounting the local folder with the truststore.jks to the <code>/home</code></li>
+</ul>
+<div class="codehilite"><pre><span></span>docker run -ti -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home strimzi/kafka:latest-kafka-2.4.0  bash
+<span class="c1"># inside the container uses the consumer tool</span>
+bash-4.2$ <span class="nb">cd</span> /opt/kafka/bin
+bash-4.2$ ./kafka-console-consumer.sh --bootstrap-server  my-cluster-kafka-bootstrap-jb-kafka-strimzi.gse-eda-demos-fa9ee67c9ab6a7791435450358e564cc-0001.us-east.containers.appdomain.cloud:443 --consumer-property security.protocol<span class="o">=</span>SSL --consumer-property ssl.truststore.password<span class="o">=</span>password --consumer-property ssl.truststore.location<span class="o">=</span>/home/truststore.jks --topic <span class="nb">test</span> --from-beginning
+</pre></div>
+
+<ul>
+<li>For a producer the approach is the same but suing the producer properties:</li>
+</ul>
+<div class="codehilite"><pre><span></span>./kafka-console-producer.sh --broker-list  my-cluster-kafka-bootstrap-jb-kafka-strimzi.gse-eda-demos-fa9ee67c9ab6a7791435450358e564cc-0001.us-east.containers.appdomain.cloud:443 --producer-property security.protocol=SSL --producer-property ssl.truststore.password=password --producer-property ssl.truststore.location=/home/truststore.jks --topic test   
 </pre></div>
                 
                   
