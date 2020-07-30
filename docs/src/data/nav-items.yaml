@@ -70,10 +70,16 @@
       path: /scenarios/connect-s3/
     - title: Kafka Connect - COS
       path: /scenarios/connect-cos/
+    - title: Kafka Connect - JDBC
+      path: /scenarios/connect-jdbc/
+    - title: Kafka Connect - RabbitMQ
+      path: /scenarios/connect-rabbitmq/
     - title: Kafka Streams Labs
       path: /scenarios/kafka-streams/
-    - title: Kafka Mirror Maker 2 Labs
+    - title: Kafka MirrorMaker2 Labs
       path: /scenarios/kafka-mm2/
+    - title: Use Case - Realtime Inventory
+      path: /scenarios/usecase-realtime-inventory/
 - title: Additional reading
   pages:
     - path: /additional-reading/
