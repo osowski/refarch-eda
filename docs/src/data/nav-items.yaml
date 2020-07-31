@@ -84,6 +84,10 @@
       path: /use-cases/monitoring-on-ocp/
     - title: Monitoring on IBM Cloud
       path: /use-cases/monitoring-on-cloud/
+    - title: Schema Registry on OpenShift
+      path: /use-cases/schema-registry-on-ocp/
+    - title: Schema Registry on IBM Cloud
+      path: /use-cases/schema-registry-on-cloud/
 - title: Scenarios
   pages:
     - title: Overview
