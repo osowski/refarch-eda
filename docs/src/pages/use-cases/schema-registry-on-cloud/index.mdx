@@ -128,7 +128,7 @@ Kafdrop is a web UI for viewing Kafka topics and browsing consumer groups. The t
 
 Kafdrop runs as a Docker container in your wokstation and in order to run it,
 
-1. Set the **password** value for the **sasl.jaas.config** property in the [kafka.properties](kafka.properties) file you can find in this repo. The value for password is the *api_key/password* attributes of your service credentials. If you don't remember how to get this, review that section [here](#api-key)
+1. Set the **password** value for the **sasl.jaas.config** property in the [kafka.properties](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/kafka.properties) file you can find in this repo. The value for password is the *api_key/password* attributes of your service credentials. If you don't remember how to get this, review that section [here](#api-key)
 
 	```properties
 	security.protocol=SASL_SSL
@@ -216,7 +216,7 @@ In order to build our python demo environment we first need to clone the github 
 
 ### Build
 
-This Docker container can be built by using the [Dockerfile](Dockerfile) provided within this github repository.
+This Docker container can be built by using the [Dockerfile](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/Dockerfile) provided within this github repository.
 
 To build your python demo environment Docker container, execute the following on your workstation:
 
@@ -834,7 +834,7 @@ In this section we are going to see how Schema Registry works when you have an a
 
 Once again, we are going to run these scripts in the python demo environment we presented earlier in this lab in [this section](#python-demo-environment). Please, review that section in order to understand how to run the environment in your local workstation.
 
-1. Make sure you have a newly created topic for this exercise (review the [IBM Event Streams on IBM Cloud lab](es-cloud/) if needed):
+1. Make sure you have a newly created topic for this exercise (review the [IBM Event Streams on IBM Cloud lab](/technology/event-streams/es-cloud/) if needed):
 
 	```shell
 	$ ibmcloud es topic-create test
@@ -867,7 +867,7 @@ Once again, we are going to run these scripts in the python demo environment we 
 
 ### Create a message
 
-In order to create a message, we execute the `ProduceAvroMessage.py` within the `/tmp/lab/src` folder in our python demo environment. This script, as you could see in the [Python Avro Producer](#python-avro-producer) section, it is sending the event `{'eventKey': '1', 'message': 'This is a test message'}` according to the schemas defined in [default_key.avsc](avro_files/default_key.avsc) and [default_value.avsc](avro_files/default_value.avsc) for the key and value of the event respectively.
+In order to create a message, we execute the `ProduceAvroMessage.py` within the `/tmp/lab/src` folder in our python demo environment. This script, as you could see in the [Python Avro Producer](#python-avro-producer) section, it is sending the event `{'eventKey': '1', 'message': 'This is a test message'}` according to the schemas defined in [default_key.avsc](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/avro_files/default_key.avsc) and [default_value.avsc](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/avro_files/default_value.avsc) for the key and value of the event respectively.
 
 ```shell
 python ProduceAvroMessage.py test
