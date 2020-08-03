@@ -1193,7 +1193,7 @@ test-schema-user1-value-tv5efr   active   1                1                   F
 OK
 ```
 
-we see two schemas, `test-schema-user1-key-d89uk` and `test-schema-user1-value-tv5efr`, which in fact correspond to the Avro data schema used for the `key` ([default_key.avsc](avro_files/default_key.avsc)) and the `value` ([default_value.avsc](avro_files/default_value.avsc)) of events sent to the `test-schema-user1` topic in the [ProduceAvroMessage.py](https://github.com/ibm-cloud-architecture/refarch-eda-tools/tree/master/labs/es-cloud-schema-lab-v10/src/ProduceAvroMessage.py) as explained before sending the message.
+we see two schemas, `test-schema-user1-key-d89uk` and `test-schema-user1-value-tv5efr`, which in fact correspond to the Avro data schema used for the `key` ([default_key.avsc](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/avro_files/default_key.avsc)) and the `value` ([default_value.avsc](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/avro_files/default_value.avsc)) of events sent to the `test-schema-user1` topic in the [ProduceAvroMessage.py](https://github.com/ibm-cloud-architecture/refarch-eda-tools/tree/master/labs/es-cloud-schema-lab-v10/src/ProduceAvroMessage.py) as explained before sending the message.
 
 To make sure of what we are saying, we can inspect those schemas:
 
@@ -1233,7 +1233,7 @@ cloudctl es schema test-schema-user1-value-tv5efr --version 1
 }
 ```
 
-If I now decided that my events should contain another attribute, I would modify the event value schema ([default_value.avsc](avro_files/default_value.avsc)) to reflect that as well as `ProduceAvroMessage.py` to send that new attribute in the event it sends:
+If I now decided that my events should contain another attribute, I would modify the event value schema ([default_value.avsc](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/avro_files/default_value.avsc)) to reflect that as well as `ProduceAvroMessage.py` to send that new attribute in the event it sends:
 
 <InlineNotification kind="warning">
 
@@ -1427,7 +1427,7 @@ As you can see, our script was able to read the Avro messages from the `test-sch
 
 So far we have more or less seen what Avro is, what an Avro data schema is, what a schema registry is and how this all works together. From creating an Avro data schema for your messages/events to comply with to how the schema registry and Avro data schemas work together. And we have also seen the code for doing all this, from the python code to send and receive Avro encoded messages based on their Avro data schemas to the rich CLI IBM Event Streams provides to interact with.
 
-However, we have said little about the need for data to evolve. When you design an Event Driven architecture for your application (by applying [Event Storming](../../methodology/event-storming/) or [Domain Driven Design](../../methodology/domain-driven-design/) for example), it is very hard to come up with data structures/schemas that will not need to evolve/change in time. That is, your data, like your use or business cases, may need to evolve. As a result, Avro data schemas must be somehow flexible to allow your data to evolve along with your application and use cases.
+However, we have said little about the need for data to evolve. When you design an Event Driven architecture for your application (by applying [Event Storming](/methodology/event-storming/) or [Domain Driven Design](/methodology/domain-driven-design/) for example), it is very hard to come up with data structures/schemas that will not need to evolve/change in time. That is, your data, like your use or business cases, may need to evolve. As a result, Avro data schemas must be somehow flexible to allow your data to evolve along with your application and use cases.
 
 But it is not as easy as adding or removing data that travels in your events/messages or modifying the type of such data. And one of the reasons for this is that Kafka (or any other type of event backbone) is many times used as the source of truth. That is, a place that you can trust as to what has happened. Hence, Kafka will serve as the source of truth where all the events (that is, data) that happened (which could be bank transactions, communications, etc) will get stored (sometimes up to [hundreds of years](https://www.confluent.io/blog/publishing-apache-kafka-new-york-times/)) and will be able to be replayed if needed. As a result, there must be a data schema management and data schema evolution put in place that allow the **compatibility** of old and new data schemas and, in fact, old and new data at the end of the day.
 

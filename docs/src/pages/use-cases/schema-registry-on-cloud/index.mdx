@@ -302,7 +302,7 @@ Currently the schema registry is in early access status. This means that a limit
 
 ### Enabling the Schema Registry
 
-Currently the schema registry is not enabled by default and can only be enabled for IBM Event Streams Enterprise plan service instances. To request the enablement of the schema registry, please raise a support ticket [here](https://cloud.ibm.com/docs/get-support?topic=get-support-getting-customer-support#using-avatar). Ensure that you **include the CRN of your Event Streams service instance in the ticket**. The CRN of the service instance can be found using the following IBM Cloud CLI command `ibmcloud resource service-instance <SERVICENAME>` (where `SERVICENAME` is the name of your Event Streams service instance). For more info on how to get your IBM Event Streams service instance CRN review the [Event Streams on Cloud hands on lab](../es-cloud/#creating-event-streams-instance-with-ibm-cloud-cli).
+Currently the schema registry is not enabled by default and can only be enabled for IBM Event Streams Enterprise plan service instances. To request the enablement of the schema registry, please raise a support ticket [here](https://cloud.ibm.com/docs/get-support?topic=get-support-getting-customer-support#using-avatar). Ensure that you **include the CRN of your Event Streams service instance in the ticket**. The CRN of the service instance can be found using the following IBM Cloud CLI command `ibmcloud resource service-instance <SERVICENAME>` (where `SERVICENAME` is the name of your Event Streams service instance). For more info on how to get your IBM Event Streams service instance CRN review the [Event Streams on Cloud hands on lab](/technology/event-streams/es-cloud/#creating-event-streams-instance-with-ibm-cloud-cli).
 
 If you have already enabled the schema registry capability for an Event Streams Enterprise plan service instance, it will automatically receive updates as new capabilities become available.
 
@@ -908,7 +908,7 @@ $ curl -u token:$KAFKA_APIKEY $URL/artifacts
 ["test-key","test-value"]
 ```
 
-we see two schemas, `test-key` and `test-value`, which in fact correspond to the Avro data schema used for the `key` ([default_key.avsc](avro_files/default_key.avsc)) and the `value` ([default_value.avsc](avro_files/default_value.avsc)) of events sent to the `test` topic in the [ProduceAvroMessage.py](https://github.com/ibm-cloud-architecture/refarch-eda-tools/tree/master/labs/es-cloud-schema-lab/src/ProduceAvroMessage.py) as explained before sending the message.
+we see two schemas, `test-key` and `test-value`, which in fact correspond to the Avro data schema used for the `key` ([default_key.avsc](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/avro_files/default_key.avsc)) and the `value` ([default_value.avsc](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/avro_files/default_value.avsc)) of events sent to the `test` topic in the [ProduceAvroMessage.py](https://github.com/ibm-cloud-architecture/refarch-eda-tools/tree/master/labs/es-cloud-schema-lab/src/ProduceAvroMessage.py) as explained before sending the message.
 
 To make sure of what we are saying, we can inspect those schemas:
 
@@ -940,7 +940,7 @@ $ curl -s -u token:$KAFKA_APIKEY $URL/artifacts/test-value | jq .
 }
 ```
 
-If I now decided that my events should contain another attribute, I would modify the event value schema ([default_value.avsc](avro_files/default_value.avsc)) to reflect that as well as `ProduceAvroMessage.py` to send that new attribute in the event it sends:
+If I now decided that my events should contain another attribute, I would modify the event value schema ([default_value.avsc](https://github.com/ibm-cloud-architecture/refarch-eda-tools/blob/master/labs/es-cloud-schema-lab/avro_files/default_value.avsc)) to reflect that as well as `ProduceAvroMessage.py` to send that new attribute in the event it sends:
 
 ```shell
 # python ProduceAvroMessage.py test
