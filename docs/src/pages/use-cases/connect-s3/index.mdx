@@ -38,9 +38,27 @@ As different use cases will require different configuration details to accommoda
 **Amazon Web Services account**
 - As this scenario will make use of [AWS S3](https://aws.amazon.com/s3/), an active Amazon Web Services account is required.
 - Using the configuration described in this walkthrough, an additional IAM user can be created for further separation of permission, roles, and responsibilities.
-- This new IAM user should contain:
-  -  The [`AmazonS3FullAccess` policy](https://console.aws.amazon.com/iam/home?region=us-east-1#/policies/arn:aws:iam::aws:policy/AmazonS3FullAccess$serviceLevelSummary) attached to it _(as it will need both read and write access to S3)_,
-  -  An [S3 Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/walkthrough1.html) set on the Bucket to allow the IAM user to perform CRUD actions on the bucket and its objects.
+- This new IAM user should contain the [`AmazonS3FullAccess` policy](https://console.aws.amazon.com/iam/home?region=us-east-1#/policies/arn:aws:iam::aws:policy/AmazonS3FullAccess$serviceLevelSummary) attached to it _(as it will need both read and write access to S3)_.
+-  An [S3 Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/walkthrough1.html) is required to be set on the Bucket to allow the IAM user to perform CRUD actions on the bucket and its objects.
+  ```json
+  {
+    "Id": "PolicyId1234",
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "Stmt1234",
+        "Action": "s3:*",
+        "Effect": "Allow",
+        "Resource": "arn:aws:s3:::{bucket-name}",
+        "Principal": {
+          "AWS": [
+            "arn:aws:iam::{aws-account-id}:user/{new-iam-user}"
+          ]
+        }
+      }
+    ]
+  }
+  ```
 - Create a file named `aws-credentials.properties` with the following format:
 
    ```
@@ -54,7 +72,6 @@ As different use cases will require different configuration details to accommoda
    kubectl create secret generic aws-credentials --from-file=aws-credentials.properties
    ```
 - _Additional work is underway to enable configuration of the components to make use of IAM Roles instead._
-
 
 **IBM Event Streams API Key**
 - This scenario is written with [IBM Event Streams](https://ibm.github.io/event-streams/about/overview/) as the provider of the Kafka endpoints.
