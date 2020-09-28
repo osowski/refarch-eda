@@ -248,7 +248,14 @@ Now that you have a Kafka Connect cluster up and running, you will need to confi
 Review the YAML description for our `KafkaConnector` custom resource below, named `s3-sink-connector`. Pay close attention to:
 - The `strimzi.io/cluster` label must match the deployed Kafka Connect cluster you previously deployed _(or else Strimzi will not connect the `KafkaConnector` to your `KafkaConnect` cluster)_
 - The `topics` parameter _(named `my-source-topic` here)_
-- The S3 Bucket parameter of the `camel.sink.url` configuration option _(named `my-s3-bucket` here)_
+- The S3 Bucket parameter of the `camel.sink.path.bucketNameOrArn` configuration option _(named `my-s3-bucket` here)_
+
+<InlineNotification kind="warning">
+**TODO:** WORK IN PROGRESS - Refine parameters
+- [ ] The configuration below does not allow for the previous parameterization of the S3 KeyName
+  - This seems to be an issue with the aws2-s3 configuration options.
+  - This should work, as per https://github.com/apache/camel-kafka-connector-examples/tree/master/aws2-s3/aws2-s3-sink-with-zip-aggregation#create-connector-instance
+</InlineNotification>
 
 ```yaml
 apiVersion: kafka.strimzi.io/v1alpha1
@@ -264,15 +271,18 @@ spec:
     key.converter: org.apache.kafka.connect.storage.StringConverter
     value.converter: org.apache.kafka.connect.storage.StringConverter
     topics: my-source-topic
-    camel.sink.url: aws2-s3://my-s3-bucket?keyName=${date:now:yyyyMMdd-HHmmssSSS}-${exchangeId}
-    camel.sink.maxPollDuration: 10000
-    camel.component.aws2-s3.configuration.autocloseBody: false
+    #camel.sink.url: aws2-s3://my-s3-bucket?keyName=${date:now:yyyyMMdd-HHmmssSSS}-${exchangeId}
+    camel.sink.path.bucketNameOrArn: my-s3-bucket
+    camel.sink.endpoint.keyName: ${date:now:yyyyMMdd-HHmmssSSS}-${exchangeId}
+    camel.component.aws2-s3.keyName: ${date:now:yyyyMMdd-HHmmssSSS}-${exchangeId}
     camel.component.aws2-s3.accessKey: ${file:/opt/kafka/external-configuration/aws-credentials/aws-credentials.properties:aws_access_key_id}
     camel.component.aws2-s3.secretKey: ${file:/opt/kafka/external-configuration/aws-credentials/aws-credentials.properties:aws_secret_access_key}
     camel.component.aws2-s3.region: us-east-1
 ```
 
-Once you have updated the YAML and saved it in a file named `kafka-sink-connector.yaml`, this resource can be created via `kubectl apply -f kafka-sink-connector.yaml`. You can then tail the output of the `connect-cluster-101` pods for updates on the connector status.
+- Update the YAML and save it in a file named `kafka-sink-connector.yaml`
+- Create this resource via `kubectl apply -f kafka-sink-connector.yaml`.
+- You can then tail the output of the `connect-cluster-101` pods for updates on the connector status.
 
 **NOTE:** If you require objects in S3 to reside in a sub-folder of the bucket root, you can place a folder name prefix in the `keyName` query parameter of the `camel.sink.url` configuration option above. For example, `camel.sink.url: aws-s3://my-s3-bucket?keyName=myfoldername/${date:now:yyyyMMdd-HHmmssSSS}-${exchangeId}`.
 
@@ -280,14 +290,17 @@ Once you have updated the YAML and saved it in a file named `kafka-sink-connecto
 
 <InlineNotification kind="warning">
 **TODO:** WORK IN PROGRESS
+- [x] The configuration below does not use the S3ObjectConverter class, as recommended by the docs due to ClassCastExceptions. (Per https://github.com/apache/camel-kafka-connector/issues/338, the special class is not needed...)
+- [ ] The configuration below does not set a Kafka Record key.
+- [ ] Document `camel.component.aws2-s3.moveAfterRead`, along with `camel.component.aws2-s3.destinationBucket`.
 </InlineNotification>
 
 Similar to the [Kafka to S3 Sink Connector](#kafka-to-s3-sink-connector) scenario, this scenario will make use of the Strimzi [`KafkaConnector` custom resource](https://strimzi.io/docs/0.17.0/#kafkaconnector_resources) to configure the specific connector instance.
 
 Review the YAML description for our `KafkaConnector` custom resource below, named `s3-source-connector`. Pay close attention to:
 - The `strimzi.io/cluster` label must match the deployed Kafka Connect cluster you previously deployed _(or else Strimzi will not connect the `KafkaConnector` to your `KafkaConnect` cluster)_
-- The `topics` and `camel.source.kafka.topic` parameters _(named `my-target-topic` here)_
-- The S3 Bucket parameter of the `camel.sink.url` configuration option _(named `my-s3-bucket` here)_
+- The `topics` parameters _(named `my-target-topic` here)_
+- The S3 Bucket parameter of the `camel.source.path.bucketNameOrArn` configuration option _(named `my-s3-bucket` here)_
 
 **Please note** that it is an explicit intention that the topics used in the [Kafka to S3 Sink Connector](#kafka-to-s3-sink-connector) configuration and the [S3 to Kafka Source Connector](#s3-to-kafka-source-connector) configuration are different. If these configurations were to use the **same Kafka topic** and the **same S3 Bucket**, we would create an infinite processing loop of the same information being endlessly recycled through the system. In our example deployments here, we are deploying to different topics but the same S3 Bucket.
 
@@ -299,23 +312,25 @@ metadata:
   labels:
     strimzi.io/cluster: connect-cluster-101
 spec:
-  class: org.apache.camel.kafkaconnector.CamelSourceConnector
+  class: org.apache.camel.kafkaconnector.aws2s3.CamelAws2s3SourceConnector
   tasksMax: 1
   config:
     key.converter: org.apache.kafka.connect.storage.StringConverter
-    value.converter: org.apache.camel.kafkaconnector.awss3.converters.S3ObjectConverter
+    value.converter: org.apache.kafka.connect.storage.StringConverter
     topics: my-target-topic
-    camel.source.kafka.topic: my-target-topic
-    camel.source.url: aws-s3://my-s3-bucket?autocloseBody=false
+    camel.source.path.bucketNameOrArn: my-s3-bucket
     camel.source.maxPollDuration: 10000
-    camel.component.aws-s3.accessKey: ${file:/opt/kafka/external-configuration/aws-credentials/aws-credentials.properties:aws_access_key_id}
-    camel.component.aws-s3.secretKey: ${file:/opt/kafka/external-configuration/aws-credentials/aws-credentials.properties:aws_secret_access_key}
-    camel.component.aws-s3.region: US_EAST_1
+    #camel.source.endpoint.autocloseBody: false
+    camel.component.aws2-s3.accessKey: ${file:/opt/kafka/external-configuration/aws-credentials/aws-credentials.properties:aws_access_key_id}
+    camel.component.aws2-s3.secretKey: ${file:/opt/kafka/external-configuration/aws-credentials/aws-credentials.properties:aws_secret_access_key}
+    camel.component.aws2-s3.region: us-east-1
 ```
 
-Once you have updated the YAML and saved it in a file named `kafka-source-connector.yaml`, this resource can be created via `kubectl apply -f kafka-source-connector.yaml`. You can then tail the output of the `connect-cluster-101` pods for updates on the connector status.
+- Update the YAML and save it in a file named `kafka-source-connector.yaml`.
+- Create this resource via `kubectl apply -f kafka-source-connector.yaml`.
+- You can then tail the output of the `connect-cluster-101` pods for updates on the connector status.
 
-**NOTE:** If you require the connector to only read objects from a subdirecotry of the S3 bucket root, you can set the `camel.component.aws-s3.configuration.prefix` configuration option with the value of the subdirectory name. For example, `camel.component.aws-s3.configuration.prefix: myfoldername` .
+**NOTE:** If you require the connector to only read objects from a subdirectory of the S3 bucket root, you can set the `camel.component.aws-s3.configuration.prefix` configuration option with the value of the subdirectory name. For example, `camel.component.aws-s3.configuration.prefix: myfoldername` .
 
 
 ## Event Streams v10 Addendum
